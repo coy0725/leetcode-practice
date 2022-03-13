@@ -105,7 +105,53 @@ public class MinStack {
         }
         return minValueStack.peek();
     }
-    
+    class MinStack2 {
+        class ListNode {
+            public int val;
+            public int min;//最小值
+            public ListNode next;
+
+            public ListNode(int val, int min, ListNode next) {
+                this.val = val;
+                this.min = min;
+                this.next = next;
+            }
+        }
+        private ListNode head;
+
+        public void push(int val) {
+            if (isEmpty()) {
+                head=new ListNode(val,val,null);
+            }else {
+                ListNode temp=head;
+                head=new ListNode(val,Math.min(temp.min,val),temp);
+            }
+        }
+
+        public void pop() {
+            head=head.next;
+        }
+
+        public int top() {
+            return head.val;
+        }
+
+        public int getMin() {
+            return head.min;
+        }
+        public boolean isEmpty(){
+            return head==null;
+        }
+    }
+
+    /**
+     * Your MinStack object will be instantiated and called as such:
+     * MinStack obj = new MinStack();
+     * obj.push(val);
+     * obj.pop();
+     * int param_3 = obj.top();
+     * int param_4 = obj.getMin();
+     */
     //leetcode submit region begin(Prohibit modification and deletion)
     static class Solution {
     
