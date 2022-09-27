@@ -81,4 +81,16 @@ public class Shell {
             if (less(comparator, a[i], a[i-1])) return false;
         return true;
     }
+
+    class Solution {
+        public int maxProfit(int[] prices) {
+            int maxprofit = 0;
+            int minPrice =prices[0];
+            for (int i = 0; i < prices.length - 1; i++) {
+
+            }
+            return maxprofit;
+
+        }
+    }
 }
