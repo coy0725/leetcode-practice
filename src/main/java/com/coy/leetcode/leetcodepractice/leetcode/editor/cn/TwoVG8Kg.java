@@ -70,8 +70,10 @@ class Solution {
         int left = 0;
         int minLength = Integer.MAX_VALUE;
         int sum = 0;
+        //移动右指针,做加法
         for (int right = 0 ;right<nums.length;right++){
             sum = sum+ nums[right];
+            //移动左指针，做减法
             while (left<=right&&sum>=target){
                 minLength=Math.min(minLength,right-left+1);
                 sum = sum -nums[left++];
