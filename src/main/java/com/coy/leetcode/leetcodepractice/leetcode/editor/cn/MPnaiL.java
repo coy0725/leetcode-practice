@@ -40,10 +40,11 @@
 	
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
-import java.util.HashMap;
-
 /**
 * 剑指 Offer II 014
+ * - 第一次解答，失败，思路没有理清
+ * - 第二次解答，失败，窗口移动时，字符出现次数增加规则记反了
+ * - 第三次解答，失败，没有考虑到子数组可能比目标数组还长的情况
 */
 public class MPnaiL {
     public static void main(String[] args) {
