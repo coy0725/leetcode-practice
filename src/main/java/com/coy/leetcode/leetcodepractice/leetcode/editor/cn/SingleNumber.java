@@ -1,7 +1,6 @@
 /**
-* 只出现一次的数字
-* 
-*/
+ * 只出现一次的数字
+ */
 //给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。 
 //
 // 说明： 
@@ -20,34 +19,45 @@
 //输出: 4 
 // Related Topics 位运算 数组 
 // 👍 2597 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
-* 136
-*/
+ * 136
+ */
 public class SingleNumber {
     public static void main(String[] args) {
         Solution solution = new SingleNumber().new Solution();
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int singleNumber(int[] nums) {
-        HashMap<Integer,Integer> numToCount = new HashMap<>();
-        for (final int num : nums) {
-            numToCount.put(num,numToCount.getOrDefault(num,0)+1);
-        }
-        for (final Map.Entry<Integer, Integer> entry : numToCount.entrySet()) {
-            if (entry.getValue()==1){
-                return entry.getKey();
+    class Solution {
+        public int singleNumber(int[] nums) {
+            HashMap<Integer, Integer> numToCount = new HashMap<>();
+            for (final int num : nums) {
+                numToCount.put(num, numToCount.getOrDefault(num, 0) + 1);
             }
+            for (final Map.Entry<Integer, Integer> entry : numToCount.entrySet()) {
+                if (entry.getValue() == 1) {
+                    return entry.getKey();
+                }
+            }
+            return 0;
         }
-        return 0;
+
+        public int singleNumber2(int[] nums) {
+            int rlt = nums[0];
+            if (nums.length > 1) {
+                for (int i = 1; i < nums.length; i++) {
+                    rlt = rlt ^ nums[i];
+                }
+            }
+            return rlt;
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
