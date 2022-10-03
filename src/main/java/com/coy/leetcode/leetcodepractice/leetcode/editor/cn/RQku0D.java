@@ -52,7 +52,7 @@ public class RQku0D {
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public boolean validPalindrome(String s) {
+    public boolean validPalindrome2(String s) {
         int left =0;
         int right = s.length()-1;
         boolean isDeleted = false;
@@ -77,7 +77,31 @@ class Solution {
         return true;
 
     }
-}
+
+    public boolean validPalindrome(String s){
+        int left = 0;
+        int right =s.length()-1;
+        while (left<right){
+            if (s.charAt(left)!=s.charAt(right)){
+                break;
+            }
+            left++;
+            right--;
+        }
+        return left==s.length()/2||isPalindrome(s,left,right-1)||isPalindrome(s,left+1,right);
+    }
+
+    private boolean isPalindrome(String s, int left, int right) {
+            while (left<right){
+                if (s.charAt(left)!=s.charAt(right)){
+                    return false;
+                }
+                left++;
+                right--;
+            }
+            return true;
+    }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
