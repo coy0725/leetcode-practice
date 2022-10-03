@@ -125,33 +125,35 @@ public class M1oyTv {
             for (final char c : t.toCharArray()) {
                 charToCount.put(c,charToCount.getOrDefault(c,0)+1);
             }
-            int count = charToCount.size();//重复字符种类数
-            int start=0,end=0,minStart = 0,minEnd =0;
+            int count = charToCount.size();//字符种类数
+            int left=0,right=0,minStart = 0,minEnd =0;
             int minLength = Integer.MAX_VALUE;
-            while (end<s.length()||(count==0&&end==s.length())){
+            while (right<s.length()||(count==0&&right==s.length())){
+                //字符种类数>0
                 if (count>0){
-                    char endCh = s.charAt(end);
+                    char endCh = s.charAt(right);
                     if (charToCount.containsKey(endCh)){
                         charToCount.put(endCh,charToCount.get(endCh)-1);
+                        //该字符数量减为0，字符种类数-1
                         if (charToCount.get(endCh)==0){
                             count--;
                         }
                     }
-                    end++;
+                    right++;
                 }else {
-                    if (end-start<minLength){
-                        minLength=end-start;
-                        minStart=start;
-                        minEnd=end;
+                    if (right-left<minLength){
+                        minLength=right-left;
+                        minStart=left;
+                        minEnd=right;
                     }
-                    char startCh = s.charAt(start);
+                    char startCh = s.charAt(left);
                     if (charToCount.containsKey(startCh)){
                         charToCount.put(startCh,charToCount.get(startCh)+1);
                         if (charToCount.get(startCh)==1){
                             count++;
                         }
                     }
-                    start++;
+                    left++;
                 }
             }
 
