@@ -54,23 +54,33 @@ public class ClimbingStairs {
     class Solution {
         HashMap<Integer, Integer> nToCount = new HashMap<>();
 
-
         public int climbStairs(int n) {
-            if (nToCount.get(n)!=null){
+            if (nToCount.get(n) != null) {
                 return nToCount.get(n);
-            }else
-            if (n == 1) {
-                nToCount.put(1,1);
+            } else if (n == 1) {
+                nToCount.put(1, 1);
                 return 1;
             } else if (n == 2) {
-                nToCount.put(2,2);
+                nToCount.put(2, 2);
                 return 2;
             } else if (n > 2) {
-                nToCount.put(n-1,climbStairs(n - 1));
-                nToCount.put(n-2,climbStairs(n - 2));
+                nToCount.put(n - 1, climbStairs(n - 1));
+                nToCount.put(n - 2, climbStairs(n - 2));
                 return climbStairs(n - 1) + climbStairs(n - 2);
             }
             return 0;
+        }
+
+        public int climbStairs2(int n) {
+            int p = 0;
+            int q = 0;
+            int r = 1;
+            for (int i = 0; i < n; i++) {
+                p = q;
+                q = r;
+                r = p + q;
+            }
+            return r;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
