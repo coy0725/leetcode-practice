@@ -77,7 +77,7 @@ public class MajorityElement {
             for (int i = 0; i < nums.length; i++) {
                 if (candidate_num == nums[i]) {
                     count++;
-                } else if (count-- == 0) {//更换候选人
+                } else if (--count == 0) {//更换候选人
                     candidate_num = nums[i];
                     count = 1;
                 }
