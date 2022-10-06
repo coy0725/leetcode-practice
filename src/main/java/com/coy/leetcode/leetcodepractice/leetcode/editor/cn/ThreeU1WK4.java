@@ -93,53 +93,44 @@ public class ThreeU1WK4 {
     /**
      * Definition for singly-linked list.
      * public class ListNode {
-     *     int val;
-     *     ListNode next;
-     *     ListNode(int x) {
-     *         val = x;
-     *         next = null;
-     *     }
+     * int val;
+     * ListNode next;
+     * ListNode(int x) {
+     * val = x;
+     * next = null;
+     * }
      * }
      */
     public class Solution {
         public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-            ListNode nodeA = reverseList(headA);
-            ListNode nodeB = reverseList(headB);
-            ListNode tmpHeadA = nodeA;
-            ListNode tmpHeadB = nodeB;
+            int lengthA = countList(headA);
+            int lengthB = countList(headB);
+            int delta = Math.abs(lengthA - lengthB);
+            ListNode longer = lengthA > lengthB ? headA : headB;
+            ListNode shorter = lengthA < lengthB ? headA : headB;
+            ListNode node1 = longer;
 
-            if (nodeA != nodeB) {
-                reverseList(tmpHeadA);
-                reverseList(tmpHeadB);
-                return null;
+            //长的链表先走delta步
+            for (int i = 0; i < delta; i++) {
+                node1 = node1.next;
             }
-            ListNode intersectionNode = nodeA;
-
-            while (nodeA != null && nodeB != null && nodeA.val == nodeB.val) {
-                intersectionNode = nodeA;
-                nodeA = nodeA.next;
-                nodeB = nodeB.next;
+            ListNode node2 = shorter;
+            while (node1 != node2) {
+                node2 = node2.next;
+                node1 = node1.next;
             }
-            reverseList(tmpHeadA);
-            reverseList(tmpHeadB);
-            return intersectionNode;
+            return node1;
         }
 
-        public ListNode reverseList(ListNode head) {
-            if (head == null || head.next == null) {
-                return head;
+        private int countList(ListNode head) {
+            int count = 0;
+            while (head != null) {
+                count++;
+                head = head.next;
             }
-            ListNode cur = head;
-            ListNode pre = null;
-
-            while (cur != null) {
-                ListNode next = cur.next;//保存当前节点的下一个节点
-                cur.next = pre;//反转当前节点的指向
-                pre = cur;//记录下一个节点的前一个节点
-                cur = next;//更新下一个节点的当前节点
-            }
-            return pre;
+            return count;
         }
+
     }
 
     public class ListNode {
