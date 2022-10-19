@@ -98,11 +98,12 @@ public class ZuiChangBuHanZhongFuZiFuDeZiZiFuChuanLcof {
                             duplicateCharCount--;
                         }
                         charToCount.put(s.charAt(left),n-1);
+                        left++;
                         if (duplicateCharCount<1){
                             maxLength=Math.max(maxLength,right-left+1);
                             break;
                         }
-                        left++;
+
                     }
                 }
 
