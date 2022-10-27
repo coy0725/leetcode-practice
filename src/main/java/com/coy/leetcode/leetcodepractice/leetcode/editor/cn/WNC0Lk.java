@@ -98,7 +98,7 @@ class Solution {
         Queue<TreeNode> queue2 = new LinkedList<>();
         Queue<TreeNode> temp;
         queue1.offer(root);
-        while (!queue1.isEmpty()){
+        while (!queue1.isEmpty()&&queue1.peek()!=null){
             TreeNode node = queue1.poll();
             if (node.left!=null){
                 queue2.offer(node.left);
