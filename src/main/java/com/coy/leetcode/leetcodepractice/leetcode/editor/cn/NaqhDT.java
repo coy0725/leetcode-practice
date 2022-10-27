@@ -52,6 +52,7 @@
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Queue;
 
 /**
@@ -59,6 +60,16 @@ import java.util.Queue;
  */
 public class NaqhDT {
     public static void main(String[] args) {
+        NaqhDT naqhDT = new NaqhDT();
+        naqhDT.test();
+    }
+
+    public void test(){
+        TreeNode root = new TreeNode(5);
+        CBTInserter inserter = new CBTInserter(root);
+        System.out.println(inserter.get_root());
+        inserter.insert(8);
+        inserter.insert(11);
 
     }
 
@@ -81,43 +92,37 @@ public class NaqhDT {
 
     class CBTInserter {
 
-        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue  ;
+        TreeNode root = new TreeNode();
         public CBTInserter(TreeNode root) {
+            this.root = root;
+            queue = new LinkedList<>();
             queue.offer(root);
+            while (Objects.nonNull(queue.peek()) &&queue.peek().left!=null&&queue.peek().right!=null){
+                TreeNode node = queue.poll();
+                queue.offer(node.left);
+                queue.offer(node.right);
+            }
         }
 
         public int insert(int v) {
-            //假设现在根节点是3 插入的值是4，那就是要插到根节点的右侧
-            TreeNode parentNode = null;
-            while (!queue.isEmpty()){
-                TreeNode node = queue.poll();
-                if (node.left!=null){
-                    queue.offer(node.left);
-                }
-                if (node.right!=null){
-                    queue.offer(node.right);
-                }
-                if (node.left==null&&node.val>v){
-                    TreeNode treeNode = new TreeNode();
-                    treeNode.val=v;
-                    node.left=treeNode;
-                    parentNode=node;
-                }
-                if (node.right==null&&node.val<v){
-                    TreeNode treeNode = new TreeNode();
-                    treeNode.val=v;
-                    node.right=treeNode;
-                    parentNode=node;
-                }
+            TreeNode parent = queue.peek();
+            TreeNode insertNode = new TreeNode(v);
+            assert parent != null;
+            if (parent.left==null){
+                parent.left= insertNode;
+            }else {
+                parent.right=insertNode;
+                queue.poll();
+                queue.offer(parent.left);
+                queue.offer(parent.right);
             }
-            return parentNode.val;
-
-
+            return parent.val;
 
         }
 
         public TreeNode get_root() {
-            return queue.poll();
+            return this.root;
         }
     }
 
