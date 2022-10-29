@@ -98,6 +98,33 @@ public class BinaryTreePostorderTraversal {
             }
             return nodes;
         }
+
+        public List<Integer> postorderTraversal2(TreeNode root){
+            List<Integer> nodes = new ArrayList<>();
+            TreeNode cur = root;
+            TreeNode pre = null;
+            Stack<TreeNode> stack = new Stack<>();
+
+            while (cur!= null && !stack.isEmpty()){
+                while (cur!=null){
+                    stack.push(cur);
+                    cur= cur.left;
+                }
+
+                if (cur.right!=null && cur.right!=pre){
+                    stack.push(cur.right);
+                    pre = cur.right;
+                    cur = null;
+                }else {
+                    TreeNode node = stack.pop();
+                    nodes.add(node.val);
+                    pre = node;
+                }
+
+            }
+            return nodes;
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
