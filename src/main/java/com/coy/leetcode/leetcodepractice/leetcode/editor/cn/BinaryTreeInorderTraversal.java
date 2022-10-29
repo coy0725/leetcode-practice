@@ -119,11 +119,9 @@ class Solution {
                 stack.push(cur);
                 cur = cur.left;
             }
-            TreeNode node = stack.pop();
-            nodes.add(node.val);
-            if (node.right!=null){
-                stack.push(node.right);
-            }
+            cur  = stack.pop();//当前正在访问的节点
+            nodes.add(cur.val);//访问当前节点
+            cur = cur.right;//访问当前节点的右节点
 
         }
         return nodes;
