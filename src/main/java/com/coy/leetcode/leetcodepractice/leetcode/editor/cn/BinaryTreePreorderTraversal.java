@@ -111,12 +111,10 @@ class Solution {
         while (cur!=null ||!stack.isEmpty()){
             while (cur!=null){
                 nodes.add(cur.val);
+                stack.push(cur.right);//先不访问右边的节点，将其压入栈
                 cur = cur .left;
             }
             cur = stack.pop();
-            if (cur.right!=null){
-                cur = cur.right;
-            }
         }
         return nodes;
     }
