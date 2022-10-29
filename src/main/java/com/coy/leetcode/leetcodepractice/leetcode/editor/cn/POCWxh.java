@@ -99,6 +99,18 @@ class Solution {
         return root;
     }
 
+    public TreeNode pruneTree2(TreeNode root){
+        if (root ==null){
+            return root;
+        }
+        root.left = pruneTree2(root.left);
+        root.right= pruneTree2(root.right);
+        if (root.left==null && root.right==null&&root.val==0){
+            return null;
+        }
+        return root;
+    }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
