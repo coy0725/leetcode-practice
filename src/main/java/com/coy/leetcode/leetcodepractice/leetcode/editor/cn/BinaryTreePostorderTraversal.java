@@ -105,20 +105,20 @@ public class BinaryTreePostorderTraversal {
             TreeNode pre = null;
             Stack<TreeNode> stack = new Stack<>();
 
-            while (cur!= null && !stack.isEmpty()){
+            while (cur!= null || !stack.isEmpty()){
                 while (cur!=null){
                     stack.push(cur);
                     cur= cur.left;
                 }
 
+                cur = stack.peek();
                 if (cur.right!=null && cur.right!=pre){
-                    stack.push(cur.right);
-                    pre = cur.right;
-                    cur = null;
+                    cur= cur.right;
                 }else {
-                    TreeNode node = stack.pop();
-                    nodes.add(node.val);
-                    pre = node;
+                    stack.pop();
+                    nodes.add(cur.val);
+                    pre = cur;
+                    cur = null;
                 }
 
             }
