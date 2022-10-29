@@ -111,7 +111,8 @@ public class BinaryTreePostorderTraversal {
                     cur= cur.left;
                 }
 
-                cur = stack.peek();
+                cur = stack.peek();//栈顶元素
+                //如果栈顶元素这个节点它的右节点还没被访问，先访问它的右节点，如果他的右子节点已经访问了，则可以访问了
                 if (cur.right!=null && cur.right!=pre){
                     cur= cur.right;
                 }else {
