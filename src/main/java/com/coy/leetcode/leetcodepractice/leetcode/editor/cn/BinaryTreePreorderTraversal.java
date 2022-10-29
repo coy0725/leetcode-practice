@@ -103,6 +103,23 @@ class Solution {
 
         return nodes;
     }
+
+    public List<Integer> preorderTraversal2(TreeNode root){
+        List<Integer> nodes = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur =root;
+        while (cur!=null ||!stack.isEmpty()){
+            while (cur!=null){
+                nodes.add(cur.val);
+                cur = cur .left;
+            }
+            cur = stack.pop();
+            if (cur.right!=null){
+                cur = cur.right;
+            }
+        }
+        return nodes;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
