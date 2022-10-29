@@ -106,6 +106,28 @@ class Solution {
 
         return nodes;
     }
+
+    public List<Integer> inorderTraversal3(TreeNode root){
+        List<Integer> nodes = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur;
+
+        cur =root;
+
+        while (cur!=null || !stack.isEmpty()){
+            while (cur!=null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            TreeNode node = stack.pop();
+            nodes.add(node.val);
+            if (node.right!=null){
+                stack.push(node.right);
+            }
+
+        }
+        return nodes;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
