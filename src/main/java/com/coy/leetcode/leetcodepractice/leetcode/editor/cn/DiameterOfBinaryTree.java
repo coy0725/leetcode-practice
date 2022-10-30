@@ -49,28 +49,23 @@ public class DiameterOfBinaryTree {
  * }
  */
 class Solution {
+    int max = 0;
     public int diameterOfBinaryTree(TreeNode root) {
-        int length = 0;
-        if (root==null){
-            return length;
+        if (root == null) {
+            return 0;
         }
-        TreeNode left = root.left;
-        TreeNode right = root.right;
-        if (left==null&&right==null){
-            return 1;
-        }
+        dfs(root);
+        return max;
+    }
 
-        //最左节点+最右节点
-        while (left!=null){
-            length++;
-            left=left.left;
+    private int dfs(TreeNode root) {
+        if (root.left==null&&root.right==null){
+            return 0;
         }
-        while (right!=null){
-            length++;
-            right=right.right;
-        }
-        return length;
-
+        int leftLength = root.left==null?0:dfs(root.left)+1;
+        int rightLength = root.right==null?0:dfs(root.right)+1;
+        max=Math.max(max,leftLength+rightLength);
+        return Math.max(leftLength,rightLength);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
