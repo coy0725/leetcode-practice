@@ -165,6 +165,7 @@ public class ZuiChangBuHanZhongFuZiFuDeZiZiFuChuanLcof {
                     if (leftChCount==1){
                         dupCount--;
                     }
+                    left++;
                 }
                 maxLength=Math.max(maxLength,right-left+1);
 
