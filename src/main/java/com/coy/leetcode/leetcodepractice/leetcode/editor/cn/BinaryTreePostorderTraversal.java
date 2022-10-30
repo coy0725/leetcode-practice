@@ -139,12 +139,13 @@ public class BinaryTreePostorderTraversal {
                 }
 
                 cur = stack.peek();
-                if (cur != null && cur.right != prev) {
-                    stack.push(cur.right);
+                if (cur.right != null && cur.right != prev) {
                     cur = cur.right;
                 }else {
                     cur = stack.pop();
                     nodes.add(cur.val);
+                    prev = cur;
+                    cur =null;
                 }
 
             }
