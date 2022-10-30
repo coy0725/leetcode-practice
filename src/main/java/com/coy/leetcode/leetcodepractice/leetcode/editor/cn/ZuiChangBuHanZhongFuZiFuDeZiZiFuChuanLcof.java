@@ -140,6 +140,40 @@ public class ZuiChangBuHanZhongFuZiFuDeZiZiFuChuanLcof {
             return maxlength;
         }
 
+        public int lengthOfLongestSubstring4(String s){
+            if (s==null){
+                return 0;
+            }
+            int left =0;
+            int dupCount=0;
+            int maxLength = 0;
+            HashMap<Character,Integer> charToCount = new HashMap<>();
+
+            for (int right = 0; right < s.length() ; right++) {
+                char rightCh = s.charAt(right);
+                Integer rightChCount = charToCount.getOrDefault(rightCh, 0);
+                rightChCount++;
+                charToCount.put(rightCh,rightChCount);
+                if (rightChCount==2){
+                    dupCount++;
+                }
+                while (dupCount>0&&left<right){
+                    char leftCh = s.charAt(left);
+                    Integer leftChCount = charToCount.getOrDefault(leftCh, 0);
+                    leftChCount--;
+                    charToCount.put(leftCh,leftChCount);
+                    if (leftChCount==1){
+                        dupCount--;
+                    }
+                }
+                maxLength=Math.max(maxLength,right-left+1);
+
+            }
+
+            return maxLength;
+
+        }
+
         private boolean areAllLessOne(HashMap<Character, Integer> keyToCount) {
             for (final Integer count : keyToCount.values()) {
                 if (count > 1) {
