@@ -126,6 +126,26 @@ class Solution {
         }
         return nodes;
     }
+
+    public List<Integer> inorderTraversal4(TreeNode root){
+        List<Integer> nodes = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+
+        while (cur != null || !stack.isEmpty()) {
+            while (cur!=null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            nodes.add(cur.val);
+            cur = cur.right;
+
+
+        }
+
+        return nodes;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
