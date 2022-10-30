@@ -62,7 +62,7 @@ public class BinaryTreeMaximumPathSum {
  * }
  */
 class Solution {
-    int max =0;
+    int max = Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
         if (root==null){
             return 0;
@@ -72,13 +72,13 @@ class Solution {
     }
 
     private int dfs(TreeNode root) {
-        if (root.right==null&& root.left==null){
+        if (root==null){
             return 0;
         }
-        int leftValue = root.left==null?0:dfs(root.left)+root.val;
-        int rightValue = root.right==null?0:dfs(root.right)+root.val;
-        max = Math.max(max,leftValue+rightValue);
-        return Math.max(leftValue,rightValue);
+        int leftValue = Math.max(0,dfs(root.left));
+        int rightValue = Math.max(0,dfs(root.right));
+        max = Math.max(max,leftValue+rightValue+root.val);
+        return Math.max(leftValue,rightValue)+root.val;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
