@@ -77,16 +77,17 @@ class Solution {
         if (root==null){
             return 0;
         }
-        int leftLength = 0;
-        int rightLength = 0;
-        if (root.left!=null){
-            leftLength = root.left.val==root.val?dfs(root.left)+1:0;
+        int leftLength = root.left!=null?dfs(root.left)+1:0;
+        int rightLength = root.right!=null?dfs(root.right)+1:0;
+
+        // 唯一的区别在这里，按照上题思路求出了左边边长后， 如果当前节点和左孩子节点不同值，就把边长重新赋值为0
+        if (leftLength>0&&root.left.val!=root.val){
+            leftLength=0;
         }
-        if (root.right!=null){
-            rightLength = root.right.val==root.val?dfs(root.right)+1:0;
+        if (rightLength>0&&root.right.val!=root.val){
+            rightLength=0;
         }
         max=Math.max(max,leftLength+rightLength);
-
         return Math.max(leftLength,rightLength);
     }
 }
