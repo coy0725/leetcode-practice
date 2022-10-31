@@ -159,8 +159,8 @@ class Solution {
                 cur = cur.left;
             }
             cur = stack.pop();
-            nodes.add(cur.val);
-            cur = cur.right;
+            nodes.add(cur.val);//访问当前节点
+            cur = cur.right;//访问当前节点右节点
         }
 
         return nodes;
