@@ -168,7 +168,6 @@ public class BinaryTreePostorderTraversal {
                 cur = stack.peek();
 
                 if (cur.right!=null && cur.right!=prev){
-                    stack.push(cur.right);
                     cur = cur.right;
                 }else {
                     cur = stack.pop();
