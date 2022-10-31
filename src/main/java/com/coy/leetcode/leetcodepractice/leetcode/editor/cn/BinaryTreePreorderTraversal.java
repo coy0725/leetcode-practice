@@ -136,6 +136,23 @@ class Solution {
         }
         return nodes;
     }
+
+    public List<Integer> preorderTraversal4(TreeNode root){
+        List<Integer> nodes = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur =root;
+
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                nodes.add(cur.val);
+                stack.push(cur.right);
+                cur= cur.right;
+            }
+            cur = stack.pop();
+        }
+
+        return nodes;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
