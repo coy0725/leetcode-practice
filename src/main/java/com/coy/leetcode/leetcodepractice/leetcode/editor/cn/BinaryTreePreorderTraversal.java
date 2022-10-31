@@ -146,7 +146,7 @@ class Solution {
             while (cur != null) {
                 nodes.add(cur.val);
                 stack.push(cur.right);
-                cur= cur.right;
+                cur= cur.left;
             }
             cur = stack.pop();
         }
