@@ -173,6 +173,36 @@ public class HPov7L {
             return rlt;
 
         }
+
+        public List<Integer> largestValues2(TreeNode root) {
+            List<Integer> rlt = new ArrayList<>();
+            Queue<TreeNode> queue1 = new LinkedList<>();
+            Queue<TreeNode> queue2 = new LinkedList<>();
+
+            int levelMaxValue = Integer.MIN_VALUE;//记录每层最大值
+            queue1.offer(root);
+            while (Objects.nonNull(queue1.peek())) {
+                TreeNode node = queue1.poll();
+                levelMaxValue = Math.max(levelMaxValue, node.val);
+
+                if (node.left != null) {
+                    queue2.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue2.offer(node.right);
+                }
+
+                //当前层节点已经遍历完了
+                if (queue1.isEmpty()) {
+                    rlt.add(levelMaxValue);
+                    levelMaxValue = Integer.MIN_VALUE;
+                    Queue<TreeNode> tmp = queue1;
+                    queue1 = queue2;
+                    queue2 = tmp;
+                }
+            }
+            return rlt;
+        }
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
