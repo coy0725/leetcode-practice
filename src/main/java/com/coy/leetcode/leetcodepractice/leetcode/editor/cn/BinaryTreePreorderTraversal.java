@@ -1,6 +1,6 @@
 /**
 * 二叉树的前序遍历
-* 
+*
 */
 //给你二叉树的根节点 root ，返回它节点值的 前序 遍历。 
 //
@@ -55,7 +55,7 @@
 // 进阶：递归算法很简单，你可以通过迭代算法完成吗？ 
 // Related Topics 栈 树 深度优先搜索 二叉树 
 // 👍 930 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.ArrayList;
@@ -151,6 +151,22 @@ class Solution {
             cur = stack.pop();
         }
 
+        return nodes;
+    }
+
+    public List<Integer> preorderTraversal5(TreeNode root) {
+        List<Integer> nodes = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                nodes.add(cur.val);
+                stack.push(cur.right);
+                cur = cur.right;
+            }
+            cur = stack.pop();
+        }
         return nodes;
     }
 }
