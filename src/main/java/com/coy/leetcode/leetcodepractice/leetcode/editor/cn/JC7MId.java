@@ -93,7 +93,8 @@ public class JC7MId {
             }
 
             maxPath = Math.max(root.val + leftPath + rightPath,maxPath);
-            return Math.max(leftPath,rightPath)+root.val;//为什么是这样的？
+            //为什么是这样的？是一条路径，所以要么选左边要么选右边
+            return Math.max(leftPath,rightPath)+root.val;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
