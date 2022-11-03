@@ -63,31 +63,16 @@ public class ErChaShuDeJingXiangLcof {
  */
 class Solution {
     public TreeNode mirrorTree(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<>();
-
-        if (root == null||(root.left==null&&root.right==null)) {
-            return root;
-        }
-        TreeNode cur = root;
-        TreeNode tmp;
-        while (cur != null ||!stack.isEmpty()) {
-            while (cur != null) {
-
-
-            }
-
+        if (root==null){
+            return null;
         }
 
-        TreeNode left = cur.left;
-        TreeNode right = cur.right;
-        tmp = left;
-        left =right;
-        right= left;
-        cur= cur.left;
+        TreeNode left = mirrorTree(root.left);
+        TreeNode right = mirrorTree(root.right);
 
+        root.right = left;
+        root.left = right;
         return root;
-
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
