@@ -91,9 +91,9 @@ public class JC7MId {
             if (rightPath < 0) {
                 rightPath = 0;
             }
-            int currentNodePath = root.val + leftPath + rightPath;
-            maxPath = Math.max(currentNodePath,maxPath);
-            return currentNodePath;
+
+            maxPath = Math.max(root.val + leftPath + rightPath,maxPath);
+            return Math.max(leftPath,rightPath)+root.val;//为什么是这样的？
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
