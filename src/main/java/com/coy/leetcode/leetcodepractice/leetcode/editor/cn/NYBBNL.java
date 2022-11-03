@@ -118,6 +118,33 @@ class Solution {
 
         return nodes;
     }
+
+    private TreeNode increasingBST2(TreeNode root) {
+
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        TreeNode prev =null;
+        TreeNode first = null;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+
+            cur = stack.pop();
+            if (prev == null) {
+                first= cur;
+            }else {
+                prev.right = cur;
+            }
+
+            prev= cur;
+            cur.left = null;
+            cur = cur.right;
+        }
+
+        return first;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
