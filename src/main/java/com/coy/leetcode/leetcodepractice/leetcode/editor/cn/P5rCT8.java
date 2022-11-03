@@ -81,12 +81,12 @@ class Solution {
             }
 
             cur = stack.pop();
-            if (cur.val==p.val){
-                found= true;
-            }
             if (found){
                 rlt =cur;
                 break;
+            }
+            if (cur.val==p.val){
+                found= true;
             }
             cur=cur.right;
         }
