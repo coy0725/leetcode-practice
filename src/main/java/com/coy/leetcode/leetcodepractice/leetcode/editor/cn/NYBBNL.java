@@ -53,6 +53,24 @@ import java.util.Stack;
 public class NYBBNL {
     public static void main(String[] args) {
         Solution solution = new NYBBNL().new Solution();
+        TreeNode root = new TreeNode(5);
+        TreeNode node3 = new TreeNode(3);
+        TreeNode node6 = new TreeNode(6);
+        TreeNode node2 = new TreeNode(2);
+        TreeNode node4 = new TreeNode(4);
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node8 = new TreeNode(8);
+        TreeNode node7 = new TreeNode(7);
+        TreeNode node9 = new TreeNode(9);
+        root.left=node3;
+        root.right=node6;
+        node3.left=node2;
+        node3.right=node4;
+        node2.left=node1;
+        node6.right=node8;
+        node8.left=node7;
+        node8.right=node9;
+        solution.increasingBST(root);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -84,7 +102,7 @@ class Solution {
             cur.left=null;
             cur.right =next;
         }
-        return root;
+        return nodes.get(0);
     }
 
     private List<TreeNode> inOrderDfs(TreeNode root) {
