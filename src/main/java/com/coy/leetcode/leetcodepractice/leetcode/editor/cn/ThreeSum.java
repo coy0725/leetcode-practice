@@ -1,7 +1,6 @@
 /**
-* 三数之和
-* 
-*/
+ * 三数之和
+ */
 //给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k
 // ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请 
 //
@@ -52,7 +51,7 @@
 // 
 // Related Topics 数组 双指针 排序 
 // 👍 5363 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.ArrayList;
@@ -60,51 +59,49 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
-* 15
-*/
+ * 15
+ */
 public class ThreeSum {
     public static void main(String[] args) {
         Solution solution = new ThreeSum().new Solution();
+        solution.threeSum(new int[]{-1,0,1,2,-1,-4});
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> rlt = new ArrayList<>();
-        Arrays.sort(nums);
-        for (int left = 0; left < nums.length - 2; left++) {
-            if (nums[left] > 0) {
-                break;
-            }
-            if (nums[left]==nums[left+1]){
-                continue;
-            }
-            int mid = left+1;
-            int right = nums.length-1;
-            while (mid < right) {
-                int sum = nums[left]+nums[mid]+nums[right];
-                if (sum<0){
-                    while (mid<right&&nums[mid]==nums[mid+1]){
-                        mid++;
-                    }
-                }else if (sum>0){
-                    while (mid<right&&nums[right]==nums[right-1]){
-                        right--;
-                    }
-                }else {
-                    rlt.add(new ArrayList<>(Arrays.asList(nums[left],nums[mid],nums[right])));
-                    while (mid<right&&nums[mid]==nums[mid+1]){
-                        mid++;
-                    }
-                    while (mid<right&&nums[right]==nums[right-1]){
-                        right--;
+    class Solution {
+        public List<List<Integer>> threeSum(int[] nums) {
+            List<List<Integer>> rlt = new ArrayList<>();
+            Arrays.sort(nums);
+            for (int left = 0; left < nums.length - 2; left++) {
+                if (nums[left] > 0) {
+                    break;
+                }
+                if (left > 0 && nums[left] == nums[left - 1]) {
+                    continue;
+                }
+                int mid = left + 1;
+                int right = nums.length - 1;
+                while (mid < right) {
+                    int sum = nums[left] + nums[mid] + nums[right];
+                    if (sum < 0) {
+                        while (mid < right &&nums[mid]==nums[mid++]) {
+                        }
+                    } else if (sum > 0) {
+                        while (mid < right && nums[right] == nums[right--]) {
+                        }
+                    } else {
+                        rlt.add(new ArrayList<>(Arrays.asList(nums[left], nums[mid], nums[right])));
+                        while (mid < right &&nums[mid]==nums[mid++]) {
+                        }
+                        while (mid < right && nums[right] == nums[right--]) {
+                        }
                     }
                 }
             }
-        }
 
-        return rlt;
+            return rlt;
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
