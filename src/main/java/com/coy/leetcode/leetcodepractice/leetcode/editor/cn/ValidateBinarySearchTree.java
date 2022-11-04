@@ -85,7 +85,7 @@ class Solution {
             }
             cur = stack.pop();
             //如果前一个节点访问的值大于当前访问节点的值，说明不是搜索树
-            if (prev!=null&&prev.val>cur.val){
+            if (prev!=null&&prev.val>=cur.val){
                 isValidBST = false;
                 break;
             }
