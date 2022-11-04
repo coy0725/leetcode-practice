@@ -64,37 +64,43 @@ import java.util.List;
 public class ThreeSum {
     public static void main(String[] args) {
         Solution solution = new ThreeSum().new Solution();
-        solution.threeSum(new int[]{-1,0,1,2,-1,-4});
+        System.out.println(solution.threeSum(new int[] {-1, 0, 1, 2, -1, -4}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<List<Integer>> threeSum(int[] nums) {
             List<List<Integer>> rlt = new ArrayList<>();
+            int length = nums.length;
+            if (length < 3) {
+                return rlt;
+            }
             Arrays.sort(nums);
-            for (int left = 0; left < nums.length - 2; left++) {
-                if (nums[left] > 0) {
+            for (int i = 0; i < length - 2; i++) {
+                if (nums[i] > 0) {
                     break;
                 }
-                if (left > 0 && nums[left] == nums[left - 1]) {
+                if (i > 0 && nums[i] == nums[i - 1]) {
                     continue;
                 }
-                int mid = left + 1;
-                int right = nums.length - 1;
-                while (mid < right) {
-                    int sum = nums[left] + nums[mid] + nums[right];
-                    if (sum < 0) {
-                        while (mid < right &&nums[mid]==nums[mid++]) {
+                int left = i + 1;
+                int right = length - 1;
+                while (left < right) {
+                    int sum = nums[i] + nums[left] + nums[right];
+                    if (sum == 0) {
+                        rlt.add(new ArrayList<>(Arrays.asList(nums[i], nums[left], nums[right])));
+                        while (left < right && nums[left] == nums[left + 1]) {
+                            left++;
                         }
+                        while (left < right && nums[right] == nums[right - 1]) {
+                            right--;
+                        }
+                        left++;
+                        right--;
+                    } else if (sum < 0) {
+                        left++;
                     } else if (sum > 0) {
-                        while (mid < right && nums[right] == nums[right--]) {
-                        }
-                    } else {
-                        rlt.add(new ArrayList<>(Arrays.asList(nums[left], nums[mid], nums[right])));
-                        while (mid < right &&nums[mid]==nums[mid++]) {
-                        }
-                        while (mid < right && nums[right] == nums[right--]) {
-                        }
+                        right--;
                     }
                 }
             }
