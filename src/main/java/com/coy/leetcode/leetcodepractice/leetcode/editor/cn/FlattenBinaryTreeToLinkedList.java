@@ -85,12 +85,21 @@ class Solution {
 
         while (cur != null || !stack.isEmpty()) {
             while (cur != null) {
-                if (prev!=null){
-                    prev
+                //当前访问节点的前一个节点的左节点置为null，右节点指向当前节点
+                if (prev==null){
+                    prev =cur;
+                }else {
+                    prev.left=null;
+                    prev.right= cur;
+                    prev = cur;
                 }
+                //访问当前节点
                 stack.push(cur.right);
+                cur = cur.left;
             }
+            cur = stack.pop();
         }
+        //最后一个访问节点的左节点置为null,怎么处理来着？
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
