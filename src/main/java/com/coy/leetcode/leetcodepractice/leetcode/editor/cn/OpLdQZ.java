@@ -52,6 +52,23 @@ import java.util.Stack;
 public class OpLdQZ {
     public static void main(String[] args) {
         Solution solution = new OpLdQZ().new Solution();
+
+        TreeNode node5 = new TreeNode(5);
+        TreeNode node6 = new TreeNode(6);
+        TreeNode node7 = new TreeNode(7);
+        TreeNode node8 = new TreeNode(8);
+        TreeNode node9 = new TreeNode(9);
+        TreeNode node10 = new TreeNode(10);
+        TreeNode node11 = new TreeNode(11);
+
+        node8.left=node6;
+        node8.right=node10;
+        node6.left=node5;
+        node6.right=node7;
+        node10.left=node9;
+        node10.right=node11;
+        System.out.println(solution.findTarget(node8, 12));
+
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -80,14 +97,15 @@ class Solution {
         int right = integers.size()-1;
 
         while (left < right) {
-            if (integers.indexOf(left)+integers.indexOf(right)==k){
+            int sum = integers.get(left) + integers.get(right);
+            if (sum ==k){
                 isFind = true;
                 break;
             }
-            else if (integers.indexOf(left)+integers.indexOf(right)>k){
+            else if (sum>k){
                 right--;
             }
-            else if (integers.indexOf(left)+integers.indexOf(right)<k){
+            else if (sum<k){
                 left++;
             }
         }
