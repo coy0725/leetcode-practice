@@ -66,7 +66,7 @@ public class CountingBits {
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] countBits(int n) {
-        int [] rlt = new int[n];
+        int [] rlt = new int[n+1];
         rlt[0]=0;
 
         for (int i = 0; i <= n; i++) {
