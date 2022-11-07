@@ -105,7 +105,7 @@ class Solution {
             else if (sum>k){
                 right--;
             }
-            else if (sum<k){
+            else {
                 left++;
             }
         }
