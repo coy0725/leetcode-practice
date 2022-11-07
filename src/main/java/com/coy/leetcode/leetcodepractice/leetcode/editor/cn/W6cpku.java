@@ -108,8 +108,8 @@ class Solution {
                 cur = cur.right;
             }
             cur = stack.pop();
-            cur.val=cur.val+sum;
-            sum = sum +cur.val;
+            sum = sum+cur.val;
+            cur.val=sum;
             cur = cur.left;
         }
         return root;
