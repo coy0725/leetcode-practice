@@ -71,8 +71,10 @@ class Solution {
 
         for (int i = 0; i <= n; i++) {
             if (i%2==1){
+                //如果是奇数：1的个数是前一个数1的个数+1
                 rlt[i] = rlt[i-1]+1;
             }else {
+                //如果是偶数
                 rlt[i] = rlt[i/2];
             }
         }
