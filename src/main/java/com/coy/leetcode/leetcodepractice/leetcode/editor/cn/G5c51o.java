@@ -40,8 +40,11 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * 剑指 Offer II 060
@@ -49,36 +52,35 @@ import java.util.PriorityQueue;
 public class G5c51o {
     public static void main(String[] args) {
         Solution solution = new G5c51o().new Solution();
-
+        solution.topKFrequent(new int[] {1, 1, 1, 2, 2, 3}, 2);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
-        private PriorityQueue<Integer> minHeap;
-        private int size;
-        private HashMap<Integer,Integer> keyToCount;
         public int[] topKFrequent(int[] nums, int k) {
-            minHeap = new PriorityQueue<>();
-            size = k;
-            keyToCount = new HashMap<>();
+            Map<Integer,Integer> numToCount = new HashMap<>();
             for (final int num : nums) {
-                keyToCount.put(num,keyToCount.getOrDefault(num,0)+1);
-                Integer count = keyToCount.get(num);
-                if (minHeap.size()<k){
-                    minHeap.offer(num);
+                numToCount.put(num, numToCount.getOrDefault(num, 0) + 1);
+            }
+            Queue<Map.Entry<Integer,Integer> > minHeap =
+                new PriorityQueue<>((e1,e2)->e1.getValue()-e2.getValue());
+            for (final Map.Entry<Integer, Integer> entry : numToCount.entrySet()) {
+                if (minHeap.size() < k) {
+                    minHeap.offer(entry);
                 }else {
-                    Integer heapCount = keyToCount.get(minHeap.peek());
-                    if (heapCount < count) {
-                        minHeap.offer(num);
+                    if (entry.getValue() > minHeap.peek().getValue()) {
                         minHeap.poll();
+                        minHeap.offer(entry);
                     }
-
                 }
             }
-            int[] rlt = new int[minHeap.size()];
-            for (int i = 0; i < minHeap.size(); i++) {
-                rlt[i] = minHeap.poll();
+            int size = minHeap.size();
+            int[] rlt = new int[size];
+            int i =0;
+            for (final Map.Entry<Integer, Integer> entry : minHeap) {
+                rlt[i++] = entry.getKey();
+                System.out.println(entry.getKey());
             }
             return rlt;
         }
