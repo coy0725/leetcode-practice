@@ -82,13 +82,14 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 public class B1IidL {
     public static void main(String[] args) {
         Solution solution = new B1IidL().new Solution();
+        System.out.println(solution.peakIndexInMountainArray(new int[] {3, 5, 3, 2, 0}));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int peakIndexInMountainArray(int[] arr) {
 
-        int left =0 ;
-        int right =arr.length-1;
+        int left =1 ;
+        int right =arr.length-2;
         int mid ;
 
         while (left <= right) {
@@ -98,16 +99,14 @@ class Solution {
             //先判断left与mid-1,right与mid+1的关系吧
             int leftBoundary = Math.max(mid - 1, left);
             int rightBoundary = Math.min(mid + 1, right);
-
-            //处于递增情况 mid-1<mid<mid+1
-            if (arr[leftBoundary] < arr[mid] && arr[mid] < arr[rightBoundary]) {
-                left = mid +1;
-            }
-            //处于递减情况 mid-1>mid>mid+1
-            else if (arr[leftBoundary] > arr[mid] && arr[mid] > arr[rightBoundary]) {
-                right = mid-1;
-            }else {
+            if (arr[mid] > arr[mid + 1] && arr[mid] > arr[mid - 1]) {
                 return mid;
+            }
+            //处于递增情况 mid-1<mid
+            if (arr[mid] > arr[mid - 1]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
             }
 
         }
