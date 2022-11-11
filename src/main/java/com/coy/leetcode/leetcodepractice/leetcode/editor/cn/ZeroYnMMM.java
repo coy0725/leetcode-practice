@@ -82,6 +82,35 @@ public class ZeroYnMMM {
 
             return maxArea;
         }
+
+
+        public int largestRectangleArea2(int[] heights){
+            Stack<Integer> stack = new Stack<>();
+            stack.push(-1);
+            int maxArea = 0;
+
+            for (int i = 0; i < heights.length; i++) {
+                //保持栈是单调递增的
+                if (stack.peek() != -1 && heights[i] < heights[stack.peek()]) {
+                    int height = heights[stack.pop()];
+                    //i是当前柱子右边比他矮的柱子，stack.peek是当前柱子左边比它矮的柱子
+                    int width = i - stack.peek() -1;
+                    int area = height*width;
+                    maxArea = Math.max(maxArea, area);
+                }
+                stack.push(i);
+
+            }
+
+            while (stack.peek() != -1) {
+                int height = heights[stack.pop()];
+                //i是当前柱子右边比他矮的柱子，stack.peek是当前柱子左边比它矮的柱子
+                int width = heights.length - stack.peek() -1;
+                int area = height*width;
+                maxArea = Math.max(maxArea, area);
+            }
+            return maxArea;
+        }
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
