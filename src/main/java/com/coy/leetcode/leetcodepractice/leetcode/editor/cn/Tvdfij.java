@@ -112,6 +112,23 @@ public class Tvdfij {
             }
             return pivot;
         }
+
+        public int pivotIndex3(int[] nums){
+            int total = 0;
+            int sum = 0;
+
+            for (final int num : nums) {
+                total = total + num;
+            }
+            for (int i = 0; i < nums.length; i++) {
+                sum = sum+ nums[i];
+
+                if (sum-nums[i]==total-sum){
+                    return i;
+                }
+            }
+            return -1;
+        }
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
