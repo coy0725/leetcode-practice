@@ -1,7 +1,6 @@
 /**
-* 和为 k 的子数组
-* 
-*/
+ * 和为 k 的子数组
+ */
 //给定一个整数数组和一个整数 k ，请找到该数组中和为 k 的连续子数组的个数。 
 //
 // 
@@ -38,22 +37,23 @@
 // 注意：本题与主站 560 题相同： https://leetcode-cn.com/problems/subarray-sum-equals-k/ 
 // Related Topics 数组 哈希表 前缀和 
 // 👍 107 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.HashMap;
 
 /**
-* 剑指 Offer II 010
-*/
+ * 剑指 Offer II 010
+ */
 public class QTMn0o {
     public static void main(String[] args) {
         Solution solution = new QTMn0o().new Solution();
-        System.out.println(solution.subarraySum(new int[] {-1,-1,1}, 1));
+        System.out.println(solution.subarraySum(new int[] {-1, -1, 1}, 1));
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-   public int subarraySum(int[] nums, int k) {
+    class Solution {
+        public int subarraySum(int[] nums, int k) {
             int preSum = 0;
             int count = 0;
             //key:preSum值，value：等于该preSum值的个数
@@ -67,7 +67,22 @@ class Solution {
             return count;
         }
 
-}
-//leetcode submit region end(Prohibit modification and deletion)
+        public int subarraySum2(int[] nums, int k) {
+            int preSum = 0;
+            int kCount = 0;
+            //key:preSum值，value：等于该preSum值的个数
+            HashMap<Integer, Integer> preSumCount = new HashMap<>();
+            preSumCount.put(0, 1);
+            for (final int num : nums) {
+                preSum = preSum+ num;
+                kCount = kCount +preSumCount.getOrDefault(preSum-k,0);
+                preSumCount.put(preSum,preSumCount.getOrDefault(preSum, 0)+1);
+
+            }
+            return kCount;
+        }
+
+    }
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
