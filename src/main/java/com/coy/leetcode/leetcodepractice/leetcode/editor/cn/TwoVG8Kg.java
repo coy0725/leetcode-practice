@@ -1,7 +1,6 @@
 /**
-* 和大于等于 target 的最短子数组
-* 
-*/
+ * 和大于等于 target 的最短子数组
+ */
 //给定一个含有 n 个正整数的数组和一个正整数 target 。 
 //
 // 找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, ..., numsr-1, numsr] ，并返回其长
@@ -55,34 +54,57 @@
 //
 // Related Topics 数组 二分查找 前缀和 滑动窗口 
 // 👍 91 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
+
 /**
-* 剑指 Offer II 008
-*/
+ * 剑指 Offer II 008
+ */
 public class TwoVG8Kg {
     public static void main(String[] args) {
         Solution solution = new TwoVG8Kg().new Solution();
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int minSubArrayLen(int target, int[] nums) {
-        int left = 0;
-        int minLength = Integer.MAX_VALUE;
-        int sum = 0;
-        //移动右指针,做加法
-        for (int right = 0 ;right<nums.length;right++){
-            sum = sum+ nums[right];
-            //移动左指针，做减法
-            while (left<=right&&sum>=target){
-                minLength=Math.min(minLength,right-left+1);
-                sum = sum -nums[left++];
-            }
-        }
-        return minLength==Integer.MAX_VALUE?0:minLength;
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int minSubArrayLen(int target, int[] nums) {
+            int left = 0;
+            int minLength = Integer.MAX_VALUE;
+            int sum = 0;
+            //移动右指针,做加法
+            for (int right = 0; right < nums.length; right++) {
+                sum = sum + nums[right];
+                //移动左指针，做减法
+                while (left <= right && sum >= target) {
+                    minLength = Math.min(minLength, right - left + 1);
+                    sum = sum - nums[left++];
+                }
+            }
+            return minLength == Integer.MAX_VALUE ? 0 : minLength;
+
+        }
+
+        public int minSubArrayLen2(int target, int[] nums) {
+
+            int sum = 0;//子数组的和
+            int left = 0 ;//滑动窗口左边界
+            int minLength = Integer.MAX_VALUE;//大于等于target的最短子数组长度
+
+            for (int right = 0; right < nums.length; right++) {
+                sum = sum + nums[right];
+
+                while (left <= right && sum >= target) {
+                    //更新最小子数组长度
+                    minLength = Math.min(minLength, right - left + 1);
+
+                    //移动滑动窗口左边界
+                    sum = sum - nums[left];
+                    left++;
+                }
+            }
+            return minLength == Integer.MAX_VALUE ? 0 : minLength;
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
