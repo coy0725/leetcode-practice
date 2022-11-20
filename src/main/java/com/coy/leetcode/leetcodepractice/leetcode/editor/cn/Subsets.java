@@ -57,7 +57,7 @@ public class Subsets {
             //step2:遍历数组，将每个数字生成的子集加入结果集
             for (final int num : nums) {
                 Iterator<List<Integer>> iterator = result.iterator();
-                //获取当前数字能生成的子集,也就是遍历结果集前一个状态下的所有子集，将当前元素加入进去
+                //获取当前数字能生成的子集,也就是遍历当前状态结果集的所有子集，将当前元素加入进去
                 List<List<Integer>> curNumLists = new ArrayList<>();
                 while (iterator.hasNext()) {
                     ArrayList<Integer> integers = new ArrayList<>(iterator.next());
