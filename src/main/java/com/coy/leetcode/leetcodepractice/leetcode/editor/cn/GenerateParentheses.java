@@ -40,6 +40,7 @@ import java.util.List;
 public class GenerateParentheses {
     public static void main(String[] args) {
         Solution solution = new GenerateParentheses().new Solution();
+        System.out.println(solution.generateParenthesis(3));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -67,13 +68,17 @@ public class GenerateParentheses {
 
             if (left > 0) {
                 path.append("(");
+                left--;
                 dfs(path, left, right, res);
                 path.deleteCharAt(path.length() - 1);
+                left++;
             }
             if (right > 0) {
                 path.append(")");
+                right--;
                 dfs(path, left, right, res);
                 path.deleteCharAt(path.length() - 1);
+                right++;
             }
 
 
