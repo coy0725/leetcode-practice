@@ -74,7 +74,7 @@ public class TVdhkn {
             i++;
             dfs(path, nums,i,res);
             i--;
-            path.remove(i);
+            path.remove(path.size()-1);
             //不将该元素加入集合
             i++;
             dfs(path,nums,i,res);
