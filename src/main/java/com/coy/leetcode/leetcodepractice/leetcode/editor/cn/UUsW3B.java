@@ -66,19 +66,18 @@ public class UUsW3B {
 
         private void dfs(List<Integer> subSet, int k, int i, int n, List<List<Integer>> res) {
             //到达叶子节点
-            if (i == n) {
-                return;
-            }
             if (subSet.size() == k) {
                 res.add(new ArrayList<>(subSet));
                 return;
+            } else if (i <= n) {
+
+                subSet.add(i);
+                dfs(subSet,k,i+1,n,res);
+                subSet.remove(subSet.size() - 1);
+                //不选择当前元素
+                dfs(subSet, k, i+1, n, res);
             }
-            //选择将该元素加入集合
-            subSet.add(i);
-            i++;
-            dfs(subSet, k, i, n, res);
-            i--;
-            subSet.remove(subSet.size() - 1);
+
 
         }
     }
