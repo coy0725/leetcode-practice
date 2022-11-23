@@ -66,7 +66,7 @@ public class TVdhkn {
 
         private void dfs(List<Integer> path, int[] nums, int i, List<List<Integer>> res) {
             //到达叶子节点
-            if (i == nums.length - 1) {
+            if (i == nums.length ) {
                 res.add(new ArrayList<>(path));
                 return;
             }
