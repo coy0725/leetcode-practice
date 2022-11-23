@@ -71,7 +71,8 @@ public class TVdhkn {
             }
             //选择将该元素加入集合
             path.add(nums[i]);
-            dfs(path, nums,i+1,res);
+            i++;
+            dfs(path, nums,i,res);
             i--;
             path.remove(i);
             //不将该元素加入集合
