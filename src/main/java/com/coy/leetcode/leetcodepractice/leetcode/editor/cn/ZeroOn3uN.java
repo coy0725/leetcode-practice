@@ -70,7 +70,7 @@ import java.util.List;
  */
 public class ZeroOn3uN {
     public static void main(String[] args) {
-        Solution solution = new ZeroOn3uN().new Solution();
+        Solution2 solution = new ZeroOn3uN().new Solution2();
         System.out.println(solution.restoreIpAddresses("25525511135"));
     }
 
@@ -82,17 +82,17 @@ public class ZeroOn3uN {
         public List<String> restoreIpAddresses(String s) {
 
             List<String> res = new ArrayList<>();
-            dfs(res, s, "", 0,0);
+            dfs(res, s, "", 0, 0);
             return res;
         }
 
-        void dfs(List<String> res, String s, String path, int start,int partCount) {
+        void dfs(List<String> res, String s, String path, int start, int partCount) {
             if (partCount == 4) {
                 res.add(path);
                 return;
             }
 
-            for (int i = start; i < s.length()&&i<start+3; ++i) {
+            for (int i = start; i < s.length(); ++i) {
                 Integer partIp = toNumber(s, start, i);
                 if (partCount < 4 && isValidIpPartNumber(partIp)) {
                     String addition;
@@ -101,14 +101,11 @@ public class ZeroOn3uN {
                     } else {
                         addition = dot + partIp;
                     }
-                    dfs(res, s, path + addition, i, ++partCount);
-
+                    dfs(res, s, path + addition, i + 1, ++partCount);
 
                 }
 
             }
-
-
 
         }
 
@@ -122,6 +119,37 @@ public class ZeroOn3uN {
             return Integer.valueOf(number);
         }
     }
-    //leetcode submit region end(Prohibit modification and deletion)
 
+    //leetcode submit region end(Prohibit modification and deletion)
+    class Solution2 {
+
+        private String dot = ".";
+
+        public List<String> restoreIpAddresses(String s) {
+
+            List<String> res = new ArrayList<>();
+            dfs(res, s, "", "", 0, 0);
+            return res;
+        }
+
+        void dfs(List<String> result, String s, String seg, String ip, int i, int segI) {
+            if (i == s.length() && segI == 3 && isValidSeg(seg)) {
+                result.add(ip + seg);
+            } else if (i < s.length() && segI <= 3) {
+                char ch = s.charAt(i);
+                if (isValidSeg(seg + ch)) {
+                    dfs(result, s, seg+ch, ip, i + 1, segI);
+                }
+                if (seg.length() > 0 && segI < 3) {
+                    dfs(result, s, ""+ch, ip + seg + dot, i + 1, segI + 1);
+                }
+            }
+
+        }
+
+        private boolean isValidSeg(String seg) {
+            return Integer.parseInt(seg) <= 255 && (seg.equals("0") || seg.charAt(0) != '0');
+        }
+
+    }
 }
