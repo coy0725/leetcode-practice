@@ -51,7 +51,6 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 剑指 Offer II 082
@@ -73,7 +72,7 @@ public class FourSjJUc {
                 .toArray();
 
             dfs(res, sorted, combination, target, sum, 0);
-            return res.stream().distinct().collect(Collectors.toList());
+            return res;
         }
 
         private void dfs(List<List<Integer>> res, int[] candidates, List<Integer> combination,
@@ -86,8 +85,16 @@ public class FourSjJUc {
                 dfs(res, candidates, combination, target, sum + candidates[i], i + 1);
                 combination.remove(combination.size() - 1);
 
-                dfs(res, candidates, combination, target, sum , i + 1);
+                dfs(res, candidates, combination, target, sum , getNext(candidates,i));
             }
+        }
+
+        private int getNext(int[] nums, int index) {
+            int next = index;
+            while (next < nums.length && nums[next] == nums[index]) {
+                next++;
+            }
+            return next;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
