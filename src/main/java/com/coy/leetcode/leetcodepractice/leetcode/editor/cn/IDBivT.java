@@ -44,7 +44,7 @@ import java.util.List;
 public class IDBivT {
     public static void main(String[] args) {
         Solution solution = new IDBivT().new Solution();
-        System.out.println(solution.generateParenthesis(4));
+        System.out.println(solution.generateParenthesis(3));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -62,15 +62,16 @@ public class IDBivT {
         }
 
         private void dfs(List<String> res, String path, int n, int leftCount, int rightCount) {
-            if (path.length() == n) {
+
+            if (leftCount == n && rightCount == n) {
                 res.add(path);
-
-            } else {
-                if (rightCount <= leftCount) {
-                    dfs(res, path + left, n, leftCount + 1, rightCount);
-                    dfs(res, path + right, n, leftCount, rightCount);
-                }
-
+                return;
+            }
+            if (leftCount < n) {
+                dfs(res, path + left, n, leftCount+1, rightCount);
+            }
+            if (leftCount > rightCount) {
+                dfs(res,path+right,n,leftCount,rightCount+1);
             }
         }
     }
