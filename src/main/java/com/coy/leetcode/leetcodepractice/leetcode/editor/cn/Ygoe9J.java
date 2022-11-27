@@ -79,29 +79,27 @@ public class Ygoe9J {
     class Solution {
         public List<List<Integer>> combinationSum(int[] candidates, int target) {
             List<List<Integer>> res = new ArrayList<>();
-            List<Integer> subSet = new ArrayList<>();
+            List<Integer> combination = new ArrayList<>();
             int sum = 0;
 
-            dfs(res, subSet, candidates, target,sum,0);
+            dfs(res, combination, candidates, target,sum,0);
             System.out.println(res);
             return res;
         }
 
-        private void dfs(List<List<Integer>> res, List<Integer> subSet, int[] candidates,
+        private void dfs(List<List<Integer>> res, List<Integer> combination, int[] candidates,
             int target, int sum,int i) {
             //选取的组合之和等于目标值
-            if (target == sum && subSet.size() != 0) {
-                res.add(new ArrayList<>(subSet));
+            if (target == sum && combination.size() != 0) {
+                res.add(new ArrayList<>(combination));
             } else if (sum < target && i < candidates.length) {
                 //
-                subSet.add(candidates[i]);
-                sum = sum + candidates[i];
-                dfs(res,subSet,candidates,target,sum,i);
-                subSet.remove(subSet.size() - 1);
-                sum = sum - candidates[i];
+                combination.add(candidates[i]);
 
+                dfs(res,combination,candidates,target,sum + candidates[i],i);
+                combination.remove(combination.size() - 1);
 
-                dfs(res, subSet, candidates, target, sum, i+1);
+                dfs(res, combination, candidates, target, sum, i+1);
 
             }
 
