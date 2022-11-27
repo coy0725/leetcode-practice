@@ -64,7 +64,6 @@
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -82,11 +81,8 @@ public class Ygoe9J {
             List<List<Integer>> res = new ArrayList<>();
             List<Integer> subSet = new ArrayList<>();
             int sum = 0;
-            //将candidates 按照从大到小进行排序Collectors
-            int[] sortedCandidates = Arrays.stream(candidates).boxed()
-                .sorted((o1, o2) -> o2 - o1).mapToInt(Integer::valueOf).toArray();
 
-            dfs(res, subSet, sortedCandidates, target,sum,0);
+            dfs(res, subSet, candidates, target,sum,0);
             System.out.println(res);
             return res;
         }
