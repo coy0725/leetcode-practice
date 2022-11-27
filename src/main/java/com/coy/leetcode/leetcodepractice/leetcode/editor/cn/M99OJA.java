@@ -54,7 +54,7 @@ import java.util.List;
 public class M99OJA {
     public static void main(String[] args) {
         Solution solution = new M99OJA().new Solution();
-        System.out.println(Arrays.deepToString(solution.partition("google")));
+        System.out.println(Arrays.deepToString(solution.partition("bbbbbbbbbbbbbbbb")));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -67,10 +67,7 @@ public class M99OJA {
             // List<List<String>> 转 String[][]，这里不重要
             String[][] ans = new String[result.size()][];
             for (int i = 0; i < result.size(); i++) {
-                ans[i] = new String[result.get(i).size()];
-                for (int j = 0; j < ans[i].length; j++) {
-                    ans[i][j] = result.get(i).get(j);
-                }
+                ans[i] = result.get(i).toArray(new String[0]);
             }
             return ans;
 
