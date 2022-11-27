@@ -101,7 +101,7 @@ public class ZeroOn3uN {
                     } else {
                         addition = dot + partIp;
                     }
-                    dfs(res, s, path + addition, i, partCount++);
+                    dfs(res, s, path + addition, i, ++partCount);
 
 
                 }
