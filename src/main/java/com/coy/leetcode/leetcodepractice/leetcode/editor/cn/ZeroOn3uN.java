@@ -92,7 +92,7 @@ public class ZeroOn3uN {
                 return;
             }
 
-            for (int i = start; i < s.length(); ++i) {
+            for (int i = start; i < s.length()&&i<start+3; ++i) {
                 Integer partIp = toNumber(s, start, i);
                 if (partCount < 4 && isValidIpPartNumber(partIp)) {
                     String addition;
