@@ -84,6 +84,7 @@ public class GzCJIP {
                 dp[i] = Math.min(dp[i - 2], dp[i - 1]) + cost[i];
             }
 
+
         }
     }
 }
