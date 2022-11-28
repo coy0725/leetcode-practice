@@ -107,4 +107,19 @@ public class GzCJIP {
 
 
     }
+
+    class Solution4 {
+        public int minCostClimbingStairs(int[] cost) {
+
+            int len = cost.length;
+            int[] dp = new int[] {cost[0], cost[1]};
+            for (int i = 2; i < len; i++) {
+                dp[i%2] = Math.min(dp[0], dp[1]) + cost[i];
+            }
+            return Math.min(dp[0], dp[1]);
+
+        }
+
+
+    }
 }
