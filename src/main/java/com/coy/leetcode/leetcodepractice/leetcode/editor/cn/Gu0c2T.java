@@ -42,6 +42,8 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import java.util.Arrays;
+
 /**
  * 剑指 Offer II 089
  */
@@ -71,19 +73,30 @@ public class Gu0c2T {
         }
     }
 
+    //带缓存的递归代码
     class Solution1 {
         public int rob(int[] nums) {
-            int len = nums.length;
-            return Math.max(dfs(nums, len - 2), dfs(nums, len - 3));
-        }
-
-        private int dfs(int[] nums, int i) {
-            if (i < 3) {
-                return nums[i];
+            if (nums.length == 0) {
+                return 0;
             }
-            return Math.max(dfs(nums, i - 2), dfs(nums, i - 3));
-
+            int[] dp = new int[nums.length];
+            Arrays.fill(dp, -1);
+            dfs(nums, nums.length - 1, dp);
+            return dp[nums.length - 1];
         }
+
+        private void dfs(int[] nums, int i, int[] dp) {
+            if (i == 0) {
+                dp[i] = nums[0];
+            } else if (i == 1) {
+                dp[i] = Math.max(nums[0], nums[1]);
+            } else if (dp[i] < 0) {
+                dfs(nums, i - 2, dp);
+                dfs(nums, i - 1, dp);
+                dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+            }
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
