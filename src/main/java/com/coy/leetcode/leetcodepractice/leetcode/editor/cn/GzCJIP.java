@@ -48,7 +48,8 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
  */
 public class GzCJIP {
     public static void main(String[] args) {
-        Solution solution = new GzCJIP().new Solution();
+        Solution2 solution = new GzCJIP().new Solution2();
+        System.out.println(solution.minCostClimbingStairs(new int[] {1, 100}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -71,6 +72,7 @@ public class GzCJIP {
 
             int len = cost.length;
             int[] dp = new int[len];
+            dp[0] = cost[0];
             dfs(cost, len - 1,dp);
             return Math.min(dp[len-2], dp[len-1]);
 
