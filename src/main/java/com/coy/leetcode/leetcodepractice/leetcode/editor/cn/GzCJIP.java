@@ -66,5 +66,24 @@ public class GzCJIP {
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
+    class Solution2 {
+        public int minCostClimbingStairs(int[] cost) {
 
+            int len = cost.length;
+            int[] dp = new int[len];
+            dfs(cost, len - 1,dp);
+            return Math.min(dp[len-2], dp[len-2]);
+        }
+
+        private void dfs(int[] cost, int i,int [] dp) {
+            if (i < 2) {
+                dp[i] = cost[i];
+            } else if (dp[i] == 0) {
+                dfs(cost, i - 2,dp);
+                dfs(cost, i - 1,dp);
+                dp[i] = Math.min(dp[i - 2], dp[i - 1]) + cost[i];
+            }
+
+        }
+    }
 }
