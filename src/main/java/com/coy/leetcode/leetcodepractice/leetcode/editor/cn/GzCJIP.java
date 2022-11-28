@@ -72,7 +72,7 @@ public class GzCJIP {
             int len = cost.length;
             int[] dp = new int[len];
             dfs(cost, len - 1,dp);
-            return Math.min(dp[len-2], dp[len-2]);
+            return Math.min(dp[len-2], dp[len-1]);
         }
 
         private void dfs(int[] cost, int i,int [] dp) {
