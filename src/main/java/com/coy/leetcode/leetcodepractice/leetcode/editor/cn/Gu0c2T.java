@@ -142,4 +142,31 @@ public class Gu0c2T {
 
     }
 
+    //用两个状态转移方程分析解决问题
+    class Solution4 {
+        public int rob(int[] nums) {
+            int len = nums.length;
+            if (len == 0) {
+                return 0;
+            }
+
+            //定义两个表达式f（i）和g（i），其中f（i）表示小偷选择不进入标号为i的房屋偷东西时能偷得的最多财物数量，
+            // 而g（i）表示小偷选择进入标号为i的房屋偷东西时能偷得的最多财物数量
+            int[][] dp = new int[2][2];
+            dp[0][0] = nums[0];
+            dp[1][0] = 0;
+
+            //“dp[0][i%2]”中用来存放f（i）的计算结果，“dp[1][i%2]”中用来存放g（i）的计算结果
+            for (int i = 2; i < len; i++) {
+                dp[0][i % 2] = Math.max(dp[0][(i - 1) % 2], dp[1][(i - 1) % 2]);//f(i)
+                dp[1][i % 2] = nums[i] + dp[0][(i - 1) % 2];
+
+            }
+            return Math.max(dp[0][(len - 1) % 2], dp[1][(len - 1) % 2]);
+        }
+
+
+
+    }
+
 }
