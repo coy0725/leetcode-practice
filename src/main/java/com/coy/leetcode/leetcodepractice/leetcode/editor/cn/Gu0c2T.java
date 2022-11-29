@@ -49,7 +49,7 @@ import java.util.Arrays;
  */
 public class Gu0c2T {
     public static void main(String[] args) {
-        Solution1 solution = new Gu0c2T().new Solution1();
+        Solution2 solution = new Gu0c2T().new Solution2();
         System.out.println(solution.rob(new int[] {2,7,9,3,1}));
     }
 
@@ -99,5 +99,25 @@ public class Gu0c2T {
 
     }
     //leetcode submit region end(Prohibit modification and deletion)
+    //空间复杂度为O（n）的迭代代码
+    class Solution2 {
+        public int rob(int[] nums) {
+            if (nums.length == 0) {
+                return 0;
+            }
+            int[] dp = new int[nums.length];
+            dp[0] = nums[0];
+            if (nums.length > 1) {
+                dp[1] = Math.max(nums[0], nums[1]);
+            }
+            for (int i = 2; i < nums.length; i++) {
+                dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+            }
+            return dp[nums.length - 1];
+        }
+
+
+
+    }
 
 }
