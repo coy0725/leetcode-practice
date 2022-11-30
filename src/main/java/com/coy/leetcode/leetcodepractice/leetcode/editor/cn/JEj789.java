@@ -52,7 +52,7 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
  */
 public class JEj789 {
     public static void main(String[] args) {
-        Solution solution = new JEj789().new Solution();
+        Solution1 solution = new JEj789().new Solution1();
         System.out.println(solution.minCost(new int[][] {{17, 2, 17}, {16, 16, 5}, {14, 3, 19}}));
     }
 
@@ -88,5 +88,45 @@ public class JEj789 {
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
+
+    /**
+     * 不带缓存的递归解决方案
+     */
+    class Solution1 {
+        // 0 红 1 蓝 2 绿
+        public int minCost(int[][] costs) {
+            if (costs.length == 0) {
+                return 0;
+            }
+
+            int min = Math.min(red(costs, costs.length - 1), blue(costs, costs.length - 1));
+            return Math.min(min, green(costs, costs.length - 1));
+        }
+
+        int red(int[][] costs, int i) {
+            if (i == 0) {
+                return costs[0][0];
+            } else {
+                return Math.min(green(costs, i - 1), blue(costs, i - 1))+costs[i][0];
+            }
+        }
+
+        int blue(int[][] costs, int i) {
+            if (i == 0) {
+                return costs[0][1];
+            } else {
+                return Math.min(red(costs, i - 1), green(costs, i - 1))+costs[i][1];
+            }
+        }
+
+        int green(int[][] costs, int i) {
+            if (i == 0) {
+                return costs[0][2];
+            } else {
+                return Math.min(red(costs, i - 1), blue(costs, i - 1))+costs[i][2];
+            }
+        }
+
+    }
 
 }
