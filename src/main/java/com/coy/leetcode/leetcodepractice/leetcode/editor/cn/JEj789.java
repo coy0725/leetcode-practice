@@ -148,15 +148,16 @@ public class JEj789 {
             if (i == 0) {
                 dp[i][0] = costs[0][0];
                 return dp[i][0];
-            }
-             else {
+            } else if (dp[i][0] != 0) {
+                return dp[i][0];
+            } else {
                 int blue = blue(costs, i - 1, dp);
                 int green = green(costs, i - 1, dp);
                 dp[i - 1][2] = green;
                 dp[i - 1][1] = blue;
                 int red = Math.min(blue, green) + costs[i][0];
-                System.out.printf("red() i:%d redCost:%d,red:%d,preBlue:%d,preGreen:%d",i,
-                    costs[i][0],red,blue,
+                System.out.printf("red() i:%d redCost:%d,red:%d,preBlue:%d,preGreen:%d", i,
+                    costs[i][0], red, blue,
                     green);
                 System.out.println();
                 return red;
@@ -167,6 +168,8 @@ public class JEj789 {
             if (i == 0) {
                 dp[i][1] = costs[0][1];
                 return dp[i][1];
+            } else if (dp[i][1] != 0) {
+                return dp[i][1];
             }
             //缓存过了
             else {
@@ -176,8 +179,8 @@ public class JEj789 {
                 dp[i - 1][2] = green;
                 int cost = costs[i][1];
                 int blue = Math.min(red, green) + cost;
-                System.out.printf("blue() i:%d blueCost:%d,blue:%d,preRed:%d,preGreen:%d",i,
-                    cost,blue,red,
+                System.out.printf("blue() i:%d blueCost:%d,blue:%d,preRed:%d,preGreen:%d", i,
+                    cost, blue, red,
                     green);
                 System.out.println();
                 return blue;
@@ -188,16 +191,17 @@ public class JEj789 {
             if (i == 0) {
                 dp[i][2] = costs[0][2];
                 return dp[i][2];
-            }
-            else {
+            } else if (dp[i][2] != 0) {
+                return dp[i][2];
+            } else {
                 int red = red(costs, i - 1, dp);
                 dp[i - 1][0] = red;
                 int blue = blue(costs, i - 1, dp);
                 dp[i - 1][1] = blue;
                 int cost = costs[i][2];
                 int green = Math.min(blue, red) + cost;
-                System.out.printf("green() i:%d greenCost:%d,green:%d,preRed:%d,preBlue:%d",i,
-                    cost,green,red, blue);
+                System.out.printf("green() i:%d greenCost:%d,green:%d,preRed:%d,preBlue:%d", i,
+                    cost, green, red, blue);
                 System.out.println();
                 return green;
             }
@@ -205,7 +209,7 @@ public class JEj789 {
 
     }
 
-    class Solution3  {
+    class Solution3 {
         // 0 红 1 蓝 2 绿
         public int minCost(int[][] costs) {
             if (costs.length == 0) {
@@ -225,8 +229,6 @@ public class JEj789 {
             int last = (costs.length - 1) % 2;
             return Math.min(dp[0][last], Math.min(dp[1][last], dp[2][last]));
         }
-
-
 
     }
 
