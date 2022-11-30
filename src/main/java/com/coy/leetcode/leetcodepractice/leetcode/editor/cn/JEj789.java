@@ -52,7 +52,7 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
  */
 public class JEj789 {
     public static void main(String[] args) {
-        Solution1 solution = new JEj789().new Solution1();
+        Solution2 solution = new JEj789().new Solution2();
         System.out.println(solution.minCost(new int[][] {{17, 2, 17}, {16, 16, 5}, {14, 3, 19}}));
     }
 
@@ -66,7 +66,6 @@ public class JEj789 {
             int preUsed = -1;
             int[] dp = new int[costs.length];
 
-
             return 0;
         }
 
@@ -77,7 +76,7 @@ public class JEj789 {
             if (i == 0) {
                 dp[i] = doMin(costs[0]);
             } else if (dp[i] < 0) {
-                dfs(costs,dp,i-2);
+                dfs(costs, dp, i - 2);
 
             }
         }
@@ -107,7 +106,7 @@ public class JEj789 {
             if (i == 0) {
                 return costs[0][0];
             } else {
-                return Math.min(green(costs, i - 1), blue(costs, i - 1))+costs[i][0];
+                return Math.min(green(costs, i - 1), blue(costs, i - 1)) + costs[i][0];
             }
         }
 
@@ -115,7 +114,7 @@ public class JEj789 {
             if (i == 0) {
                 return costs[0][1];
             } else {
-                return Math.min(red(costs, i - 1), green(costs, i - 1))+costs[i][1];
+                return Math.min(red(costs, i - 1), green(costs, i - 1)) + costs[i][1];
             }
         }
 
@@ -123,7 +122,68 @@ public class JEj789 {
             if (i == 0) {
                 return costs[0][2];
             } else {
-                return Math.min(red(costs, i - 1), blue(costs, i - 1))+costs[i][2];
+                return Math.min(red(costs, i - 1), blue(costs, i - 1)) + costs[i][2];
+            }
+        }
+
+    }
+
+    /**
+     * 带缓存的递归解决方案
+     */
+    class Solution2 {
+        // 0 红 1 蓝 2 绿
+        public int minCost(int[][] costs) {
+            if (costs.length == 0) {
+                return 0;
+            }
+            int[][] dp = new int[costs.length][3];
+            int min = Math.min(red(costs, costs.length - 1, dp), blue(costs, costs.length - 1, dp));
+            return Math.min(min, green(costs, costs.length - 1, dp));
+        }
+
+        int red(int[][] costs, int i, int[][] dp) {
+            if (i == 0) {
+                dp[i][0] = costs[0][0];
+                return dp[i][0];
+            }
+            if (dp[i][0] != 0) {
+                return dp[i][0];
+            } else {
+                int blue = blue(costs, i - 1, dp);
+                int green = green(costs, i - 1, dp);
+                dp[i - 1][2] = green;
+                dp[i - 1][1] = blue;
+                return Math.min(blue, green) + costs[i][0];
+            }
+        }
+
+        int blue(int[][] costs, int i, int[][] dp) {
+            if (i == 0) {
+                dp[i][1] = costs[0][1];
+                return dp[i][1];
+            }
+            //缓存过了
+            if (dp[i][0] != 0) {
+                return dp[i][1];
+            } else {
+                dp[i - 1][0] = red(costs, i - 1, dp);
+                dp[i - 1][2] = green(costs, i - 1, dp);
+                return Math.min(dp[i-1][0], dp[i - 1][2])+ costs[i][1];
+            }
+        }
+
+        int green(int[][] costs, int i, int[][] dp) {
+            if (i == 0) {
+                dp[i][2] = costs[0][2];
+                return dp[i][2];
+            }
+            if (dp[i][0] != 0) {
+                return dp[i][2];
+            } else {
+                dp[i - 1][0] = red(costs, i - 1, dp);
+                dp[i - 1][1] = blue(costs, i - 1, dp);
+                return Math.min(dp[i-1][0], dp[i - 1][2]) + costs[i][2];
             }
         }
 
