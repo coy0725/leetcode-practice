@@ -156,10 +156,10 @@ public class JEj789 {
                 dp[i - 1][2] = green;
                 dp[i - 1][1] = blue;
                 int red = Math.min(blue, green) + costs[i][0];
-                System.out.printf("red() i:%d redCost:%d,red:%d,preBlue:%d,preGreen:%d", i,
-                    costs[i][0], red, blue,
-                    green);
-                System.out.println();
+                //System.out.printf("red() i:%d redCost:%d,red:%d,preBlue:%d,preGreen:%d", i,
+                //    costs[i][0], red, blue,
+                //    green);
+                //System.out.println();
                 return red;
             }
         }
@@ -179,10 +179,10 @@ public class JEj789 {
                 dp[i - 1][2] = green;
                 int cost = costs[i][1];
                 int blue = Math.min(red, green) + cost;
-                System.out.printf("blue() i:%d blueCost:%d,blue:%d,preRed:%d,preGreen:%d", i,
-                    cost, blue, red,
-                    green);
-                System.out.println();
+                //System.out.printf("blue() i:%d blueCost:%d,blue:%d,preRed:%d,preGreen:%d", i,
+                //    cost, blue, red,
+                //    green);
+                //System.out.println();
                 return blue;
             }
         }
@@ -200,9 +200,9 @@ public class JEj789 {
                 dp[i - 1][1] = blue;
                 int cost = costs[i][2];
                 int green = Math.min(blue, red) + cost;
-                System.out.printf("green() i:%d greenCost:%d,green:%d,preRed:%d,preBlue:%d", i,
-                    cost, green, red, blue);
-                System.out.println();
+                //System.out.printf("green() i:%d greenCost:%d,green:%d,preRed:%d,preBlue:%d", i,
+                //    cost, green, red, blue);
+                //System.out.println();
                 return green;
             }
         }
