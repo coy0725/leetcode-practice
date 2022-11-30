@@ -52,7 +52,9 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
  */
 public class JEj789 {
     public static void main(String[] args) {
-        Solution3 solution = new JEj789().new Solution3();
+        Solution2 solution = new JEj789().new Solution2();
+        //System.out.println(solution.minCost(new int[][] {{17, 2, 17}}));
+        //System.out.println(solution.minCost(new int[][] {{17, 2, 17}, {16, 16, 5}}));
         System.out.println(solution.minCost(new int[][] {{17, 2, 17}, {16, 16, 5}, {14, 3, 19}}));
     }
 
@@ -147,14 +149,17 @@ public class JEj789 {
                 dp[i][0] = costs[0][0];
                 return dp[i][0];
             }
-            if (dp[i][0] != 0) {
-                return dp[i][0];
-            } else {
+             else {
                 int blue = blue(costs, i - 1, dp);
                 int green = green(costs, i - 1, dp);
                 dp[i - 1][2] = green;
                 dp[i - 1][1] = blue;
-                return Math.min(blue, green) + costs[i][0];
+                int red = Math.min(blue, green) + costs[i][0];
+                System.out.printf("red() i:%d redCost:%d,red:%d,preBlue:%d,preGreen:%d",i,
+                    costs[i][0],red,blue,
+                    green);
+                System.out.println();
+                return red;
             }
         }
 
@@ -164,12 +169,18 @@ public class JEj789 {
                 return dp[i][1];
             }
             //缓存过了
-            if (dp[i][0] != 0) {
-                return dp[i][1];
-            } else {
-                dp[i - 1][0] = red(costs, i - 1, dp);
-                dp[i - 1][2] = green(costs, i - 1, dp);
-                return Math.min(dp[i-1][0], dp[i - 1][2])+ costs[i][1];
+            else {
+                int red = red(costs, i - 1, dp);
+                dp[i - 1][0] = red;
+                int green = green(costs, i - 1, dp);
+                dp[i - 1][2] = green;
+                int cost = costs[i][1];
+                int blue = Math.min(red, green) + cost;
+                System.out.printf("blue() i:%d blueCost:%d,blue:%d,preRed:%d,preGreen:%d",i,
+                    cost,blue,red,
+                    green);
+                System.out.println();
+                return blue;
             }
         }
 
@@ -178,12 +189,17 @@ public class JEj789 {
                 dp[i][2] = costs[0][2];
                 return dp[i][2];
             }
-            if (dp[i][0] != 0) {
-                return dp[i][2];
-            } else {
-                dp[i - 1][0] = red(costs, i - 1, dp);
-                dp[i - 1][1] = blue(costs, i - 1, dp);
-                return Math.min(dp[i-1][0], dp[i - 1][2]) + costs[i][2];
+            else {
+                int red = red(costs, i - 1, dp);
+                dp[i - 1][0] = red;
+                int blue = blue(costs, i - 1, dp);
+                dp[i - 1][1] = blue;
+                int cost = costs[i][2];
+                int green = Math.min(blue, red) + cost;
+                System.out.printf("green() i:%d greenCost:%d,green:%d,preRed:%d,preBlue:%d",i,
+                    cost,green,red, blue);
+                System.out.println();
+                return green;
             }
         }
 
