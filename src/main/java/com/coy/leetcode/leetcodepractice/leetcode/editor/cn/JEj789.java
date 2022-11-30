@@ -52,7 +52,7 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
  */
 public class JEj789 {
     public static void main(String[] args) {
-        Solution2 solution = new JEj789().new Solution2();
+        Solution3 solution = new JEj789().new Solution3();
         System.out.println(solution.minCost(new int[][] {{17, 2, 17}, {16, 16, 5}, {14, 3, 19}}));
     }
 
@@ -186,6 +186,31 @@ public class JEj789 {
                 return Math.min(dp[i-1][0], dp[i - 1][2]) + costs[i][2];
             }
         }
+
+    }
+
+    class Solution3  {
+        // 0 红 1 蓝 2 绿
+        public int minCost(int[][] costs) {
+            if (costs.length == 0) {
+                return 0;
+            }
+            int[][] dp = new int[3][2];
+            for (int j = 0; j < 3; j++) {
+                dp[j][0] = costs[0][j];
+            }
+            for (int i = 0; i < costs.length; i++) {
+                for (int j = 0; j < 3; j++) {
+                    int prev1 = dp[(j + 2) % 3][(i - 1) % 2];
+                    int prev2 = dp[(j + 1) % 3][(i - 1) % 2];
+                    dp[j][i % 2] = Math.min(prev1, prev2) + costs[i][j];
+                }
+            }
+            int last = (costs.length - 1) % 2;
+            return Math.min(dp[0][last], Math.min(dp[1][last], dp[2][last]));
+        }
+
+
 
     }
 
