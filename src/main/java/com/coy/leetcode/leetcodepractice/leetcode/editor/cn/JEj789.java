@@ -199,7 +199,7 @@ public class JEj789 {
             for (int j = 0; j < 3; j++) {
                 dp[j][0] = costs[0][j];
             }
-            for (int i = 0; i < costs.length; i++) {
+            for (int i = 1; i < costs.length; i++) {
                 for (int j = 0; j < 3; j++) {
                     int prev1 = dp[(j + 2) % 3][(i - 1) % 2];
                     int prev2 = dp[(j + 1) % 3][(i - 1) % 2];
