@@ -59,7 +59,7 @@ public class CyJERH {
     public static void main(String[] args) {
         Solution solution = new CyJERH().new Solution();
 
-        solution.minFlipsMonoIncr("00110");
+        solution.minFlipsMonoIncr("010110");
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -71,30 +71,32 @@ public class CyJERH {
     class Solution {
         public int minFlipsMonoIncr(String s) {
             int len = s.length();
-
+            if (len <= 1) {
+                return 0;
+            }
             char[] chars = s.toCharArray();
-            return Math.min(f(chars, len - 1), g(chars, len - 1));
+            int min = Math.min(f(chars, len - 1), g(chars, len - 1));
+            System.out.println(min);
+            return min;
 
         }
 
-        //确保最后一个字符是1
+        //确保字符i可以是1
         private int g(char[] chars, int i) {
             char ch = chars[i];
             if (i == 0) {
-                if (ch == '1') {
-                    return 0;
-                } else {
-                    return 1;
-                }
+                return 0;
             }
 
-            if (ch=='1'){
-                return g(chars, i - 1);
-            }else return g(chars,i-1)+1;
+            if (ch == '1') {
+                return Math.min(g(chars, i - 1), f(chars, i - 1) + 1);
+            } else {
+                return Math.min(g(chars, i - 1)+1, f(chars, i - 1));
+            }
         }
 
 
-        //确保最后一个字符是0
+        //确保字符i可以是0
         private int f(char[] chars, int i) {
             char ch = chars[i];
             if (i == 0) {
