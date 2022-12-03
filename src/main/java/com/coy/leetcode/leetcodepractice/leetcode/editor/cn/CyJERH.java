@@ -52,12 +52,14 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import java.util.Arrays;
+
 /**
  * 剑指 Offer II 092
  */
 public class CyJERH {
     public static void main(String[] args) {
-        Solution solution = new CyJERH().new Solution();
+        Solution2 solution = new CyJERH().new Solution2();
 
         solution.minFlipsMonoIncr("010110");
     }
@@ -117,5 +119,70 @@ public class CyJERH {
 
     }
     //leetcode submit region end(Prohibit modification and deletion)
+    class Solution2 {
+        public int minFlipsMonoIncr(String s) {
+            int len = s.length();
+            if (len <= 1) {
+                return 0;
+            }
+            char[] chars = s.toCharArray();
+            int[] fCounts = new int[s.length()];
+            Arrays.fill(fCounts, -1);
+            int[] gCounts = new int[s.length()];
+            Arrays.fill(gCounts, -1);
 
+            int min = Math.min(f(chars, len - 1,fCounts), g(chars, len - 1,fCounts,gCounts));
+            System.out.println(min);
+            return min;
+
+        }
+
+        //确保字符i可以是1
+        private int g(char[] chars, int i,int[] fCounts,int[] gCounts) {
+            char ch = chars[i];
+            if (i == 0) {
+                return 0;
+            }
+            int gCount;
+            if (gCounts[i - 1] != -1) {
+                gCount = gCounts[i - 1];
+            } else {
+                gCount = g(chars, i - 1, fCounts, gCounts);
+                gCounts[i - 1] = gCount;
+            }
+            if (ch == '1') {
+                return Math.min(gCount, f(chars, i - 1,fCounts) + 1);
+            } else {
+                return Math.min(gCount +1, f(chars, i - 1,fCounts));
+            }
+        }
+
+
+        //确保字符i可以是0
+        private int f(char[] chars, int i, int[] fCounts) {
+            char ch = chars[i];
+            if (i == 0) {
+                if (ch == '0') {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            } else {
+                int fCount ;
+                if (fCounts[i - 1] != -1) {
+                    fCount = fCounts[i - 1];
+                }else {
+                    fCount = f(chars, i - 1, fCounts);
+                    fCounts[i - 1] = fCount;
+                }
+                if (ch == '0') {
+                    return fCount;
+                } else {
+                    return fCount + 1;
+                }
+            }
+        }
+
+
+    }
 }
