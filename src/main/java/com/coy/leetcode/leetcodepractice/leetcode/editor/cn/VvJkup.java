@@ -55,6 +55,10 @@ public class VvJkup {
     public static void main(String[] args) {
         Solution solution = new VvJkup().new Solution();
         System.out.println(solution.permute(new int[] {1, 2, 3}));
+
+
+        Solution2 solution2 = new VvJkup().new Solution2();
+        System.out.println(solution2.permute(new int[] {1, 2, 3}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -83,6 +87,36 @@ public class VvJkup {
                 }
             }
         }
+    }
+
+    class Solution2 {
+        public List<List<Integer>> permute(int[] nums) {
+            List<List<Integer>> res = new ArrayList<>();
+            LinkedList<Integer> path = new LinkedList<>();
+            int[] used = new int[nums.length];//标识数组中的数字是否使用过
+            dfs(res, path, nums, used);
+            return res;
+        }
+
+        private void dfs(List<List<Integer>> res, LinkedList<Integer> path, int[] nums,
+            int[] used) {
+            if (path.size() == nums.length) {
+                res.add(new LinkedList<>(path));
+            } else {
+                for (int i = 0; i < nums.length; i++) {
+                    //选择当前元素
+                    if (used[i] == 1) {
+                        continue;
+                    }
+                    used[i] = 1;
+                    path.addLast(nums[i]);
+                    dfs(res, path, nums, used);
+                    used[i] = 0;
+                    path.removeLast();
+                }
+            }
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
