@@ -95,20 +95,21 @@ public class UUsW3B {
         }
 
         private void dfs(List<List<Integer>> res, LinkedList<Integer> subSet, int n, int k, int i) {
-            if (i > n) {
-                return;
-            }
+
             if (subSet.size() == k) {
                 res.add(new LinkedList<>(subSet));
                 return;
             }
+            if (i <= n) {
+                //当前元素加入集合
+                subSet.addLast(i);
+                dfs(res, subSet, n, k, i + 1);
+                subSet.removeLast();
+                //当前元素不加入集合
+                dfs(res, subSet, n, k, i + 1);
+            }
 
-            //当前元素加入集合
-            subSet.addLast(i);
-            dfs(res, subSet, n, k, i + 1);
-            subSet.removeLast();
-            //当前元素不加入集合
-            dfs(res, subSet, n, k, i + 1);
+
 
         }
 
