@@ -159,18 +159,32 @@ public class FourSjJUc {
                 res.add(new LinkedList<>(path));
             } else if (sum < target && i < candidates.length){
 
-                //避免选取了重复元素
-                if (i > 0 && candidates[i] == candidates[i - 1]) {
-                    return;
-                }
-                //选取当前元素
-                path.addLast(candidates[i]);
-                backTracking(candidates, target, i + 1);
-                path.removeLast();
                 //不选取当前元素
                 backTracking(candidates, target, i + 1);
+                //选取当前元素
+                i = getNextIndex(candidates, i);
+                if (i < candidates.length) {
+                    path.addLast(candidates[i]);
+                    sum = sum + candidates[i];
+                    backTracking(candidates, target, i + 1);
+                    path.removeLast();
+                    sum = sum - candidates[i];
+                }
+
+
             }
 
+        }
+
+        private int getNextIndex(int[] candidates, int i) {
+            if (i == 0) {
+                return i;
+            } else {
+                while (candidates[i] == candidates[i - 1]) {
+                    i++;
+                }
+                return i;
+            }
         }
 
     }
