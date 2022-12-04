@@ -106,7 +106,7 @@ public class SevenP8L0Z {
                 for (int i = 0; i < nums.length; i++) {
 
                     //选择当前元素
-                    if (used[i]||(i>0&&nums[i]==nums[i-1])) {
+                    if (used[i]||(i>0&&!used[i - 1]&&nums[i]==nums[i-1])) {
                         continue;
                     }
                     used[i] = true;
