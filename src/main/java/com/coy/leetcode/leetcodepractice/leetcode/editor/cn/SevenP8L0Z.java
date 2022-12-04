@@ -51,6 +51,9 @@ public class SevenP8L0Z {
     public static void main(String[] args) {
         Solution solution = new SevenP8L0Z().new Solution();
         System.out.println(solution.permuteUnique(new int[] {1, 1, 2}));
+
+        Solution2 solution2 = new SevenP8L0Z().new Solution2();
+        System.out.println(solution2.permuteUnique(new int[] {1, 1, 2}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -83,6 +86,41 @@ public class SevenP8L0Z {
                 }
             }
         }
+    }
+
+    class Solution2 {
+        public List<List<Integer>> permuteUnique(int[] nums) {
+            List<List<Integer>> res = new ArrayList<>();
+            LinkedList<Integer> path = new LinkedList<>();
+            boolean[] used = new boolean[nums.length];//标识数组中的数字是否使用过
+            Arrays.sort(nums);
+            dfs(nums, path, used, res);
+            return res;
+        }
+
+        private void dfs(int[] nums, LinkedList<Integer> path, boolean[] used,
+            List<List<Integer>> res) {
+            if (path.size() == nums.length) {
+                res.add(new LinkedList<>(path));
+            } else {
+                for (int i = 0; i < nums.length; i++) {
+
+                    //选择当前元素
+                    if (used[i]||(i>0&&nums[i]==nums[i-1])) {
+                        continue;
+                    }
+                    used[i] = true;
+                    path.addLast(nums[i]);
+                    dfs(nums,path,used,res);
+                    used[i] = false;
+                    path.removeLast();
+
+
+                }
+
+            }
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
