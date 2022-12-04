@@ -67,7 +67,7 @@ public class ValidPalindrome {
                     left++;
                 }
                 while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
-                    right++;
+                    right--;
                 }
                 if (left < right) {
                     if (Character.toLowerCase(s.charAt(left)) != Character
