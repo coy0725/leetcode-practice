@@ -64,6 +64,7 @@
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -73,6 +74,9 @@ public class Ygoe9J {
     public static void main(String[] args) {
         Solution solution = new Ygoe9J().new Solution();
         solution.combinationSum(new int[]{2,3,6,7},7);
+
+        Solution1 solution1 = new Ygoe9J().new Solution1();
+        solution1.combinationSum(new int[]{2,3,6,7},7);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -104,6 +108,36 @@ public class Ygoe9J {
             }
 
         }
+    }
+
+    class Solution1 {
+        public List<List<Integer>> combinationSum(int[] candidates, int target) {
+            List<List<Integer>> res = new ArrayList<>();
+            LinkedList<Integer> combination = new LinkedList<>();
+            int sum = 0;
+
+            dfs(res, combination, candidates, target,sum,0);
+            System.out.println(res);
+            return res;
+        }
+
+        private void dfs(List<List<Integer>> res, LinkedList<Integer> combination, int[] candidates, int target, int sum, int i) {
+
+            if (sum == target) {
+                res.add(new LinkedList<>(combination));
+            } else {
+                if (sum < target && i < candidates.length) {
+                    //选择当前元素
+                    combination.addLast(candidates[i]);
+                    dfs(res, combination, candidates, target, sum + candidates[i], i);
+                    combination.removeLast();
+                    //不选择当前元素
+                    dfs(res, combination, candidates, target, sum, i + 1);
+                }
+            }
+
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
