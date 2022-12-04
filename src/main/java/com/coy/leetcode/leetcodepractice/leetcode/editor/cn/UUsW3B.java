@@ -43,6 +43,7 @@
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -52,6 +53,9 @@ public class UUsW3B {
     public static void main(String[] args) {
         Solution solution = new UUsW3B().new Solution();
         System.out.println(solution.combine(4, 2));
+
+        Solution1 solution2 = new UUsW3B().new Solution1();
+        System.out.println(solution2.combine(4, 2));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -72,14 +76,42 @@ public class UUsW3B {
             } else if (i <= n) {
 
                 subSet.add(i);
-                dfs(subSet,k,i+1,n,res);
+                dfs(subSet, k, i + 1, n, res);
                 subSet.remove(subSet.size() - 1);
                 //不选择当前元素
-                dfs(subSet, k, i+1, n, res);
+                dfs(subSet, k, i + 1, n, res);
             }
 
+        }
+    }
+
+    class Solution1 {
+        public List<List<Integer>> combine(int n, int k) {
+
+            List<List<Integer>> res = new ArrayList<>();
+            LinkedList<Integer> subSet = new LinkedList<>();
+            dfs(res, subSet, n, k, 1);
+            return res;
+        }
+
+        private void dfs(List<List<Integer>> res, LinkedList<Integer> subSet, int n, int k, int i) {
+            if (i > n) {
+                return;
+            }
+            if (subSet.size() == k) {
+                res.add(new LinkedList<>(subSet));
+                return;
+            }
+
+            //当前元素加入集合
+            subSet.addLast(i);
+            dfs(res, subSet, n, k, i + 1);
+            subSet.removeLast();
+            //当前元素不加入集合
+            dfs(res, subSet, n, k, i + 1);
 
         }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
