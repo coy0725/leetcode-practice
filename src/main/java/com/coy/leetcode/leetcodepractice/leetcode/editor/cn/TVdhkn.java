@@ -48,7 +48,7 @@ import java.util.List;
  */
 public class TVdhkn {
     public static void main(String[] args) {
-        Solution solution = new TVdhkn().new Solution();
+        Solution1 solution = new TVdhkn().new Solution1();
         System.out.println(solution.subsets(new int[] {1, 2, 3}));
     }
 
@@ -83,6 +83,37 @@ public class TVdhkn {
             i--;
 
         }
+    }
+
+    class Solution1 {
+
+        public List<List<Integer>> subsets(int[] nums) {
+
+            List<List<Integer>> res = new ArrayList<>();//问题解的集合
+
+            List<Integer> path = new ArrayList<>();//问题解
+            dfs(path, nums, 0, res);
+
+            return res;
+        }
+
+        private void dfs(List<Integer> path, int[] nums, int i, List<List<Integer>> res) {
+            //if
+            if (i == nums.length) {
+                res.add(new ArrayList<>(path));
+                return;
+            }
+
+            //不将该元素加入集合
+            dfs(path, nums, i+1, res);
+
+            //将该元素加入集合
+            path.add(nums[i]);
+            dfs(path, nums, i+1, res);
+            path.remove(path.size() - 1);
+
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
