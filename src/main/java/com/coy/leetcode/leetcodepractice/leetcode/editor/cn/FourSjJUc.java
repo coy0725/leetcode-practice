@@ -154,36 +154,21 @@ public class FourSjJUc {
         }
 
         //candidates 中的每个数字在每个组合中只能使用一次，解集不能包含重复的组合。
-        private void backTracking(int[] candidates, int target, int i) {
+        private void backTracking(int[] candidates, int target, int start) {
             if (sum == target) {
                 res.add(new LinkedList<>(path));
-            } else if (sum < target && i < candidates.length){
-
-                //不选取当前元素
-                backTracking(candidates, target, i + 1);
-                //选取当前元素
-                i = getNextIndex(candidates, i);
-                if (i < candidates.length) {
-                    path.addLast(candidates[i]);
-                    sum = sum + candidates[i];
-                    backTracking(candidates, target, i + 1);
-                    path.removeLast();
-                    sum = sum - candidates[i];
-                }
-
-
             }
 
-        }
-
-        private int getNextIndex(int[] candidates, int i) {
-            if (i == 0) {
-                return i;
-            } else {
-                while (candidates[i] == candidates[i - 1]) {
-                    i++;
+            for (int i = start; i < candidates.length && sum + candidates[i] <= target; i++) {
+                if (i > start && candidates[i] == candidates[i - 1]) {
+                    continue;
                 }
-                return i;
+                sum = sum + candidates[i];
+                path.addLast(candidates[i]);
+                backTracking(candidates, target, i + 1);
+                int temp = path.getLast();
+                sum -= temp;
+                path.removeLast();
             }
         }
 
