@@ -61,6 +61,47 @@ public class M99OJA {
     class Solution {
         public String[][] partition(String s) {
 
+            List<List<String>> result = new LinkedList<>();
+            dfs(result, new LinkedList<>(), s, 0);
+            // List<List<String>> 转 String[][]，这里不重要
+            String[][] ans = new String[result.size()][];
+            for (int i = 0; i < result.size(); i++) {
+                ans[i] = result.get(i).toArray(new String[0]);
+            }
+            return ans;
+
+        }
+
+        private void dfs(List<List<String>> result, LinkedList<String> subString, String s,
+            int start) {
+            if (start == s.length()) {
+                result.add(new LinkedList<>(subString));
+                return;
+            }
+
+            for (int i = start; i < s.length(); ++i) {
+                //start-[start+1,len-1] 这个字符串
+                if (isPalindrome(s, start, i)) {
+                    subString.add(s.substring(start, i + 1));
+                    dfs(result, subString, s, i + 1);
+                    subString.removeLast();
+                }
+            }
+
+        }
+
+        private boolean isPalindrome(String s, int start, int end) {
+            while (start < end) {
+                if (s.charAt(start++) != s.charAt(end--)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    class Solutio2 {
+        public String[][] partition(String s) {
 
             List<List<String>> result = new LinkedList<>();
             dfs(result, new LinkedList<>(), s, 0);
@@ -71,24 +112,26 @@ public class M99OJA {
             }
             return ans;
 
-
         }
 
-        private void dfs(List<List<String>> result, LinkedList<String> subStrings, String s,
+        /**
+         * 第一步能分割多少中回文子串-第二部从剩下的内容中能分割出多少回文子串-直到将字符串分割完
+         */
+        private void dfs(List<List<String>> result, LinkedList<String> subString, String s,
             int start) {
             if (start == s.length()) {
-                result.add(new LinkedList<>(subStrings));
+                result.add(new LinkedList<>(subString));
                 return;
             }
 
-            for (int i = start; i < s.length(); ++i) {
+            for (int i = start+1; i < s.length(); i++) {
                 if (isPalindrome(s, start, i)) {
-                    subStrings.add(s.substring(start, i + 1));
-                    dfs(result, subStrings, s, i + 1);
-                    subStrings.removeLast();
+                    subString.addLast(s.substring(start, i + 1));//从字符串中分割下一个回文子串
+                    dfs(result, subString, s, i + 1);//从剩余的字符串中分割回文子串
+                    subString.removeLast();//回溯
                 }
-            }
 
+            }
         }
 
         private boolean isPalindrome(String s, int start, int end) {
