@@ -51,6 +51,10 @@ import java.util.Stack;
 public class ZeroYnMMM {
     public static void main(String[] args) {
         Solution solution = new ZeroYnMMM().new Solution();
+        System.out.println(solution.largestRectangleArea(new int[] {2, 4}));
+
+        Solution1 solution1 = new ZeroYnMMM().new Solution1();
+        System.out.println(solution1.largestRectangleArea(new int[] {2, 4}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -111,6 +115,36 @@ public class ZeroYnMMM {
             }
             return maxArea;
         }
+    }
+
+    class Solution1 {
+        public int largestRectangleArea(int[] heights) {
+            Stack<Integer> stack = new Stack<>();
+            stack.push(-1);
+            int maxArea = 0;
+
+            for (int i = 0; i < heights.length; i++) {
+                //处理入栈情况,高度是单调递增的
+                int height = heights[i];
+                if (height > stack.peek()) {
+                    stack.push(i);
+                } else {
+                    //处理出栈情况，计算以当前出栈柱子为高的最大矩形面积
+                    while (height < stack.peek()) {
+                        //计算以当前栈顶柱子为高的最大矩形面积
+                        Integer index = stack.pop();
+                        maxArea = Math.max(maxArea, heights[index] * (i - index - 1));
+                    }
+                }
+
+
+            }
+
+            return maxArea;
+        }
+
+
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
