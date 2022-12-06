@@ -139,7 +139,13 @@ public class ZeroYnMMM {
 
 
             }
-
+            //忘记处理栈中的元素
+            while (stack.peek() != -1) {
+                int height = heights[stack.pop()];
+                //i小于length，为什么这里的宽用的右边使用height.length?
+                int width = heights.length - stack.peek() - 1;
+                maxArea = Math.max(maxArea, height * width);
+            }
             return maxArea;
         }
 
