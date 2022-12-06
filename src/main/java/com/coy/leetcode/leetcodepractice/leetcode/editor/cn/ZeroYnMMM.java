@@ -51,10 +51,10 @@ import java.util.Stack;
 public class ZeroYnMMM {
     public static void main(String[] args) {
         Solution solution = new ZeroYnMMM().new Solution();
-        System.out.println(solution.largestRectangleArea(new int[] {2, 4}));
+        System.out.println(solution.largestRectangleArea(new int[] {2,1,5,6,2,3}));
 
         Solution1 solution1 = new ZeroYnMMM().new Solution1();
-        System.out.println(solution1.largestRectangleArea(new int[] {2, 4}));
+        System.out.println(solution1.largestRectangleArea(new int[] {2,1,5,6,2,3}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -126,14 +126,18 @@ public class ZeroYnMMM {
             for (int i = 0; i < heights.length; i++) {
                 //处理入栈情况,高度是单调递增的
                 int height = heights[i];
-                if (height > stack.peek()) {
+                if (stack.peek()==-1||height >= heights[stack.peek()]) {
                     stack.push(i);
                 } else {
                     //处理出栈情况，计算以当前出栈柱子为高的最大矩形面积
-                    while (height < stack.peek()) {
+                    while (stack.peek()!=-1&&height < heights[stack.peek()]) {
                         //计算以当前栈顶柱子为高的最大矩形面积
                         Integer index = stack.pop();
-                        maxArea = Math.max(maxArea, heights[index] * (i - index - 1));
+                        int area = heights[index] * (i - index);
+                        maxArea = Math.max(maxArea, area);
+                        System.out.printf("index:%s,index height:%s,area:%s,maxArea:%s",index,
+                            heights[index],area,maxArea);
+                        System.out.println();
                     }
                 }
 
@@ -141,10 +145,15 @@ public class ZeroYnMMM {
             }
             //忘记处理栈中的元素
             while (stack.peek() != -1) {
-                int height = heights[stack.pop()];
+                Integer index = stack.pop();
+                int height = heights[index];
                 //i小于length，为什么这里的宽用的右边使用height.length?
-                int width = heights.length - stack.peek() - 1;
-                maxArea = Math.max(maxArea, height * width);
+                int width = heights.length - index - 1;
+                int area = height * width;
+                maxArea = Math.max(maxArea, area);
+                System.out.printf("index:%s,index height:%s,area:%s,maxArea:%s",index,
+                    height,area,maxArea);
+                System.out.println();
             }
             return maxArea;
         }
