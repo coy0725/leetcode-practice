@@ -139,6 +139,7 @@ public class ZeroYnMMM {
                             heights[index],area,maxArea);
                         System.out.println();
                     }
+                    stack.push(i);
                 }
 
 
