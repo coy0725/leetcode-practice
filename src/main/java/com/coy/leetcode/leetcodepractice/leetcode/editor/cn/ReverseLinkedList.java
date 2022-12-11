@@ -81,6 +81,28 @@ class Solution {
         return pre;
     }
 }
+
+    class Solution2 {
+        public ListNode reverseList(ListNode head) {
+            if (head == null || head.next == null) {
+                return head;
+            }
+            ListNode pre = null;
+            ListNode cur = head;
+            while (cur != null) {
+
+                //step1:保存当前节点的下一个节点
+                //step2:当前节点指向反转
+                //step3:更新当前节点遍历的节点，前一个节点
+                ListNode nextVisit = cur.next;
+                cur.next = pre;
+                cur = nextVisit;
+                pre = cur;
+            }
+            return pre;
+
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 public class ListNode {
     int val;
