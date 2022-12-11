@@ -1,7 +1,6 @@
 /**
-* 环形链表
-* 
-*/
+ * 环形链表
+ */
 //给你一个链表的头节点 head ，判断链表中是否有环。 
 //
 // 如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 pos 来表示链表尾连接到
@@ -56,59 +55,83 @@
 // 进阶：你能用 O(1)（即，常量）内存解决此问题吗？ 
 // Related Topics 哈希表 链表 双指针 
 // 👍 1632 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
+
 /**
-* 141
-*/
+ * 141
+ */
 public class LinkedListCycle {
     public static void main(String[] args) {
         Solution solution = new LinkedListCycle().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-public class Solution {
-    public boolean hasCycle(ListNode head) {
-        if (head==null||head.next==null){
+
+    /**
+     * Definition for singly-linked list.
+     * class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode(int x) {
+     *         val = x;
+     *         next = null;
+     *     }
+     * }
+     */
+    public class Solution {
+        public boolean hasCycle(ListNode head) {
+            if (head == null || head.next == null) {
+                return false;
+            }
+            ListNode slow = head.next;
+            ListNode fast = slow.next;
+            while (slow != null && fast != null) {
+                if (slow == fast) {
+                    return true;
+                }
+                slow = slow.next;
+                fast = fast.next;
+                if (fast != null) {
+                    fast = fast.next;
+                }
+            }
             return false;
         }
-        ListNode slow = head.next;
-        ListNode fast = slow.next;
-        while (slow!=null&&fast!=null){
-            if (slow==fast){
-                return true;
+    }
+
+    public class Solution2 {
+        public boolean hasCycle(ListNode head) {
+            if (head == null || head.next == null) {
+                return false;
             }
-            slow=slow.next;
-            fast=fast.next;
-            if (fast!=null){
-                fast=fast.next;
+            ListNode slow = head.next;
+            ListNode fast = slow.next;
+            while (slow != null && fast != null) {
+                if (fast == slow) {
+                    return true;
+                }
+                slow = slow.next;
+                fast = fast.next;
+                if (fast != null) {
+                    fast = fast.next;
+                }
             }
+            return false;
         }
-        return false;
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
-public class ListNode {
-    int val;
-    ListNode next;
 
-    ListNode() {}
+    //leetcode submit region end(Prohibit modification and deletion)
+    public class ListNode {
+        int val;
+        ListNode next;
 
-    ListNode(int val) { this.val = val; }
+        ListNode() {}
 
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
+        ListNode(int val) { this.val = val; }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
     }
-}
 }
