@@ -50,7 +50,8 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
  */
 public class LGjMqU {
     public static void main(String[] args) {
-        Solution solution = new LGjMqU().new Solution();
+        LGjMqU lGjMqU = new LGjMqU();
+        lGjMqU.test();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -119,17 +120,20 @@ public class LGjMqU {
 
     class Solution2 {
         public void reorderList(ListNode head) {
-            //首先，我们需要找到链表的中点，然后将链表从中点拆分为两个链表。
+            //首先，我们需要找到链表的中点
             ListNode midNode = findMidNode(head);
             if (midNode == null) {
                 return;
             }
-            // 我们将第二个链表反转，
-            reverseList(midNode);
 
-            // 然后将反转后的链表插入到第一个链表之中，
+            //然后将链表从中点拆分为两个链表,
+            ListNode secondHead = midNode.next;
+            midNode.next = null;
+            //我们将第二个链表反转
+            ListNode head2 = reverseList(secondHead);
 
-            linkList(head, midNode);
+            //然后将反转后的链表插入到第一个链表之中，
+            linkList(head, head2);
         }
 
         private void linkList(ListNode first, ListNode second) {
@@ -153,9 +157,9 @@ public class LGjMqU {
 
         }
 
-        private void reverseList(ListNode head) {
+        private ListNode reverseList(ListNode head) {
             if (head == null || head.next == null) {
-                return;
+                return head;
             }
             ListNode curVisit = head;
             ListNode preVisit = null;
@@ -165,7 +169,7 @@ public class LGjMqU {
                 preVisit = curVisit;
                 curVisit = nextVisit;
             }
-
+            return preVisit;
         }
 
         private ListNode findMidNode(ListNode head) {
@@ -173,16 +177,28 @@ public class LGjMqU {
             dummy.next = head;
             ListNode slow = dummy;
             ListNode fast = dummy;
-            while (slow != null && fast != null) {
+            while (fast != null&&fast.next!=null) {
                 slow = slow.next;
-                fast = fast.next;
-                if (fast != null) {
-                    fast = fast.next;
-                }
+                fast = fast.next.next;
             }
             return slow;
         }
 
+
+
+    }
+    void test(){
+
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(3);
+        ListNode node4 = new ListNode(4);
+
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        Solution2 solution = new LGjMqU().new Solution2();
+        solution.reorderList(node1);
     }
     public class ListNode {
         int val;
