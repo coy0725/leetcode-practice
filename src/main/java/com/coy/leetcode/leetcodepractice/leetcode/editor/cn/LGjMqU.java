@@ -117,6 +117,73 @@ public class LGjMqU {
         }
     }
 
+    class Solution2 {
+        public void reorderList(ListNode head) {
+            //首先，我们需要找到链表的中点，然后将链表从中点拆分为两个链表。
+            ListNode midNode = findMidNode(head);
+            if (midNode == null) {
+                return;
+            }
+            // 我们将第二个链表反转，
+            reverseList(midNode);
+
+            // 然后将反转后的链表插入到第一个链表之中，
+
+            linkList(head, midNode);
+        }
+
+        private void linkList(ListNode first, ListNode second) {
+            //first1-> second1-> first2-> second2
+            ListNode fVisit = first;
+            ListNode sVisit = second;
+
+            while (fVisit != null && sVisit != null) {
+                //保存两条链表下一层访问的节点
+                ListNode nextFVisit = fVisit.next;
+                ListNode nextSVisit = sVisit.next;
+                //first1-> second1-> first2
+                fVisit.next = sVisit;
+                sVisit.next = nextFVisit;
+                //更新当前两个链表正在访问的节点
+                fVisit=nextFVisit;
+                sVisit = nextSVisit;
+
+            }
+
+
+        }
+
+        private void reverseList(ListNode head) {
+            if (head == null || head.next == null) {
+                return;
+            }
+            ListNode curVisit = head;
+            ListNode preVisit = null;
+            while (curVisit != null) {
+                ListNode nextVisit = curVisit.next;
+                curVisit.next = preVisit;
+                preVisit = curVisit;
+                curVisit = nextVisit;
+            }
+
+        }
+
+        private ListNode findMidNode(ListNode head) {
+            ListNode dummy = new ListNode();
+            dummy.next = head;
+            ListNode slow = dummy;
+            ListNode fast = dummy;
+            while (slow != null && fast != null) {
+                slow = slow.next;
+                fast = fast.next;
+                if (fast != null) {
+                    fast = fast.next;
+                }
+            }
+            return slow;
+        }
+
+    }
     public class ListNode {
         int val;
         ListNode next;
