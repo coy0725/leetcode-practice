@@ -82,7 +82,6 @@ public class Gu0c2T {
                 return 0;
             }
             int[] dp = new int[nums.length];
-            Arrays.fill(dp, -1);
             dfs(nums, nums.length - 1, dp);
             return dp[nums.length - 1];
         }
@@ -173,28 +172,29 @@ public class Gu0c2T {
 
     class Solution5 {
         public int rob(int[] nums) {
-            // step1 写出状态转移方程
-            // 转移方程中的状态包含哪些？ 偷的钱 偷的房子 下一步可以偷的钱
-            //
-            int max = 0;
-            int length = nums.length;
-            return dfs(nums,length-1,0);//选择偷n-1这个房间
-        }
-
-        private int dfs(int[] nums, int i, int max) {
-            //房间不存在
-            if (i < 0) {
-                return max;
+            if (nums.length == 0) {
+                return 0;
             }
 
-
-            //选择偷该房间
-            int a = max+dfs(nums, i - 2, max + nums[i]);
-            //选择不偷该房间
-            int b = max+dfs(nums, i - 1, max);
-            return Math.max(a, b);
+            int[] dp = new int[nums.length];
+            Arrays.fill(dp, -1);
+            dfs(nums, nums.length - 1, dp);
+            System.out.println(Arrays.toString(dp));
+            return dp[nums.length - 1];
         }
 
+        private void dfs(int[] nums, int i, int[] dp) {
+            if (i == 0) {
+                dp[i] = nums[0];
+            } else if (i == 1) {
+                dp[i] = Math.max(nums[0], nums[1]);
+            } else {
+                dfs(nums, i - 2, dp);
+                dfs(nums, i - 1, dp);
+                dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+            }
+
+        }
 
     }
 
