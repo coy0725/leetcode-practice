@@ -113,6 +113,61 @@ public class AMhZSa {
         }
     }
 
+    class Solution2 {
+        public boolean isPalindrome(ListNode head) {
+            if (head == null ) {
+                return false;
+            }
+            if (head.next == null) {
+                return true;
+            }
+            //首先，我们需要找到链表的中点
+            ListNode midNode = findMidNode(head);
+
+            //然后将链表从中点拆分为两个链表,
+            ListNode secondHead = midNode.next;
+            midNode.next = null;
+            //我们将第二个链表反转
+            ListNode head2 = reverseList(secondHead);
+            while (head != null && head2 != null) {
+                if (head.val != head2.val) {
+                    return false;
+                }
+                head = head.next;
+                head2 = head2.next;
+            }
+            return true;
+
+        }
+        private ListNode reverseList(ListNode head) {
+            if (head == null || head.next == null) {
+                return head;
+            }
+            ListNode curVisit = head;
+            ListNode preVisit = null;
+            while (curVisit != null) {
+                ListNode nextVisit = curVisit.next;
+                curVisit.next = preVisit;
+                preVisit = curVisit;
+                curVisit = nextVisit;
+            }
+            return preVisit;
+        }
+
+        private ListNode findMidNode(ListNode head) {
+            ListNode dummy = new ListNode();
+            dummy.next = head;
+            ListNode slow = dummy;
+            ListNode fast = dummy;
+            while (fast != null&&fast.next!=null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            return slow;
+        }
+
+    }
+
     class ListNode {
         int val;
         ListNode next;
