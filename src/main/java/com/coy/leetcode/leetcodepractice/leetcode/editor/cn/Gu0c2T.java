@@ -50,7 +50,9 @@ import java.util.Arrays;
 public class Gu0c2T {
     public static void main(String[] args) {
         Solution3 solution = new Gu0c2T().new Solution3();
+        Solution5 solution5 = new Gu0c2T().new Solution5();
         System.out.println(solution.rob(new int[] {2,7,9,3,1}));
+        System.out.println(solution5.rob(new int[] {2, 7, 9, 3, 1}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -165,6 +167,33 @@ public class Gu0c2T {
             return Math.max(dp[0][(len - 1) % 2], dp[1][(len - 1) % 2]);
         }
 
+
+
+    }
+
+    class Solution5 {
+        public int rob(int[] nums) {
+            // step1 写出状态转移方程
+            // 转移方程中的状态包含哪些？ 偷的钱 偷的房子 下一步可以偷的钱
+            //
+            int max = 0;
+            int length = nums.length;
+            return dfs(nums,length-1,0);//选择偷n-1这个房间
+        }
+
+        private int dfs(int[] nums, int i, int max) {
+            //房间不存在
+            if (i < 0) {
+                return max;
+            }
+
+
+            //选择偷该房间
+            int a = max+dfs(nums, i - 2, max + nums[i]);
+            //选择不偷该房间
+            int b = max+dfs(nums, i - 1, max);
+            return Math.max(a, b);
+        }
 
 
     }
