@@ -122,4 +122,32 @@ public class GzCJIP {
 
 
     }
+
+    /**
+     * 带缓存的递归解法
+     */
+    class Solution5 {
+        public int minCostClimbingStairs(int[] cost) {
+            int len = cost.length;
+            if (len == 0) {
+                return 0;
+            }
+            int[] dp = new int[len];
+            dfs(cost, len - 1, dp);
+            return dp[len - 1];
+        }
+
+        private void dfs(int[] cost, int i, int[] dp) {
+            if (i == 0) {
+                dp[0] = cost[0];
+            } else if (i == 1) {
+                dp[1] = Math.max(cost[0], cost[1]);
+            } else {
+                dfs(cost, i - 1, dp);
+                dfs(cost, i - 2, dp);
+                dp[i] = Math.min(dp[i - 1], dp[i - 2] + cost[i]);
+            }
+        }
+
+    }
 }
