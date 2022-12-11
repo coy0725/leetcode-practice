@@ -148,8 +148,8 @@ public class Solution {
             if (Objects.isNull(head) || Objects.isNull(head.next)) {
                 return null;
             }
-            ListNode fast = head;
             ListNode slow = head.next;
+            ListNode fast = slow.next;
             while (fast != null && slow != null) {
                 if (slow == fast) {
                     return slow;
