@@ -65,6 +65,9 @@
 // 👍 77 👎 0
 	
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
+
+import java.util.Objects;
+
 /**
 * 剑指 Offer II 022
 */
@@ -120,6 +123,50 @@ public class Solution {
         return null;
     }
 }
+
+    public class Solution2 {
+        public ListNode detectCycle(ListNode head) {
+
+            //第一步,找到链表中的环形节点
+            ListNode loopNode = findLoopNode(head);
+            if (loopNode == null) {
+                return null;
+            }
+            ListNode node = head;
+
+            //我们可以使用相遇点作为起点，重新设置两个指针。此时，我们让其中一个指针从头节点出发，另一个指针从相遇点出发。
+            // 接着，我们让两个指针以相同的速度向前移动。当两个指针再次相遇时，所指向的节点就是链表中的环的入口节点。
+            while (node != loopNode) {
+                node = node.next;
+                loopNode = loopNode.next;
+            }
+            return node;
+
+        }
+
+        private ListNode findLoopNode(ListNode head) {
+            if (Objects.isNull(head) || Objects.isNull(head.next)) {
+                return null;
+            }
+            ListNode fast = head;
+            ListNode slow = head.next;
+            while (fast != null && slow != null) {
+                if (slow == fast) {
+                    return slow;
+                }
+
+                slow = slow.next;
+                fast = fast.next;
+                if (fast != null) {
+                    fast = fast.next;
+                }
+            }
+
+            return null;
+
+        }
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 public class ListNode {
     int val;
