@@ -94,9 +94,7 @@ public class ContainerWithMostWater {
                     right--;
                 }
             }
-
             return maxArea;
-
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
