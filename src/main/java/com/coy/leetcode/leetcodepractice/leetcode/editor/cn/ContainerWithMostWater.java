@@ -1,7 +1,6 @@
 /**
-* 盛最多水的容器
-* 
-*/
+ * 盛最多水的容器
+ */
 //给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。 
 //
 // 找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。 
@@ -39,37 +38,67 @@
 // 
 // Related Topics 贪心 数组 双指针 
 // 👍 3806 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
+
 /**
-* 11
-*/
+ * 11
+ */
 public class ContainerWithMostWater {
     public static void main(String[] args) {
         Solution solution = new ContainerWithMostWater().new Solution();
         System.out.println(solution.maxArea(new int[] {1, 8, 6, 2, 5, 4, 8, 3, 7}));
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int maxArea(int[] height) {
-        //面积=长（right-left）*高（min(height[left],height[right])）
-        //如果使用双指针的话，左右指针初识位置是哪？如何确定指针移动方向？移动会改变两个内容长和高
-        //移动长板一定变小，移动短板可能增大，所以移动短板
-        int maxArea = 0 ;
-        int area;
-        int left = 0;
-        int right = height.length-1;
-        while (left!=right){
-            area=(right-left)*Math.min(height[left],height[right]);
-            maxArea = Math.max(maxArea,area);
-            if (height[left]<=height[right]){
-                left++;
-            }else right--;
-        }
-        return maxArea;
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int maxArea(int[] height) {
+            //面积=长（right-left）*高（min(height[left],height[right])）
+            //如果使用双指针的话，左右指针初识位置是哪？如何确定指针移动方向？移动会改变两个内容长和高
+            //移动长板一定变小，移动短板可能增大，所以移动短板
+            int maxArea = 0;
+            int area;
+            int left = 0;
+            int right = height.length - 1;
+            while (left != right) {
+                area = (right - left) * Math.min(height[left], height[right]);
+                maxArea = Math.max(maxArea, area);
+                if (height[left] <= height[right]) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+            return maxArea;
+
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+
+    class Solution2 {
+        public int maxArea(int[] height) {
+            //面积=长（right-left）*高（min(height[left],height[right])）
+            //如果使用双指针的话，左右指针初识位置是哪？如何确定指针移动方向？移动会改变两个内容长和高
+            //移动长板一定变小，移动短板可能增大，所以移动短板
+            int maxArea = 0;
+            //
+            int left = 0;
+            int area;
+            int right = height.length - 1;
+            while (left <= right) {
+                //计算当前窗口面积
+                area = (right - left ) * Math.min(height[left], height[right]);
+                maxArea = Math.max(area, maxArea);
+                if (height[left] < height[right]) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+
+            return maxArea;
+
+        }
+    }
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
