@@ -1,7 +1,6 @@
 /**
-* 二叉树的前序遍历
-*
-*/
+ * 二叉树的前序遍历
+ */
 //给你二叉树的根节点 root ，返回它节点值的 前序 遍历。 
 //
 // 
@@ -63,113 +62,131 @@ import java.util.List;
 import java.util.Stack;
 
 /**
-* 144
-*/
+ * 144
+ */
 public class BinaryTreePreorderTraversal {
     public static void main(String[] args) {
         Solution solution = new BinaryTreePreorderTraversal().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-    public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> nodes = new ArrayList<>();
-        Stack<TreeNode> stack =new Stack<>();
 
-        TreeNode cur = root;
-        while (cur!=null||!stack.isEmpty()){
-            while (cur!=null){
-                nodes.add(cur.val);//先访问当前节点
-                stack.push(cur.right);//先不访问右边的节点，将其压入栈
-                cur = cur.left;
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     *     int val;
+     *     TreeNode left;
+     *     TreeNode right;
+     *     TreeNode() {}
+     *     TreeNode(int val) { this.val = val; }
+     *     TreeNode(int val, TreeNode left, TreeNode right) {
+     *         this.val = val;
+     *         this.left = left;
+     *         this.right = right;
+     *     }
+     * }
+     */
+    class Solution {
+        public List<Integer> preorderTraversal(TreeNode root) {
+            List<Integer> nodes = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+
+            TreeNode cur = root;
+            while (cur != null || !stack.isEmpty()) {
+                while (cur != null) {
+                    nodes.add(cur.val);//先访问当前节点
+                    stack.push(cur.right);//先不访问右边的节点，将其压入栈
+                    cur = cur.left;
+                }
+                cur = stack.pop();
+
             }
-            cur = stack.pop();
 
+            return nodes;
         }
 
-        return nodes;
-    }
-
-    public List<Integer> preorderTraversal2(TreeNode root){
-        List<Integer> nodes = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode cur =root;
-        while (cur!=null ||!stack.isEmpty()){
-            while (cur!=null){
-                nodes.add(cur.val);
-                stack.push(cur.right);//先不访问右边的节点，将其压入栈
-                cur = cur .left;
+        public List<Integer> preorderTraversal2(TreeNode root) {
+            List<Integer> nodes = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+            TreeNode cur = root;
+            while (cur != null || !stack.isEmpty()) {
+                while (cur != null) {
+                    nodes.add(cur.val);
+                    stack.push(cur.right);//先不访问右边的节点，将其压入栈
+                    cur = cur.left;
+                }
+                cur = stack.pop();
             }
-            cur = stack.pop();
-        }
-        return nodes;
-    }
-
-    public List<Integer> preorderTraversal3(TreeNode root){
-        List<Integer> nodes = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode cur =root;
-
-        while (cur != null || !stack.isEmpty()) {
-            while (cur!=null){
-                nodes.add(cur.val);
-                stack.push(cur.right);
-                cur = cur.left;
-            }
-            cur = stack.pop();
-
-
-        }
-        return nodes;
-    }
-
-    public List<Integer> preorderTraversal4(TreeNode root){
-        List<Integer> nodes = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode cur =root;
-
-        while (cur != null || !stack.isEmpty()) {
-            while (cur != null) {
-                nodes.add(cur.val);
-                stack.push(cur.right);
-                cur= cur.left;
-            }
-            cur = stack.pop();
+            return nodes;
         }
 
-        return nodes;
-    }
+        public List<Integer> preorderTraversal3(TreeNode root) {
+            List<Integer> nodes = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+            TreeNode cur = root;
 
-    public List<Integer> preorderTraversal5(TreeNode root) {
-        List<Integer> nodes = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode cur = root;
+            while (cur != null || !stack.isEmpty()) {
+                while (cur != null) {
+                    nodes.add(cur.val);
+                    stack.push(cur.right);
+                    cur = cur.left;
+                }
+                cur = stack.pop();
 
-        while (cur != null || !stack.isEmpty()) {
-            while (cur != null) {
-                nodes.add(cur.val);
-                stack.push(cur.right);
-                cur = cur.right;
             }
-            cur = stack.pop();
+            return nodes;
         }
-        return nodes;
-    }
-}
-//leetcode submit region end(Prohibit modification and deletion)
 
+        public List<Integer> preorderTraversal4(TreeNode root) {
+            List<Integer> nodes = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+            TreeNode cur = root;
+
+            while (cur != null || !stack.isEmpty()) {
+                while (cur != null) {
+                    nodes.add(cur.val);
+                    stack.push(cur.right);
+                    cur = cur.left;
+                }
+                cur = stack.pop();
+            }
+
+            return nodes;
+        }
+
+        public List<Integer> preorderTraversal5(TreeNode root) {
+            List<Integer> nodes = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+            TreeNode cur = root;
+
+            while (cur != null || !stack.isEmpty()) {
+                while (cur != null) {
+                    nodes.add(cur.val);
+                    stack.push(cur.right);
+                    cur = cur.left;
+                }
+                cur = stack.pop();
+            }
+            return nodes;
+        }
+    }
+
+    //leetcode submit region end(Prohibit modification and deletion)
+    class Solution2 {
+        public List<Integer> preorderTraversal(TreeNode root) {
+            List<Integer> nodes = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+
+            TreeNode curVisit = root;
+            while (curVisit != null || stack.peek() != null) {
+                while (curVisit != null) {
+                    nodes.add(curVisit.val);//访问当前节点
+                    stack.push(curVisit.right);//不访问当前节点右节点
+                    curVisit = curVisit.left;//访问当前节点左节点
+                }
+                curVisit = stack.pop();
+            }
+
+            return nodes;
+        }
+    }
 }
