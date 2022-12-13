@@ -97,10 +97,8 @@ public class ErChaShuZhongHeWeiMouYiZhiDeLuJingLcof {
             pathSum = pathSum + root.val;
             solution.addLast(root.val);
             System.out.println(solution.toString()+"  "+pathSum);
-            if (pathSum == target ) {
-                if (root.right == null && root.left == null){
-                    res.add(new LinkedList<>(solution));
-                }
+            if (pathSum == target && root.right == null && root.left == null ) {
+                res.add(new LinkedList<>(solution));
             } else  {
                 if (root.left != null) {
                     dfs(res, solution, root.left, target, pathSum);
