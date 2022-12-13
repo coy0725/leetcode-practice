@@ -101,7 +101,7 @@ public class ErChaShuZhongHeWeiMouYiZhiDeLuJingLcof {
                 if (root.right == null && root.left == null){
                     res.add(new LinkedList<>(solution));
                 }
-            } else if (pathSum < target) {
+            } else  {
                 if (root.left != null) {
                     dfs(res, solution, root.left, target, pathSum);
                     solution.removeLast();
