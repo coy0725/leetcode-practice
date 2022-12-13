@@ -1,7 +1,6 @@
 /**
-* 反转链表
-* 
-*/
+ * 反转链表
+ */
 //给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
 // 
 // 
@@ -44,43 +43,45 @@
 // 
 // Related Topics 递归 链表 
 // 👍 2785 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
+
 /**
-* 206
-*/
+ * 206
+ */
 public class ReverseLinkedList {
     public static void main(String[] args) {
         Solution solution = new ReverseLinkedList().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-class Solution {
-    public ListNode reverseList(ListNode head) {
-        if (head==null||head.next==null){
-            return head;
-        }
-        ListNode cur = head;
-        ListNode pre = null;
 
-        while (cur!=null){
-            ListNode next=cur.next;//保存当前节点的下一个节点
-            cur.next=pre;//反转当前节点的指向
-            pre=cur;//记录下一个节点的前一个节点
-            cur=next;//更新下一个节点的当前节点
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode() {}
+     *     ListNode(int val) { this.val = val; }
+     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution {
+        public ListNode reverseList(ListNode head) {
+            if (head == null || head.next == null) {
+                return head;
+            }
+            ListNode cur = head;
+            ListNode pre = null;
+
+            while (cur != null) {
+                ListNode next = cur.next;//保存当前节点的下一个节点
+                cur.next = pre;//反转当前节点的指向
+                pre = cur;//记录下一个节点的前一个节点
+                cur = next;//更新下一个节点的当前节点
+            }
+            return pre;
         }
-        return pre;
     }
-}
 
     class Solution2 {
         public ListNode reverseList(ListNode head) {
@@ -103,18 +104,37 @@ class Solution {
 
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
-public class ListNode {
-    int val;
-    ListNode next;
 
-    ListNode() {}
-
-    ListNode(int val) { this.val = val; }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
+    class Solution3 {
+        public ListNode reverseList(ListNode head) {
+            if (head == null || head.next == null) {
+                return head;
+            }
+            ListNode preVisit = null;
+            ListNode curVisit = head;
+            ListNode nextVisit;
+            while (curVisit != null) {
+                nextVisit = curVisit.next;
+                curVisit.next = preVisit;
+                preVisit = curVisit;
+                curVisit = nextVisit;
+            }
+            return preVisit;
+        }
     }
-}
+
+    //leetcode submit region end(Prohibit modification and deletion)
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {}
+
+        ListNode(int val) { this.val = val; }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }
