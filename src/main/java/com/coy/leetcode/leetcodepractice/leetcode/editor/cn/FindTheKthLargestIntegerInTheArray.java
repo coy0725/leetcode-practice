@@ -63,6 +63,7 @@ import java.util.PriorityQueue;
 public class FindTheKthLargestIntegerInTheArray {
     public static void main(String[] args) {
         Solution solution = new FindTheKthLargestIntegerInTheArray().new Solution();
+        solution.kthLargestNumber(new String[] {"3","6","7","10"}, 4);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -71,7 +72,9 @@ public class FindTheKthLargestIntegerInTheArray {
             if (nums.length < k) {
                 return "";
             }
-            PriorityQueue<String> minHeap = new PriorityQueue<>();
+            //难道字符串默认是按字典序进行排列的？
+            PriorityQueue<String> minHeap =
+                new PriorityQueue<>((e1,e2)->Integer.parseInt(e1)-Integer.parseInt(e2));
             for (final String num : nums) {
                 if (minHeap.size() < k) {
                     minHeap.offer(num);
