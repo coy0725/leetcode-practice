@@ -81,6 +81,33 @@ public class KthLargestElementInAStream {
         }
     }
 
+    class KthLargest2 {
+        //最小堆指的是堆顶位置是堆中的最小值？
+        private PriorityQueue<Integer> minHeap;
+        private int size;
+
+        public KthLargest2(int k, int[] nums) {
+
+            size = k;
+            minHeap = new PriorityQueue<>();
+            for (final int num : nums) {
+                add(num);
+            }
+        }
+
+        public int add(int val) {
+            if (minHeap.size() < size) {
+                minHeap.offer(val);
+                //如果val>堆中的最小值，将堆顶值弹出，val值压入
+            } else if (val > minHeap.peek()) {
+                minHeap.poll();
+                minHeap.offer(val);
+            }
+            //返回第k大的值
+            return minHeap.peek();
+        }
+    }
+
     /**
      * Your KthLargest object will be instantiated and called as such:
      * KthLargest obj = new KthLargest(k, nums);
