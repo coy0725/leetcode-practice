@@ -76,12 +76,12 @@ public class FindTheKthLargestIntegerInTheArray {
             }
             //难道字符串默认是按字典序进行排列的？
             PriorityQueue<String> minHeap =
-                new PriorityQueue<>((e1,e2)-> (int) (Long.parseLong(e1)-Long.parseLong(e2)));
+                new PriorityQueue<>(this::compare);
             for (final String num : nums) {
                 if (minHeap.size() < k) {
                     minHeap.offer(num);
                 } else {
-                    if (Long.parseLong(num) > Long.parseLong(minHeap.peek())) {
+                    if (compare(num,minHeap.peek())>0) {
                         minHeap.poll();
                         minHeap.offer(num);
                     }
@@ -90,6 +90,20 @@ public class FindTheKthLargestIntegerInTheArray {
             return minHeap.peek();
 
         }
+
+        int compare(String s1 ,String s2){
+            if (s1.length() > s2.length()){
+                return 1;
+            }
+            else if (s1.length() < s2.length()){
+                return -1;
+            }
+            else{
+                // 长度相等时比较字符串字典序大小
+                return s1.compareTo(s2);
+            }
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
