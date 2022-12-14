@@ -63,7 +63,9 @@ import java.util.PriorityQueue;
 public class FindTheKthLargestIntegerInTheArray {
     public static void main(String[] args) {
         Solution solution = new FindTheKthLargestIntegerInTheArray().new Solution();
-        solution.kthLargestNumber(new String[] {"3","6","7","10"}, 4);
+        System.out.println(solution
+            .kthLargestNumber(new String[] {"623986800", "3", "887298", "695", "794", "6888794705"
+                , "269409", "59930972", "723091307", "726368", "8028385786", "378585"}, 11));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -74,12 +76,12 @@ public class FindTheKthLargestIntegerInTheArray {
             }
             //难道字符串默认是按字典序进行排列的？
             PriorityQueue<String> minHeap =
-                new PriorityQueue<>((e1,e2)->Integer.parseInt(e1)-Integer.parseInt(e2));
+                new PriorityQueue<>((e1,e2)-> (int) (Long.parseLong(e1)-Long.parseLong(e2)));
             for (final String num : nums) {
                 if (minHeap.size() < k) {
                     minHeap.offer(num);
                 } else {
-                    if (Integer.parseInt(num) > Integer.parseInt(minHeap.peek())) {
+                    if (Long.parseLong(num) > Long.parseLong(minHeap.peek())) {
                         minHeap.poll();
                         minHeap.offer(num);
                     }
