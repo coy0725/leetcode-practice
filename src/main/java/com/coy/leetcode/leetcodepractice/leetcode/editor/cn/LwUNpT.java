@@ -58,16 +58,16 @@ public class LwUNpT {
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode() {}
-     *     TreeNode(int val) { this.val = val; }
-     *     TreeNode(int val, TreeNode left, TreeNode right) {
-     *         this.val = val;
-     *         this.left = left;
-     *         this.right = right;
-     *     }
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
      * }
      */
     public class TreeNode {
@@ -113,6 +113,37 @@ public class LwUNpT {
 
             }
             return levelLeftValue;
+
+        }
+    }
+
+    class Solution2 {
+        public int findBottomLeftValue(TreeNode root) {
+            int bottomLeftValue = root.val;
+            Queue<TreeNode> currentLayer = new LinkedList<>();
+            Queue<TreeNode> nextLayer = new LinkedList<>();
+            currentLayer.offer(root);
+
+            while (currentLayer.peek() != null) {
+                TreeNode node = currentLayer.poll();
+                if (node.left != null) {
+                    nextLayer.offer(node.left);
+                }
+                if (node.right != null) {
+                    nextLayer.offer(node.right);
+                }
+
+                if (currentLayer.isEmpty()) {
+                    if (!nextLayer.isEmpty()) {
+                        bottomLeftValue = nextLayer.peek().val;
+                        Queue<TreeNode> tmp = currentLayer;
+                        currentLayer = nextLayer;
+                        nextLayer = tmp;
+                    }
+
+                }
+            }
+            return bottomLeftValue;
 
         }
     }
