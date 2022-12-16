@@ -109,16 +109,16 @@ public class HPov7L {
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode() {}
-     *     TreeNode(int val) { this.val = val; }
-     *     TreeNode(int val, TreeNode left, TreeNode right) {
-     *         this.val = val;
-     *         this.left = left;
-     *         this.right = right;
-     *     }
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
      * }
      */
     public class TreeNode {
@@ -152,7 +152,6 @@ public class HPov7L {
                 levelMaxValue = Math.max(levelMaxValue, poll.val);
                 currentLevelCount--;
 
-
                 if (poll.left != null) {
                     queue.offer(poll.left);
                     nextLevelCount++;
@@ -167,7 +166,7 @@ public class HPov7L {
                     rlt.add(levelMaxValue);
                     levelMaxValue = Integer.MIN_VALUE;
                     currentLevelCount = nextLevelCount;
-                    nextLevelCount=0;
+                    nextLevelCount = 0;
                 }
             }
             return rlt;
@@ -205,5 +204,38 @@ public class HPov7L {
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
+
+    class Solution3 {
+
+
+        public List<Integer> largestValues2(TreeNode root) {
+            List<Integer> rlt = new ArrayList<>();
+            Queue<TreeNode> currentLayer = new LinkedList<>();
+            Queue<TreeNode> nextLayer = new LinkedList<>();
+
+            int levelMaxValue = Integer.MIN_VALUE;//记录每层最大值
+            currentLayer.offer(root);
+            while (Objects.nonNull(currentLayer.peek())) {
+                TreeNode node = currentLayer.poll();
+                levelMaxValue = Math.max(levelMaxValue, node.val);
+                if (node.left != null) {
+                    nextLayer.offer(node.left);
+                }
+                if (node.right != null) {
+                    nextLayer.offer(node.right);
+                }
+
+                //当前层访问完了，访问下一层
+                if (currentLayer.isEmpty()) {
+                    rlt.add(levelMaxValue);
+                    levelMaxValue = Integer.MIN_VALUE;
+                    Queue<TreeNode> tmp = currentLayer;
+                    currentLayer = nextLayer;
+                    nextLayer = tmp;
+                }
+            }
+            return rlt;
+        }
+    }
 
 }
