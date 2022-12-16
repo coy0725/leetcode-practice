@@ -1,7 +1,6 @@
 /**
-* 二叉树的右侧视图
-* 
-*/
+ * 二叉树的右侧视图
+ */
 //给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。 
 //
 // 
@@ -44,7 +43,7 @@
 /// 
 // Related Topics 树 深度优先搜索 广度优先搜索 二叉树 
 // 👍 37 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.ArrayList;
@@ -53,71 +52,72 @@ import java.util.List;
 import java.util.Queue;
 
 /**
-* 剑指 Offer II 046
-*/
+ * 剑指 Offer II 046
+ */
 public class WNC0Lk {
     public static void main(String[] args) {
         Solution solution = new WNC0Lk().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
 
-    TreeNode() {}
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     *     int val;
+     *     TreeNode left;
+     *     TreeNode right;
+     *     TreeNode() {}
+     *     TreeNode(int val) { this.val = val; }
+     *     TreeNode(int val, TreeNode left, TreeNode right) {
+     *         this.val = val;
+     *         this.left = left;
+     *         this.right = right;
+     *     }
+     * }
+     */
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-    TreeNode(int val) { this.val = val; }
+        TreeNode() {}
 
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
-class Solution {
-    public List<Integer> rightSideView(TreeNode root) {
+        TreeNode(int val) { this.val = val; }
 
-        List<Integer> rlt = new ArrayList<>();
-        Queue<TreeNode> queue1 = new LinkedList<>();
-        Queue<TreeNode> queue2 = new LinkedList<>();
-        Queue<TreeNode> temp;
-        queue1.offer(root);
-        while (!queue1.isEmpty()&&queue1.peek()!=null){
-            TreeNode node = queue1.poll();
-            if (node.left!=null){
-                queue2.offer(node.left);
-            }
-            if (node.right!=null){
-                queue2.offer(node.right);
-            }
-            if (queue1.isEmpty()){
-                rlt.add(node.val);
-                temp =queue1;
-                queue1 =queue2;
-                queue2 = temp;
-            }
-
-
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
         }
-        return rlt;
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+
+    class Solution {
+        public List<Integer> rightSideView(TreeNode root) {
+
+            List<Integer> rlt = new ArrayList<>();
+            Queue<TreeNode> queue1 = new LinkedList<>();
+            Queue<TreeNode> queue2 = new LinkedList<>();
+            Queue<TreeNode> temp;
+            queue1.offer(root);
+            while (!queue1.isEmpty() && queue1.peek() != null) {
+                TreeNode node = queue1.poll();
+                if (node.left != null) {
+                    queue2.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue2.offer(node.right);
+                }
+                if (queue1.isEmpty()) {
+                    rlt.add(node.val);
+                    temp = queue1;
+                    queue1 = queue2;
+                    queue2 = temp;
+                }
+
+            }
+            return rlt;
+        }
+    }
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
