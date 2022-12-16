@@ -87,6 +87,25 @@ public class IIQa4I {
             return result;
         }
     }
+
+    class Solution2 {
+        public int[] dailyTemperatures(int[] temperatures) {
+            //这个栈中温度保证是单调递减的
+            Stack<Integer> stack = new Stack<>();//每天温度在数组中的下标
+            int[] result = new int[temperatures.length];
+            for (int i = 0; i < temperatures.length; i++) {
+                //第i天的温度比栈顶温度高，计算栈顶温度所在日期过了多少天遇到了比他温度高的天数
+                while (!stack.empty() && temperatures[i] > temperatures[stack.peek()]) {
+                    Integer prev = stack.pop();//遇到了更高的温度，出栈
+                    result[prev] = i - prev;//计算过了多少天遇到了更高的温度
+                }
+                stack.push(i);//当前温度日期入栈
+            }
+            return result;
+
+        }
+
+    }
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
