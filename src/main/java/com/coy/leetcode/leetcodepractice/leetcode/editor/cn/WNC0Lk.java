@@ -118,6 +118,38 @@ public class WNC0Lk {
             return rlt;
         }
     }
+
+    class Solution2 {
+        public List<Integer> rightSideView(TreeNode root) {
+            List<Integer> rlt = new ArrayList<>();
+            Queue<TreeNode> currentLayer = new LinkedList<>();
+            Queue<TreeNode> nextLayer = new LinkedList<>();
+
+            Queue<TreeNode> temp;
+            currentLayer.offer(root);
+            while (!currentLayer.isEmpty() && currentLayer.peek() != null) {
+                TreeNode node = currentLayer.poll();
+                if (node.left != null) {
+                    nextLayer.offer(node.left);
+                }
+                if (node.right != null) {
+                    nextLayer.offer(node.right);
+                }
+                //当前层节点遍历完成
+                if (currentLayer.isEmpty()) {
+                    //将当前层最后一个遍历的节点加入解
+                    rlt.add(node.val);
+                    temp =currentLayer;
+                    currentLayer= nextLayer;
+                    nextLayer = temp;
+                }
+            }
+
+            return rlt;
+
+
+        }
+    }
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
