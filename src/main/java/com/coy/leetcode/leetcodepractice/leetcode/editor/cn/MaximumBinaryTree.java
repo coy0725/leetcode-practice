@@ -89,6 +89,7 @@ public class MaximumBinaryTree {
             TreeNode root = new TreeNode(nums[mid]);
             root.left = maxTree(nums, left, mid - 1);
             root.right = maxTree(nums, mid + 1, right);
+
             return root;
         }
 
