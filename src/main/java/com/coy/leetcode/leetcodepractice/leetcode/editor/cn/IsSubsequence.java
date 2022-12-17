@@ -74,7 +74,29 @@ public class IsSubsequence {
                     }
                 }
             }
-            return j == s.length() ;
+            return false;
+        }
+    }
+
+    class Solution2 {
+        public boolean isSubsequence(String sub, String full) {
+            //
+            if (sub.length() == 0 ) {
+                return true;
+            }
+            if (full.length() == 0) {
+                return false;
+            }
+            int j = 0;
+            for (int i = 0; i < full.length(); i++) {
+                if (full.charAt(i) == sub.charAt(j)) {
+                    j++;
+                    if (j == sub.length() ) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
