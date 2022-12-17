@@ -55,6 +55,8 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import java.util.Arrays;
+
 /**
  * 剑指 Offer II 095
  */
@@ -72,21 +74,29 @@ public class QJnOS7 {
             if (text1.length() == 0 || text2.length() == 0) {
                 return 0;
             }
-            return dfs(text1, text2, text1.length() - 1, text2.length() - 1);
+            int[][] dp = new int[text1.length()][text2.length()];
+            for (final int[] ints : dp) {
+                Arrays.fill(ints,-1);
+            }
+            return dfs(text1, text2, text1.length() - 1, text2.length() - 1,dp);
 
         }
 
-        private int dfs(String text1, String text2, int i, int j) {
+        private int dfs(String text1, String text2, int i, int j,int[][] dp) {
             if (i < 0 || j < 0) {
                 return 0;
             }
-            if (text1.charAt(i) == text2.charAt(j)) {
-                return dfs(text1, text2, i - 1, j - 1)+1;
-            } else {
-                return  Math.max(dfs(text1,text2,i-1,j),dfs(text1,text2,i,j-1));
+            if (dp[i][j] != -1) {
+                return dp[i][j];
             }
-
-
+            int longest = 0;
+            if (text1.charAt(i) == text2.charAt(j)) {
+                longest = dfs(text1, text2, i - 1, j - 1,dp) + 1;
+            } else {
+                longest =  Math.max(dfs(text1,text2,i-1,j,dp),dfs(text1,text2,i,j-1,dp));
+            }
+            dp[i][j] = longest;
+            return longest;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
