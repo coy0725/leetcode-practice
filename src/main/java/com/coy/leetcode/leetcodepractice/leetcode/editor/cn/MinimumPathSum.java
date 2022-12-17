@@ -64,7 +64,7 @@ public class MinimumPathSum {
                     }
                 }
             }
-            return grid[grid.length - 1][grid[0].length];
+            return grid[grid.length - 1][grid[0].length-1];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
