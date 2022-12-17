@@ -96,7 +96,7 @@ public class MaximumBinaryTree {
         private int findMaxIndex(int[] nums, int left, int right) {
             int maxValue = nums[left];
             int maxIndex = left;
-            for (int i = left; i < right; i++) {
+            for (int i = left; i <= right; i++) {
                 if (maxValue < nums[i]) {
                     maxValue = nums[i];
                     maxIndex = i;
