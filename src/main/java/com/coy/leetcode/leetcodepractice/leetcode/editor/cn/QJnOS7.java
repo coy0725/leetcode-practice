@@ -82,6 +82,7 @@ public class QJnOS7 {
 
         }
 
+        //表示第1个字符串中下标从0到i的子字符串（记为s1[0..i]）和第2个字符串中下标从0到j的子字符串（记为s2[0..j]）的最长公共子序列的长度
         private int dfs(String text1, String text2, int i, int j,int[][] dp) {
             if (i < 0 || j < 0) {
                 return 0;
@@ -92,11 +93,14 @@ public class QJnOS7 {
             int longest = 0;
             if (text1.charAt(i) == text2.charAt(j)) {
                 longest = dfs(text1, text2, i - 1, j - 1,dp) + 1;
+                dp[i][j] = longest;
+                return longest;
+
             } else {
                 longest =  Math.max(dfs(text1,text2,i-1,j,dp),dfs(text1,text2,i,j-1,dp));
+                dp[i][j] = longest;
+                return longest;
             }
-            dp[i][j] = longest;
-            return longest;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
