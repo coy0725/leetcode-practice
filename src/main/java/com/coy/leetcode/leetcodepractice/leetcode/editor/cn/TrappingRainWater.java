@@ -71,6 +71,31 @@ public class TrappingRainWater {
             return water;
         }
     }
+
+    class Solution2 {
+        public int trap(int[] height) {
+
+            int water = 0;
+            Stack<Integer> stack = new Stack<>();
+            for (int i = 0; i < height.length; i++) {
+                while (!stack.isEmpty() && height[stack.peek()] < height[i]) {
+                    Integer bottom = stack.pop();
+                    if (stack.isEmpty()) {
+                        break;
+
+                    }
+                    Integer left = stack.peek();
+                    int leftHeight = height[left];
+                    int rightHeight = height[i];
+                    int bottomHeight = height[bottom];
+                    water = water + (i - left - 1) * (Math.min(leftHeight, rightHeight) - bottomHeight);
+                }
+                stack.push(i);
+            }
+
+            return water;
+        }
+    }
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
