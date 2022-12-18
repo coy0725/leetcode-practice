@@ -74,13 +74,35 @@ public class QTMn0o {
             HashMap<Integer, Integer> preSumCount = new HashMap<>();
             preSumCount.put(0, 1);
             for (final int num : nums) {
-                preSum = preSum+ num;
-                kCount = kCount +preSumCount.getOrDefault(preSum-k,0);
-                preSumCount.put(preSum,preSumCount.getOrDefault(preSum, 0)+1);
+                preSum = preSum + num;
+                kCount = kCount + preSumCount.getOrDefault(preSum - k, 0);
+                preSumCount.put(preSum, preSumCount.getOrDefault(preSum, 0) + 1);
 
             }
             return kCount;
         }
+
+    }
+
+    class Solution2 {
+        public int subarraySum(int[] nums, int k) {
+            int sum = 0;
+            int count = 0;
+            //key:Sum值，value：等于该Sum值的个数
+            // sum1 -k = sum2
+            //sum1-sum2 = k
+            HashMap<Integer, Integer> sumCount = new HashMap<>();
+            sumCount.put(0, 1);
+            for (int i = 0; i < nums.length; i++) {
+                sum = sum + nums[i];
+                Integer kCount = sumCount.getOrDefault(sum-k, 0);
+                count = count + kCount;
+                sumCount.put(sum, sumCount.getOrDefault(sum, 0) + 1);
+            }
+            return count;
+        }
+
+
 
     }
     //leetcode submit region end(Prohibit modification and deletion)
