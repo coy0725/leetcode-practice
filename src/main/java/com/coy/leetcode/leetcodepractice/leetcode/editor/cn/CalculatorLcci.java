@@ -118,6 +118,43 @@ public class CalculatorLcci {
 
 
     }
+
+    class Solution2 {
+
+        public int calculate(String s) {
+            Stack<Integer> stack = new Stack<>();
+            char opt = '+';
+            int num = 0;
+            for (int i = 0; i < s.length(); i++) {
+                char ch = s.charAt(i);
+                if (Character.isDigit(ch)) {
+                    num = num * 10 + (ch - '0');
+                }
+                //先做乘除法
+                if ((!Character.isDigit(ch) && ch != ' ') || i == s.length() - 1) {
+                    if (opt == '+') {
+                        stack.push(num);
+                    } else if (opt == '-') {
+                        stack.push(-num);
+                    } else if (opt == '*') {
+                        stack.push(stack.pop() * num);
+                    } else {
+                        stack.push(stack.pop() / num);
+                    }
+                    num = 0;
+                    opt = ch;
+                }
+            }
+            int res = 0;
+            //做加法
+            while (!stack.isEmpty()) {
+                res = res + stack.pop();
+            }
+            return res;
+        }
+
+
+    }
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
