@@ -58,6 +58,16 @@ public class SingleNumber {
             return rlt;
         }
     }
+
+    class Solution2 {
+        public int singleNumber(int[] nums) {
+            int rlt = nums[0];
+            for (int i = 1; i < nums.length; i++) {
+                rlt = rlt ^ nums[i];
+            }
+            return rlt;
+        }
+    }
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
