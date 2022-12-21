@@ -88,7 +88,7 @@ public class BestTimeToBuyAndSellStockIii {
                 //该天第一次买入获得的最大收益
                 firstBuy = Math.max(firstBuy, -price);
                 //该第一次卖出获得的最大收益
-                firstSell = Math.max(firstSell, firstSell + price);
+                firstSell = Math.max(firstSell, firstBuy + price);
                 //改天第二次买入股票可获得的最大收益
                 secBuy = Math.max(secBuy, firstSell - price);
                 //该天第二次卖出股票可获得的最大收益
