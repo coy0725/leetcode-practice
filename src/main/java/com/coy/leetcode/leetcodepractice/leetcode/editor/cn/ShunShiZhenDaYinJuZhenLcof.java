@@ -52,7 +52,8 @@ public class ShunShiZhenDaYinJuZhenLcof {
                 return new int[0];
             }
             LinkedList<Integer> list = new LinkedList<>();
-
+            int[] rlt = new int[matrix.length * matrix[0].length];
+            int x = 0;
             int left = 0;
             int right = matrix[0].length - 1;
             int top = 0;
@@ -60,28 +61,29 @@ public class ShunShiZhenDaYinJuZhenLcof {
             while (true) {
                 //left->right
                 for (int i = left; i <= right; i++) {
-                    list.addLast(matrix[top][i]);
+                    rlt[x++] = matrix[top][i];
                 }
                 if (++top > bottom) {
                     break;
                 }
                 //top->bottom
                 for (int i = top; i <= bottom; i++) {
-                    list.addLast(matrix[i][right]);
+
+                    rlt[x++] = matrix[i][right];
                 }
                 if (left > --right) {
                     break;
                 }
                 //right->left
                 for (int i = right; i >=left ; i--) {
-                    list.addLast(matrix[bottom][i]);
+                    rlt[x++] = matrix[bottom][i];
                 }
                 if (top > --bottom) {
                     break;
                 }
                 //bottom->top
                 for (int i = bottom; i >= top; i--) {
-                    list.addLast(matrix[i][left]);
+                    rlt[x++] = matrix[i][left];
                 }
                 if (++left > right) {
                     break;
@@ -89,7 +91,7 @@ public class ShunShiZhenDaYinJuZhenLcof {
             }
 
 
-            return list.stream().mapToInt(t-> t).toArray();
+            return rlt;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
