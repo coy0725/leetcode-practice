@@ -67,6 +67,7 @@ public class BestTimeToBuyAndSellStock {
         }
     }
 
+
     class Solution2 {
         public int maxProfit(int[] prices) {
             //使用一个变量记录最大利润
@@ -87,6 +88,20 @@ public class BestTimeToBuyAndSellStock {
 
         }
     }
+
+    class Solution3 {
+        public int maxProfit(int[] prices) {
+
+            int firstBuy = Integer.MIN_VALUE, firstSell = 0;
+            for (final int price : prices) {
+                firstBuy = Math.max(firstBuy, -price);
+                firstSell = Math.max(firstSell, firstBuy + price);
+            }
+            return firstSell;
+
+        }
+    }
+
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
