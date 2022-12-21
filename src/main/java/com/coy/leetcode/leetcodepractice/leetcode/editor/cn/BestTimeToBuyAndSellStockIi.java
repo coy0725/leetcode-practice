@@ -1,7 +1,6 @@
 /**
-* 买卖股票的最佳时机 II
-* 
-*/
+ * 买卖股票的最佳时机 II
+ */
 //给你一个整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格。 
 //
 // 在每一天，你可以决定是否购买和/或出售股票。你在任何时候 最多 只能持有 一股 股票。你也可以先购买，然后在 同一天 出售。 
@@ -44,29 +43,45 @@
 // 
 // Related Topics 贪心 数组 动态规划 
 // 👍 1847 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
+
 /**
-* 122
-*/
+ * 122
+ */
 public class BestTimeToBuyAndSellStockIi {
     public static void main(String[] args) {
         Solution solution = new BestTimeToBuyAndSellStockIi().new Solution();
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int maxProfit(int[] prices) {
-        int maxProfit = 0;
-        for (int i = 1; i < prices.length; i++) {
-            //买卖利润
-            int profit = prices[i] - prices[i - 1];
-            if (profit>0){
-                maxProfit = maxProfit + profit;
+    class Solution {
+        public int maxProfit(int[] prices) {
+            int maxProfit = 0;
+            for (int i = 1; i < prices.length; i++) {
+                //每天都尝试进行买卖，如果能获利就进行买卖
+                int profit = prices[i] - prices[i - 1];
+                if (profit > 0) {
+                    maxProfit = maxProfit + profit;
+                }
             }
+            return maxProfit;
         }
-        return maxProfit;
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+
+    class Solution2 {
+        public int maxProfit(int[] prices) {
+            //定义一个变量表示最大利润
+            int maxProfit = 0;
+            for (int i = 1; i < prices.length; i++) {
+                int profit = prices[i] - prices[i - 1];
+                if (profit > 0) {
+                    maxProfit = maxProfit + profit;
+                }
+            }
+            return maxProfit;
+        }
+    }
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
