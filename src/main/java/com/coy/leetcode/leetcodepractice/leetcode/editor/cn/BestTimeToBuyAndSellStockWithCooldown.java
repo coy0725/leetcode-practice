@@ -61,8 +61,9 @@ public class BestTimeToBuyAndSellStockWithCooldown {
             }
             //是不是需要从第三天开始？
             for (int i = 2; i < prices.length; i++) {
-                //前一天不进行买卖
-                dp[i][0] = Math.max(dp[i - 1][0], dp[i - 2][1] + prices[i]);
+                //卖股票只需要关注前一天手上有股票的状态
+                dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+                //dp[i - 2][0] - prices[i] 表示买入股票，所以只能需要在前两天手上没有股票的时候进行从操作
                 dp[i][1] = Math.max(dp[i - 1][1], dp[i - 2][0] - prices[i]);
             }
             return dp[prices.length - 1][0];
