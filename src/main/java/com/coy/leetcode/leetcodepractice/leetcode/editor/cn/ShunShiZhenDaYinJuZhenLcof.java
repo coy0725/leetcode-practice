@@ -67,7 +67,7 @@ public class ShunShiZhenDaYinJuZhenLcof {
                 }
                 //top->bottom
                 for (int i = top; i <= bottom; i++) {
-                    list.addLast(matrix[right][i]);
+                    list.addLast(matrix[i][right]);
                 }
                 if (left > --right) {
                     break;
@@ -81,7 +81,7 @@ public class ShunShiZhenDaYinJuZhenLcof {
                 }
                 //bottom->top
                 for (int i = bottom; i >= top; i--) {
-                    list.addLast(matrix[left][i]);
+                    list.addLast(matrix[i][left]);
                 }
                 if (++left > right) {
                     break;
