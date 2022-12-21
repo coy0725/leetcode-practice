@@ -55,6 +55,7 @@ public class BestTimeToBuyAndSellStockWithTransactionFee {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //error
         public int maxProfit(int[] prices, int fee) {
             int firstBuy = Integer.MIN_VALUE, firstSell = 0;
             for (final int price : prices) {
@@ -62,6 +63,28 @@ public class BestTimeToBuyAndSellStockWithTransactionFee {
                 firstSell = Math.max(firstSell, firstBuy + price-fee);
             }
             return firstSell;
+        }
+    }
+
+    class Solution2 {
+        public int maxProfit(int[] prices, int fee) {
+            int n = prices.length;
+            int[][] dp = new int[n][2];
+
+            //dp[0][0] 表示第一天不持股的收益
+            dp[0][0] = 0;
+            //dp[0][1] 表示第一天持股的收益，为 -prices[0]−prices[0]
+            dp[0][1] = -prices[0];
+
+            //✔状态定义：
+            //定义 dp[i][j] 为到第 i+1 天获得的最大利润，0<=i<=n-1。
+            // 其中 dp[i][0] 代表第 i+1 天手中没有股票时的最大利润， dp[i][1] 代表手中有股票时的最大利润。
+
+            for (int i = 1; i < n; i++) {
+                dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i] - fee);
+                dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+            }
+            return dp[n - 1][0];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
