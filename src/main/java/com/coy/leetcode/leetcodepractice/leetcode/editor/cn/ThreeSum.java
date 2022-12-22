@@ -120,11 +120,13 @@ public class ThreeSum {
             Arrays.sort(nums);
 
             //step 2:固定一个数字,使用双指针
-            for (int i = 0; i < nums.length; i++) {
+            for (int i = 0; i < nums.length-2; i++) {
                 int left = i + 1;
                 int right = nums.length - 1;
                 int twoSum = 0 - nums[i];
-
+                if (i > 1 && nums[i] == nums[i - 1]) {
+                    continue;
+                }
                 while (left < right) {
                     if (i > 1 && nums[left] == nums[left - 1]) {
                         continue;
