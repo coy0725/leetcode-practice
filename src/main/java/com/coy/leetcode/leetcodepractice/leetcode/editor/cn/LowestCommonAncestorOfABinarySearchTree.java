@@ -50,10 +50,10 @@ public class LowestCommonAncestorOfABinarySearchTree {
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode(int x) { val = x; }
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode(int x) { val = x; }
      * }
      */
 
@@ -71,6 +71,27 @@ public class LowestCommonAncestorOfABinarySearchTree {
                 return left;
             }
             return root;
+        }
+    }
+
+    class Solution2 {
+
+        TreeNode res = null;
+
+        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+            lca(root, p, q);
+            return root;
+        }
+        private void lca(TreeNode root, TreeNode p, TreeNode q) {
+            //在两边的情况|root=p的情况|root=q的情况
+            if ((root.val - p.val) * (root.val * q.val) <= 0) {
+                res = root;
+
+            } else if (root.val < p.val && root.val < q.val) {//pq节点在根节点右方
+                lca(root.right, p, q);
+            } else if (root.val > p.val && root.val > q.val) {//pq节点在根节点左方
+                lca(root.left, p, q);
+            }
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
