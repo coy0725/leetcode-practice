@@ -58,11 +58,11 @@ public class SortList {
     /**
      * Definition for singly-linked list.
      * public class ListNode {
-     *     int val;
-     *     ListNode next;
-     *     ListNode() {}
-     *     ListNode(int val) { this.val = val; }
-     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * int val;
+     * ListNode next;
+     * ListNode() {}
+     * ListNode(int val) { this.val = val; }
+     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
     class Solution {
@@ -81,8 +81,8 @@ public class SortList {
             slow.next = null;
             ListNode left = sortList(head);
             ListNode right = sortList(mid);
-            ListNode dummy = new ListNode(-1  );
-            ListNode newHead =dummy;
+            ListNode dummy = new ListNode(-1);
+            ListNode newHead = dummy;
             while (left != null && right != null) {
                 if (left.val < right.val) {
                     dummy.next = left;
@@ -94,6 +94,43 @@ public class SortList {
                 dummy = dummy.next;
             }
             dummy.next = left != null ? left : right;
+            return newHead.next;
+        }
+    }
+
+    class Solution2 {
+        public ListNode sortList(ListNode head) {
+            //归并排序
+            if (head == null || head.next == null) {
+                return head;
+            }
+            //step1 通过快慢指针找到中间节点
+            ListNode fast = head.next, slow = head;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            ListNode mid = slow.next;
+            slow.next = null;
+
+            //step2 排序
+            ListNode left = sortList(head);
+            ListNode right = sortList(mid);
+
+            //step3 归并
+            ListNode cur = new ListNode(-1);
+            ListNode newHead = cur;
+            while (left != null && right != null) {
+                if (left.val < right.val) {
+                    cur.next = left;
+                    left = left.next;
+                } else {
+                    cur.next = right;
+                    right = right.next;
+                }
+                cur = cur.next;
+            }
+            cur.next = left != null ? left : right;
             return newHead.next;
         }
     }
