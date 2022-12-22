@@ -81,6 +81,32 @@ public class LowestCommonAncestorOfABinaryTree {
             return root;
         }
     }
+
+    /**
+     * 适用于任意 k 个数的共同祖先的解法，时间空间都是O（n）
+     *
+     * 核心是：如果某节点遍历左右子树后k值由k变为0，表明该节点为所需节点
+     */
+    class Solution2 {
+        private TreeNode res;
+        private int k;
+
+        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+            k = 2;
+            dfs(root, p, q);
+            return res;
+        }
+
+        private void dfs(TreeNode root, TreeNode p, TreeNode q) {
+            if (res != null || root == null || k == 0) return;
+            int kOld = k;
+            if (root.val == p.val || root.val == q.val) k--;
+            dfs(root.left, p, q);
+            dfs(root.right, p, q);
+            if (kOld == 2 && k == 0 && res == null)
+                res = root;
+        }
+    }
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
