@@ -121,19 +121,27 @@ public class ThreeSum {
 
             //step 2:固定一个数字,使用双指针
             for (int i = 0; i < nums.length-2; i++) {
-                int left = i + 1;
-                int right = nums.length - 1;
-                int twoSum = 0 - nums[i];
+                if (nums[i] > 0) {
+                    break;
+                }
                 if (i > 1 && nums[i] == nums[i - 1]) {
                     continue;
                 }
+                int left = i + 1;
+                int right = nums.length - 1;
+                int twoSum = 0 - nums[i];
+
                 while (left < right) {
-                    if (i > 1 && nums[left] == nums[left - 1]) {
-                        continue;
-                    }
                     if (nums[left] + nums[right] == twoSum) {
                         rlt.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                        while (left < right && nums[left] == nums[left + 1]) {
+                            left++;
+                        }
+                        while (left < right && nums[right] == nums[right - 1]) {
+                            right--;
+                        }
                         left++;
+                        right--;
                     } else if (nums[left] + nums[right] > twoSum) {
                         right--;
                     } else {
