@@ -108,6 +108,41 @@ public class ThreeSum {
             return rlt;
         }
     }
+
+    class Solution2 {
+        public List<List<Integer>> threeSum(int[] nums) {
+            List<List<Integer>> rlt = new ArrayList<>();
+            int length = nums.length;
+            if (length < 3) {
+                return rlt;
+            }
+            //step 1：将数组排序
+            Arrays.sort(nums);
+
+            //step 2:固定一个数字,使用双指针
+            for (int i = 0; i < nums.length; i++) {
+                int left = i + 1;
+                int right = nums.length - 1;
+                int twoSum = 0 - nums[i];
+
+                while (left < right) {
+                    if (i > 1 && nums[left] == nums[left - 1]) {
+                        continue;
+                    }
+                    if (nums[left] + nums[right] == twoSum) {
+                        rlt.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    } else if (nums[left] + nums[right] > twoSum) {
+                        right--;
+                    } else {
+                        left++;
+                    }
+                }
+
+            }
+
+            return rlt;
+        }
+    }
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
