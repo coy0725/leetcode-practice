@@ -131,6 +131,7 @@ public class ThreeSum {
                     }
                     if (nums[left] + nums[right] == twoSum) {
                         rlt.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                        left++;
                     } else if (nums[left] + nums[right] > twoSum) {
                         right--;
                     } else {
