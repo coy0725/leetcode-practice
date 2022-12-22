@@ -1,7 +1,6 @@
 /**
-* 有效的括号
-* 
-*/
+ * 有效的括号
+ */
 //给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。 
 //
 // 有效字符串需满足： 
@@ -45,39 +44,70 @@
 // 
 // Related Topics 栈 字符串 
 // 👍 3537 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
-* 20
-*/
+ * 20
+ */
 public class ValidParentheses {
     public static void main(String[] args) {
         Solution solution = new ValidParentheses().new Solution();
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+    class Solution {
         //'('，')'，'{'，'}'，'['，']'
-    public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
-        HashMap<Character,Character> map = new HashMap<>();
-        map.put("(".charAt(0),")".charAt(0));
-        map.put("{".charAt(0),"}".charAt(0));
-        map.put("[".charAt(0),"]".charAt(0));
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (map.containsKey(c)){
-                stack.push(c);
-            } else if (stack.empty()||!map.get(stack.pop()).equals(c)) {
+        public boolean isValid(String s) {
+            Stack<Character> stack = new Stack<>();
+            HashMap<Character, Character> map = new HashMap<>();
+            map.put("(".charAt(0), ")".charAt(0));
+            map.put("{".charAt(0), "}".charAt(0));
+            map.put("[".charAt(0), "]".charAt(0));
+            for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                if (map.containsKey(c)) {
+                    stack.push(c);
+                } else if (stack.empty() || !map.get(stack.pop()).equals(c)) {
+                    return false;
+                }
+            }
+            return stack.empty();
+        }
+    }
+
+    class Solution2 {
+        //'('，')'，'{'，'}'，'['，']'
+        public boolean isValid(String s) {
+            int len = s.length();
+            if (len % 2 == 1) {
                 return false;
             }
+            Stack<Character> stack = new Stack<>();
+            Map<Character, Character> pairs = new HashMap<>();
+            pairs.put(')', '(');
+            pairs.put('}', '{');
+            pairs.put(']', '[');
+            for (int i = 0; i < len; i++) {
+                char c = s.charAt(i);
+                if (pairs.containsKey(c)) {
+
+                    if (stack.isEmpty()||stack.peek()!=pairs.get(c)) {
+                        return false;
+                    }
+                    Character pop = stack.pop();
+                } else {
+                    stack.push(c);
+                }
+            }
+
+            return stack.empty();
         }
-        return stack.empty();
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
