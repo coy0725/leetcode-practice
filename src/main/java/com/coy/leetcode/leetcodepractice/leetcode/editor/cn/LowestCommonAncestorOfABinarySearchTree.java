@@ -84,7 +84,7 @@ public class LowestCommonAncestorOfABinarySearchTree {
         }
         private void lca(TreeNode root, TreeNode p, TreeNode q) {
             //在两边的情况|root=p的情况|root=q的情况
-            if ((root.val - p.val) * (root.val * q.val) <= 0) {
+            if ((long)(root.val - p.val) * (root.val - q.val) <= 0) {
                 res = root;
 
             } else if (root.val < p.val && root.val < q.val) {//pq节点在根节点右方
