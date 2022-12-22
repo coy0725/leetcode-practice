@@ -64,7 +64,10 @@ import java.util.List;
 public class ThreeSum {
     public static void main(String[] args) {
         Solution solution = new ThreeSum().new Solution();
-        System.out.println(solution.threeSum(new int[] {-1, 0, 1, 2, -1, -4}));
+        System.out.println(solution.threeSum(new int[] {0,0,0,0}));
+
+        Solution2 solution2 = new ThreeSum().new Solution2();
+        System.out.println(solution2.threeSum(new int[] {0,0,0,0}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -124,7 +127,7 @@ public class ThreeSum {
                 if (nums[i] > 0) {
                     break;
                 }
-                if (i > 1 && nums[i] == nums[i - 1]) {
+                if (i > 0 && nums[i] == nums[i - 1]) {
                     continue;
                 }
                 int left = i + 1;
@@ -154,6 +157,8 @@ public class ThreeSum {
             return rlt;
         }
     }
+
+
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
