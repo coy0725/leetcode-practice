@@ -59,10 +59,12 @@ public class LongestCommonPrefix {
             }
             while (true) {
                 for (int i = 0; i < strs.length - 1; i++) {
+                    //长度不够了,break
                     if (strs[i].length() - 1 < index || strs[i + 1].length() - 1 < index) {
                         end = true;
                         break;
                     }
+                    //a数组index位置的字符不等于b数组index位置的字符，break
                     if (strs[i].charAt(index) != strs[i + 1].charAt(index)) {
                         end = true;
                         break;
