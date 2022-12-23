@@ -65,7 +65,7 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 public class ZigzagConversion {
     public static void main(String[] args) {
         Solution solution = new ZigzagConversion().new Solution();
-        System.out.println(solution.convert("PAYPALISHIRING", 3));
+        System.out.println(solution.convert("PAYPALISHIRING", 4));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -79,7 +79,8 @@ public class ZigzagConversion {
             // 1+numRows-2
             // 列数 s.length/(numRows+numRows-2)*(1+numRows-2)
 
-            char[][] matrix = new char[numRows][(s.length() / (numRows + numRows - 2) * (1 + numRows - 2))];
+            char[][] matrix =
+                new char[numRows][(s.length() / (numRows + numRows - 2) * (1 + numRows - 2))+1];
 
             //从上到下：[index++][left]
             //从下到上：[index--][left]
@@ -93,12 +94,14 @@ public class ZigzagConversion {
                 //从上到下：[index++][left]
                 for (int i = 0; i <= bottom&&index<s.length(); i++) {
                     matrix[i][left] = s.charAt(index++);
+
                 }
                 if (index >= s.length()) {
                     break;
                 }
                 //左下到右上：[index--][left++]
-                for (int i = bottom; i <= top&&index<s.length(); i--) {
+                left++;
+                for (int i = bottom-1; i > top&&index<s.length(); i--) {
                     matrix[i][left++] = s.charAt(index++);
                 }
                 if (index >= s.length()) {
