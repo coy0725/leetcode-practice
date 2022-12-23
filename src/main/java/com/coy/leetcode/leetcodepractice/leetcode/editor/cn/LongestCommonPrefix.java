@@ -41,6 +41,7 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 public class LongestCommonPrefix {
     public static void main(String[] args) {
         Solution solution = new LongestCommonPrefix().new Solution();
+        solution.longestCommonPrefix(new String[] {""});
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -50,6 +51,12 @@ public class LongestCommonPrefix {
             StringBuilder commonPrefix = new StringBuilder();
             int index = 0;
             boolean end = false;
+            if (strs.length < 1) {
+                return "";
+            }
+            if (strs.length ==1) {
+                return strs[0];
+            }
             while (true) {
                 for (int i = 0; i < strs.length - 1; i++) {
                     if (strs[i].length() - 1 < index || strs[i + 1].length() - 1 < index) {
