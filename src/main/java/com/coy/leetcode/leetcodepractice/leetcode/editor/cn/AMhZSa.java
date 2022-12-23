@@ -45,9 +45,16 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.LinkedList;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Palindrome;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.TwoPointers;
+
 /**
  * 剑指 Offer II 027
  */
+@Palindrome
+@LinkedList
+@TwoPointers
 public class AMhZSa {
     public static void main(String[] args) {
         Solution solution = new AMhZSa().new Solution();
@@ -63,11 +70,11 @@ public class AMhZSa {
     /**
      * Definition for singly-linked list.
      * public class ListNode {
-     *     int val;
-     *     ListNode next;
-     *     ListNode() {}
-     *     ListNode(int val) { this.val = val; }
-     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * int val;
+     * ListNode next;
+     * ListNode() {}
+     * ListNode(int val) { this.val = val; }
+     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
     class Solution {
@@ -115,7 +122,7 @@ public class AMhZSa {
 
     class Solution2 {
         public boolean isPalindrome(ListNode head) {
-            if (head == null ) {
+            if (head == null) {
                 return false;
             }
             if (head.next == null) {
@@ -139,6 +146,7 @@ public class AMhZSa {
             return true;
 
         }
+
         private ListNode reverseList(ListNode head) {
             if (head == null || head.next == null) {
                 return head;
@@ -154,12 +162,13 @@ public class AMhZSa {
             return preVisit;
         }
 
+        @TwoPointers
         private ListNode findMidNode(ListNode head) {
             ListNode dummy = new ListNode();
             dummy.next = head;
             ListNode slow = dummy;
             ListNode fast = dummy;
-            while (fast != null&&fast.next!=null) {
+            while (fast != null && fast.next != null) {
                 slow = slow.next;
                 fast = fast.next.next;
             }

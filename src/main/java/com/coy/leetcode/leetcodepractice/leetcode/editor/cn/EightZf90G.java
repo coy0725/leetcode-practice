@@ -85,9 +85,15 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.Stack;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Array;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Math;
+
 /**
  * 剑指 Offer II 036
  */
+@com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Stack
+@Math
+@Array
 public class EightZf90G {
     public static void main(String[] args) {
         Solution solution = new EightZf90G().new Solution();

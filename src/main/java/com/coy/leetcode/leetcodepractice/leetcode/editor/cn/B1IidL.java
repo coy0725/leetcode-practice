@@ -1,7 +1,6 @@
 /**
-* 山峰数组的顶部
-* 
-*/
+ * 山峰数组的顶部
+ */
 //符合下列属性的数组 arr 称为 山峰数组（山脉数组） ： 
 //
 // 
@@ -74,46 +73,48 @@
 //ray/ 
 // Related Topics 数组 二分查找 
 // 👍 96 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
+
 /**
-* 剑指 Offer II 069
-*/
+ * 剑指 Offer II 069
+ */
+@com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BinarySearch
 public class B1IidL {
     public static void main(String[] args) {
         Solution solution = new B1IidL().new Solution();
         System.out.println(solution.peakIndexInMountainArray(new int[] {3, 5, 3, 2, 0}));
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int peakIndexInMountainArray(int[] arr) {
+    class Solution {
+        @com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BinarySearch
+        public int peakIndexInMountainArray(int[] arr) {
 
-        int left =1 ;
-        int right =arr.length-2;
-        int mid ;
+            int left = 1;
+            int right = arr.length - 2;
+            int mid;
 
-        while (left <= right) {
-            mid =  (right-left)/2 +left;
+            while (left <= right) {
+                mid = (right - left) / 2 + left;
 
-            // mid是和前后两个元素进行比较吗？会存在数组访问越界的情况
-            //先判断left与mid-1,right与mid+1的关系吧
-            int leftBoundary = Math.max(mid - 1, left);
-            int rightBoundary = Math.min(mid + 1, right);
-            if (arr[mid] > arr[mid + 1] && arr[mid] > arr[mid - 1]) {
-                return mid;
+                // mid是和前后两个元素进行比较吗？会存在数组访问越界的情况
+                //先判断left与mid-1,right与mid+1的关系吧
+                if (arr[mid] > arr[mid + 1] && arr[mid] > arr[mid - 1]) {
+                    return mid;
+                }
+                //处于递增情况 mid-1<mid
+                if (arr[mid] > arr[mid - 1]) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+
             }
-            //处于递增情况 mid-1<mid
-            if (arr[mid] > arr[mid - 1]) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
 
+            return -1;
         }
-
-        return -1;
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }

@@ -61,9 +61,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DepthFirstSearch;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
+
 /**
  * 144
  */
+@Tree
+@com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Stack
+@DepthFirstSearch
 public class BinaryTreePreorderTraversal {
     public static void main(String[] args) {
         Solution solution = new BinaryTreePreorderTraversal().new Solution();
@@ -73,16 +79,16 @@ public class BinaryTreePreorderTraversal {
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode() {}
-     *     TreeNode(int val) { this.val = val; }
-     *     TreeNode(int val, TreeNode left, TreeNode right) {
-     *         this.val = val;
-     *         this.left = left;
-     *         this.right = right;
-     *     }
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
      * }
      */
     class Solution {

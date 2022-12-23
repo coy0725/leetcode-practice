@@ -54,9 +54,12 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.Arrays;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
+
 /**
  * 剑指 Offer II 092
  */
+@DynamicProgramming
 public class CyJERH {
     public static void main(String[] args) {
         Solution2 solution = new CyJERH().new Solution2();
@@ -68,7 +71,6 @@ public class CyJERH {
 
     /**
      * 递归解法，不带缓存
-     *
      */
     class Solution {
         public int minFlipsMonoIncr(String s) {
@@ -93,10 +95,9 @@ public class CyJERH {
             if (ch == '1') {
                 return Math.min(g(chars, i - 1), f(chars, i - 1) + 1);
             } else {
-                return Math.min(g(chars, i - 1)+1, f(chars, i - 1));
+                return Math.min(g(chars, i - 1) + 1, f(chars, i - 1));
             }
         }
-
 
         //确保字符i可以是0
         private int f(char[] chars, int i) {
@@ -116,8 +117,8 @@ public class CyJERH {
             }
         }
 
-
     }
+
     //leetcode submit region end(Prohibit modification and deletion)
     class Solution2 {
         public int minFlipsMonoIncr(String s) {
@@ -131,14 +132,14 @@ public class CyJERH {
             int[] gCounts = new int[s.length()];
             Arrays.fill(gCounts, -1);
 
-            int min = Math.min(f(chars, len - 1,fCounts), g(chars, len - 1,fCounts,gCounts));
+            int min = Math.min(f(chars, len - 1, fCounts), g(chars, len - 1, fCounts, gCounts));
             System.out.println(min);
             return min;
 
         }
 
         //确保字符i可以是1
-        private int g(char[] chars, int i,int[] fCounts,int[] gCounts) {
+        private int g(char[] chars, int i, int[] fCounts, int[] gCounts) {
             char ch = chars[i];
             if (i == 0) {
                 return 0;
@@ -151,12 +152,11 @@ public class CyJERH {
                 gCounts[i - 1] = gCount;
             }
             if (ch == '1') {
-                return Math.min(gCount, f(chars, i - 1,fCounts) + 1);
+                return Math.min(gCount, f(chars, i - 1, fCounts) + 1);
             } else {
-                return Math.min(gCount +1, f(chars, i - 1,fCounts));
+                return Math.min(gCount + 1, f(chars, i - 1, fCounts));
             }
         }
-
 
         //确保字符i可以是0
         private int f(char[] chars, int i, int[] fCounts) {
@@ -168,10 +168,10 @@ public class CyJERH {
                     return 1;
                 }
             } else {
-                int fCount ;
+                int fCount;
                 if (fCounts[i - 1] != -1) {
                     fCount = fCounts[i - 1];
-                }else {
+                } else {
                     fCount = f(chars, i - 1, fCounts);
                     fCounts[i - 1] = fCount;
                 }
@@ -182,7 +182,6 @@ public class CyJERH {
                 }
             }
         }
-
 
     }
 
@@ -206,11 +205,9 @@ public class CyJERH {
                 dp[1][i % 2] = Math.min(prev0, prev1) + (ch == '1' ? 0 : 1);//g(i)
 
             }
-            return Math.min(dp[0][(len-1)%2],dp[1][(len-1)%2]);
+            return Math.min(dp[0][(len - 1) % 2], dp[1][(len - 1) % 2]);
 
         }
-
-
 
     }
 }

@@ -54,9 +54,12 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
+
 /**
  * 123
  */
+@DynamicProgramming
 public class BestTimeToBuyAndSellStockIii {
     public static void main(String[] args) {
         Solution solution = new BestTimeToBuyAndSellStockIii().new Solution();

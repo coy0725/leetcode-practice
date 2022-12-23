@@ -39,9 +39,14 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.StringTag;
+
 /**
  * 剑指 Offer II 020
  */
+@StringTag
+@DynamicProgramming
 public class A7VOhD {
     public static void main(String[] args) {
         Solution solution = new A7VOhD().new Solution();

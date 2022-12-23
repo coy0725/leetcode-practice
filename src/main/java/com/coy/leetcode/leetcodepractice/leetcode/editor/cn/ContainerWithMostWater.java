@@ -41,9 +41,14 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Greedy;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.TwoPointers;
+
 /**
  * 11
  */
+@TwoPointers
+@Greedy
 public class ContainerWithMostWater {
     public static void main(String[] args) {
         Solution solution = new ContainerWithMostWater().new Solution();
@@ -86,7 +91,7 @@ public class ContainerWithMostWater {
             int right = height.length - 1;
             while (left <= right) {
                 //计算当前窗口面积
-                area = (right - left ) * Math.min(height[left], height[right]);
+                area = (right - left) * Math.min(height[left], height[right]);
                 maxArea = Math.max(area, maxArea);
                 if (height[left] < height[right]) {
                     left++;

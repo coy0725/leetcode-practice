@@ -51,13 +51,18 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.List;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BackTracing;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Math;
+
 /**
  * 40
  */
+@BackTracing
+@Math
 public class CombinationSumIi {
     public static void main(String[] args) {
         Solution solution = new CombinationSumIi().new Solution();
-        solution.combinationSum2(new int[]{10,1,2,7,6,1,5},8);
+        solution.combinationSum2(new int[] {10, 1, 2, 7, 6, 1, 5}, 8);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -92,7 +97,7 @@ public class CombinationSumIi {
                 }
                 path.addLast(candidates[i]);
                 //System.out.println("递归之前 => " + path + "，剩余 = " + (target - candidates[i]));
-                dfs(candidates, i+1, len, target - candidates[i], path, res);
+                dfs(candidates, i + 1, len, target - candidates[i], path, res);
 
                 path.removeLast();
             }

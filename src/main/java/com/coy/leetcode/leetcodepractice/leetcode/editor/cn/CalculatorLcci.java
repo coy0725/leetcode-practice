@@ -39,9 +39,13 @@ import java.util.LinkedList;
 import java.util.Set;
 import java.util.Stack;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Math;
+
 /**
  * 面试题 16.26
  */
+@com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Stack
+@Math
 public class CalculatorLcci {
     public static void main(String[] args) {
         Solution solution = new CalculatorLcci().new Solution();
@@ -52,8 +56,6 @@ public class CalculatorLcci {
     class Solution {
         Set<Character> addOrSubtract = new HashSet<>();
         Set<Character> multiplyDivide = new HashSet<>();
-
-
 
         public int calculate(String s) {
             s = s.replace(" ", "");
@@ -116,7 +118,6 @@ public class CalculatorLcci {
 
         }
 
-
     }
 
     class Solution2 {
@@ -152,7 +153,6 @@ public class CalculatorLcci {
             }
             return res;
         }
-
 
     }
     //leetcode submit region end(Prohibit modification and deletion)

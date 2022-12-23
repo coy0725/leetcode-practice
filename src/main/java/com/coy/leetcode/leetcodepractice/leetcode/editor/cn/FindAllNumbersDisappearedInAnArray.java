@@ -41,9 +41,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.HashTable;
+
 /**
  * 448
  */
+@HashTable
 public class FindAllNumbersDisappearedInAnArray {
     public static void main(String[] args) {
         Solution solution = new FindAllNumbersDisappearedInAnArray().new Solution();

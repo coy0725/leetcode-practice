@@ -68,16 +68,16 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Easy;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.frequency.FirstTime;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Array;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Simulation;
-import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.String;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.StringTag;
 
 /**
  * 2011
  */
 @Array
-@String
+@StringTag
 @Simulation
 public class FinalValueOfVariableAfterPerformingOperations {
-    public static void main(String[] args) {
+    public static void main(StringTag[] args) {
         Solution solution = new FinalValueOfVariableAfterPerformingOperations().new Solution();
     }
 

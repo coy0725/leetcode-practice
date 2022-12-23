@@ -53,9 +53,14 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BackTracing;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Math;
+
 /**
  * 39
  */
+@BackTracing
+@Math
 public class CombinationSum {
     public static void main(String[] args) {
         Solution solution = new CombinationSum().new Solution();

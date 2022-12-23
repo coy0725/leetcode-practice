@@ -38,9 +38,14 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DepthFirstSearch;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
+
 /**
  * 剑指 Offer 27
  */
+@Tree
+@DepthFirstSearch
 public class ErChaShuDeJingXiangLcof {
     public static void main(String[] args) {
         Solution solution = new ErChaShuDeJingXiangLcof().new Solution();
@@ -50,10 +55,10 @@ public class ErChaShuDeJingXiangLcof {
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode(int x) { val = x; }
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode(int x) { val = x; }
      * }
      */
     class Solution {

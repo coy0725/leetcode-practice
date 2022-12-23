@@ -47,9 +47,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DepthFirstSearch;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Iterator;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Recursion;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
+
 /**
  * 94
  */
+@DepthFirstSearch
+@com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Stack
+@Tree
+@Recursion
+@Iterator
 public class BinaryTreeInorderTraversal {
     public static void main(String[] args) {
         Solution solution = new BinaryTreeInorderTraversal().new Solution();
@@ -59,16 +69,16 @@ public class BinaryTreeInorderTraversal {
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode() {}
-     *     TreeNode(int val) { this.val = val; }
-     *     TreeNode(int val, TreeNode left, TreeNode right) {
-     *         this.val = val;
-     *         this.left = left;
-     *         this.right = right;
-     *     }
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
      * }
      */
     class Solution {

@@ -1,7 +1,6 @@
 /**
-* 链表中环的入口节点
-* 
-*/
+ * 链表中环的入口节点
+ */
 //给定一个链表，返回链表开始入环的第一个节点。 从链表的头节点开始沿着 next 指针进入环的第一个节点为环的入口节点。如果链表无环，则返回 null。 
 //
 // 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意，po
@@ -63,66 +62,72 @@
 // 注意：本题与主站 142 题相同： https://leetcode-cn.com/problems/linked-list-cycle-ii/ 
 // Related Topics 哈希表 链表 双指针 
 // 👍 77 👎 0
-	
+
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.Objects;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.LinkedList;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.TwoPointers;
+
 /**
-* 剑指 Offer II 022
-*/
+ * 剑指 Offer II 022
+ */
+@TwoPointers
+@LinkedList
 public class C32eOV {
     public static void main(String[] args) {
         Solution solution = new C32eOV().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-public class Solution {
-    public ListNode detectCycle(ListNode head) {
 
-        ListNode inLoopNode = getInLoopNode(head);
-        if (inLoopNode == null) {
+    /**
+     * Definition for singly-linked list.
+     * class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode(int x) {
+     *         val = x;
+     *         next = null;
+     *     }
+     * }
+     */
+    public class Solution {
+        public ListNode detectCycle(ListNode head) {
+
+            ListNode inLoopNode = getInLoopNode(head);
+            if (inLoopNode == null) {
+                return null;
+            }
+            ListNode node = head;
+            while (node != inLoopNode) {
+                node = node.next;
+                inLoopNode = inLoopNode.next;
+            }
+            return node;
+
+        }
+
+        private ListNode getInLoopNode(ListNode head) {
+            if (head == null || head.next == null) {
+                return null;
+            }
+            ListNode slow = head.next;
+            ListNode fast = slow.next;
+            while (slow != null && fast != null) {
+                if (slow == fast) {
+                    return slow;
+                }
+                slow = slow.next;
+                fast = fast.next;
+                if (fast != null) {
+                    fast = fast.next;
+                }
+            }
+
             return null;
         }
-        ListNode node = head;
-        while (node != inLoopNode) {
-            node=node.next;
-            inLoopNode=inLoopNode.next;
-        }
-        return node;
-
     }
-
-    private ListNode getInLoopNode(ListNode head) {
-        if (head == null || head.next == null) {
-            return null;
-        }
-        ListNode slow = head.next;
-        ListNode fast = slow.next;
-        while (slow!=null&&fast!=null){
-            if (slow==fast){
-                return slow;
-            }
-            slow=slow.next;
-            fast=fast.next;
-            if (fast!=null){
-                fast=fast.next;
-            }
-        }
-
-        return null;
-    }
-}
 
     public class Solution2 {
         public ListNode detectCycle(ListNode head) {
@@ -167,18 +172,19 @@ public class Solution {
         }
 
     }
-//leetcode submit region end(Prohibit modification and deletion)
-public class ListNode {
-    int val;
-    ListNode next;
 
-    ListNode() {}
+    //leetcode submit region end(Prohibit modification and deletion)
+    public class ListNode {
+        int val;
+        ListNode next;
 
-    ListNode(int val) { this.val = val; }
+        ListNode() {}
 
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
+        ListNode(int val) { this.val = val; }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
     }
-}
 }

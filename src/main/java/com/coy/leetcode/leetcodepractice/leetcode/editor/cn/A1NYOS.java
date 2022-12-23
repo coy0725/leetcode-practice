@@ -38,9 +38,16 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.HashMap;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Array;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.HashTable;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.PrefixSum;
+
 /**
  * 剑指 Offer II 011
  */
+@PrefixSum
+@Array
+@HashTable
 public class A1NYOS {
     public static void main(String[] args) {
         Solution solution = new A1NYOS().new Solution();

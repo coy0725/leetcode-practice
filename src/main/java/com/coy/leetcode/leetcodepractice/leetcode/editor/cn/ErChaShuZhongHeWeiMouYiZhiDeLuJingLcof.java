@@ -52,9 +52,16 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BackTracing;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DepthFirstSearch;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
+
 /**
  * 剑指 Offer 34
  */
+@Tree
+@DepthFirstSearch
+@BackTracing
 public class ErChaShuZhongHeWeiMouYiZhiDeLuJingLcof {
     public static void main(String[] args) {
         Solution solution = new ErChaShuZhongHeWeiMouYiZhiDeLuJingLcof().new Solution();

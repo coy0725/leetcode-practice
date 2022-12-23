@@ -44,9 +44,14 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Greedy;
+
 /**
  * 714
  */
+@DynamicProgramming
+@Greedy
 public class BestTimeToBuyAndSellStockWithTransactionFee {
     public static void main(String[] args) {
         Solution solution = new BestTimeToBuyAndSellStockWithTransactionFee().new Solution();

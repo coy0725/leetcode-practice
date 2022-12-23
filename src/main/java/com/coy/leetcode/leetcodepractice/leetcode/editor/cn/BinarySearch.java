@@ -36,6 +36,7 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 /**
  * 704
  */
+@com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BinarySearch
 public class BinarySearch {
     public static void main(String[] args) {
         Solution solution = new BinarySearch().new Solution();

@@ -25,9 +25,14 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DepthFirstSearch;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
+
 /**
  * 543
  */
+@Tree
+@DepthFirstSearch
 public class DiameterOfBinaryTree {
     public static void main(String[] args) {
         Solution solution = new DiameterOfBinaryTree().new Solution();

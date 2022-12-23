@@ -41,9 +41,18 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.HashMap;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.HashTable;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Math;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Memoization;
+
 /**
  * 70
  */
+@DynamicProgramming
+@Math
+@Memoization
+@HashTable
 public class ClimbingStairs {
     public static void main(String[] args) {
         Solution solution = new ClimbingStairs().new Solution();

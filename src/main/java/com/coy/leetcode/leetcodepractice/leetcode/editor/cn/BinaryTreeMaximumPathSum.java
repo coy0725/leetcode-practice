@@ -38,9 +38,16 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DepthFirstSearch;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
+
 /**
  * 124
  */
+@DepthFirstSearch
+@DynamicProgramming
+@Tree
 public class BinaryTreeMaximumPathSum {
     public static void main(String[] args) {
         Solution solution = new BinaryTreeMaximumPathSum().new Solution();
@@ -50,16 +57,16 @@ public class BinaryTreeMaximumPathSum {
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode() {}
-     *     TreeNode(int val) { this.val = val; }
-     *     TreeNode(int val, TreeNode left, TreeNode right) {
-     *         this.val = val;
-     *         this.left = left;
-     *         this.right = right;
-     *     }
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
      * }
      */
     class Solution {
@@ -97,8 +104,8 @@ public class BinaryTreeMaximumPathSum {
 
         /**
          * 返回当前节点能获取到的最大路径和：当前节点+max(左子树路径和,右子树路径和）
+         *
          * @param root 树的根节点
-         * @return
          */
         private int dfs(TreeNode root) {
             if (root == null) {
