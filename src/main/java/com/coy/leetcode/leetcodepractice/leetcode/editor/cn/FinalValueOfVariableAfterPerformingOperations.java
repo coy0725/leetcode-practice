@@ -64,7 +64,7 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
-import com.coy.leetcode.leetcodepractice.leetcode.annotation.Easy;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Easy;
 
 /**
  * 2011
