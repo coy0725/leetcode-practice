@@ -64,6 +64,8 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.Easy;
+
 /**
  * 2011
  */
@@ -74,6 +76,7 @@ public class FinalValueOfVariableAfterPerformingOperations {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        @Easy
         public int finalValueAfterOperations(String[] operations) {
             int x = 0;
             for (final String operation : operations) {
