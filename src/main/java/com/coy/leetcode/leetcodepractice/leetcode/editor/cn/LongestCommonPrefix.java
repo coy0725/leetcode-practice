@@ -56,7 +56,7 @@ public class LongestCommonPrefix {
                         end = true;
                         break;
                     }
-                    if (strs[i].charAt(index) != strs[i + 1].charAt(i)) {
+                    if (strs[i].charAt(index) != strs[i + 1].charAt(index)) {
                         end = true;
                         break;
                     }
