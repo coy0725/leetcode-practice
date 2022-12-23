@@ -65,16 +65,24 @@
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Easy;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.frequency.FirstTime;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Array;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Simulation;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.String;
 
 /**
  * 2011
  */
+@Array
+@String
+@Simulation
 public class FinalValueOfVariableAfterPerformingOperations {
     public static void main(String[] args) {
         Solution solution = new FinalValueOfVariableAfterPerformingOperations().new Solution();
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+    @FirstTime
     class Solution {
         @Easy
         public int finalValueAfterOperations(String[] operations) {
