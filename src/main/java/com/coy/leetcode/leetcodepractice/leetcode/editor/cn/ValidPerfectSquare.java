@@ -71,6 +71,18 @@ public class ValidPerfectSquare {
             return false;
         }
     }
+
+    class Solution2 {
+        public boolean isPerfectSquare(int num) {
+
+            int oddNumber = 1;
+            while (num > 0) {
+                num = num - oddNumber;
+                oddNumber = oddNumber + 2;
+            }
+            return num==0;
+        }
+    }
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
