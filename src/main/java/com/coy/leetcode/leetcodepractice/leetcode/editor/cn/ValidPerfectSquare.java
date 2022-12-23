@@ -73,6 +73,7 @@ public class ValidPerfectSquare {
     }
 
     class Solution2 {
+        //(n+1)^2-n^2=2n+1
         public boolean isPerfectSquare(int num) {
 
             int oddNumber = 1;
