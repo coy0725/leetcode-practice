@@ -94,7 +94,7 @@ public class ConstructBinaryTreeFromPreorderAndPostorderTraversal {
             if (preStart == preEnd) {
                 return new TreeNode(preorder[preStart]);
             }
-            int rootVal = postorder[preStart];
+            int rootVal = preorder[preStart];
 
             //怎么确定左子树的大小呢？前序遍历结果的第二个元素作为左子树的根节点的值
 
