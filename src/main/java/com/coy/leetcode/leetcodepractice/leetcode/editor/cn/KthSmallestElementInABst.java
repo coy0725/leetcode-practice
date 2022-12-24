@@ -41,12 +41,12 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BinarySearchTree;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DepthFirstSearch;
-import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.MiddleOrderTraversal;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.InOrderTraversal;
 
 /**
  * 230
  */
-@MiddleOrderTraversal
+@InOrderTraversal
 @BinarySearchTree
 @DepthFirstSearch
 public class KthSmallestElementInABst {
