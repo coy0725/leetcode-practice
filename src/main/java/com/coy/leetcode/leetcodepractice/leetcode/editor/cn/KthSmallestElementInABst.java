@@ -39,12 +39,12 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
-import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.PreorderTraversal;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.MiddleOrderTraversal;
 
 /**
  * 230
  */
-@PreorderTraversal
+@MiddleOrderTraversal
 public class KthSmallestElementInABst {
     public static void main(String[] args) {
         Solution solution = new KthSmallestElementInABst().new Solution();
@@ -74,15 +74,17 @@ public class KthSmallestElementInABst {
         }
 
         private void dfs(TreeNode root, int k) {
-            if (k == 0 || root == null) {
+            if (root == null || k < 0) {
                 return;
             }
             dfs(root.left, k);
-            dfs(root.right, k);
             k--;
             if (k == 0) {
                 value = root.val;
             }
+            System.out.println("k:"+k);
+            System.out.println(root.val);
+            dfs(root.right, k);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
