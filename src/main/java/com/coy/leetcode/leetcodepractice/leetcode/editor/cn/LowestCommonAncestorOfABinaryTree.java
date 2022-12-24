@@ -47,9 +47,12 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.PreorderTraversal;
+
 /**
  * 236
  */
+@PreorderTraversal
 public class LowestCommonAncestorOfABinaryTree {
     public static void main(String[] args) {
         Solution solution = new LowestCommonAncestorOfABinaryTree().new Solution();
@@ -67,10 +70,13 @@ public class LowestCommonAncestorOfABinaryTree {
      */
     class Solution {
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+            //先访问根节点
             if (root == null || root == p || root == q) {
                 return root;
             }
+            //访问左子树
             TreeNode left = lowestCommonAncestor(root.left, p, q);
+            //访问右子树
             TreeNode right = lowestCommonAncestor(root.right, p, q);
             if (left == null) {
                 return right;
