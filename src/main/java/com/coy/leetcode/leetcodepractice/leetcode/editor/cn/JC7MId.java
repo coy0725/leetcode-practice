@@ -47,9 +47,16 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Hard;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.PostOrderTraversal;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
+
 /**
  * 剑指 Offer II 051
  */
+@Tree
+@Hard
+@PostOrderTraversal
 public class JC7MId {
     public static void main(String[] args) {
         Solution solution = new JC7MId().new Solution();
@@ -92,6 +99,27 @@ public class JC7MId {
                 rightPath = 0;
             }
 
+            maxPath = Math.max(root.val + leftPath + rightPath,maxPath);
+            //为什么是这样的？是一条路径，所以要么选左边要么选右边
+            return Math.max(leftPath,rightPath)+root.val;
+        }
+    }
+
+    class Solution2 {
+        int maxPath = Integer.MIN_VALUE;
+
+        public int maxPathSum(TreeNode root) {
+            oneSideMax(root);
+            return maxPath;
+        }
+
+        private int oneSideMax(TreeNode root) {
+            if (root==null){
+                return 0;
+            }
+            int leftPath = Math.max(0,oneSideMax(root.left));
+            int rightPath = Math.max(0,oneSideMax(root.right));
+            //最后访问根节点，代码的后序遍历
             maxPath = Math.max(root.val + leftPath + rightPath,maxPath);
             //为什么是这样的？是一条路径，所以要么选左边要么选右边
             return Math.max(leftPath,rightPath)+root.val;
