@@ -38,9 +38,14 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Easy;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
+
 /**
  * 108
  */
+@Tree
+@Easy
 public class ConvertSortedArrayToBinarySearchTree {
     public static void main(String[] args) {
         Solution solution = new ConvertSortedArrayToBinarySearchTree().new Solution();
