@@ -39,12 +39,16 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BinarySearchTree;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DepthFirstSearch;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.MiddleOrderTraversal;
 
 /**
  * 230
  */
 @MiddleOrderTraversal
+@BinarySearchTree
+@DepthFirstSearch
 public class KthSmallestElementInABst {
     public static void main(String[] args) {
         Solution solution = new KthSmallestElementInABst().new Solution();
@@ -68,23 +72,23 @@ public class KthSmallestElementInABst {
      */
     class Solution {
         int value;
+        int k;
         public int kthSmallest(TreeNode root, int k) {
-            dfs(root, k);
+            this.k = k;
+            inOrderTraverse(root);
             return value;
         }
 
-        private void dfs(TreeNode root, int k) {
-            if (root == null || k < 0) {
+        private void inOrderTraverse(TreeNode root) {
+            if (root == null || this.k < 0) {
                 return;
             }
-            dfs(root.left, k);
-            k--;
-            if (k == 0) {
+            inOrderTraverse(root.left);
+            this.k--;
+            if (this.k == 0) {
                 value = root.val;
             }
-            System.out.println("k:"+k);
-            System.out.println(root.val);
-            dfs(root.right, k);
+            inOrderTraverse(root.right);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
