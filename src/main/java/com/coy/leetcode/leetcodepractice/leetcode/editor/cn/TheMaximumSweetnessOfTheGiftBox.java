@@ -46,7 +46,12 @@ public class TheMaximumSweetnessOfTheGiftBox {
             int tastiness = Integer.MAX_VALUE;
             for (int i = 0; i < subSet.size(); i++) {
                 for (int j = i + 1; j < subSet.size(); j++) {
-                    tastiness = Math.min(tastiness, Math.abs(subSet.get(i) - subSet.get(j)));
+                    int abs = Math.abs(subSet.get(i) - subSet.get(j));
+                    if (abs < this.maximumTastiness) {
+                        return maximumTastiness;
+
+                    }
+                    tastiness = Math.min(tastiness, abs);
                 }
             }
 
