@@ -12,7 +12,8 @@ public class TheShortestDistanceToTheTargetString {
         System.out
             .println(solution.closetTarget(new String[] {"i", "eat", "leetcode"}, "ate", 0));
         System.out.println(solution.closetTarget(new String[] {"hello","i","am","leetcode","hello"}, "hello", 1));
-        System.out.println(solution.closetTarget(new String[] {"a","b","leetcode"}, "leetcode", 0));
+        System.out.println(solution.closetTarget(new String[] {"hsdqinnoha","mqhskgeqzr",
+            "zemkwvqrww","zemkwvqrww","daljcrktje","fghofclnwp","djwdworyka","cxfpybanhd","fghofclnwp","fghofclnwp"}, "zemkwvqrww", 8));
     }
     class Solution {
         public int closetTarget(String[] words, String target, int startIndex) {
@@ -27,7 +28,7 @@ public class TheShortestDistanceToTheTargetString {
             for (int i = 0; i < maxStep+1; i++) {
                 rightStep++;
                 rightIndex++;
-                if (rightIndex>=words.length-1) {
+                if (rightIndex>words.length-1) {
                     rightIndex = 0;
                 }
                 if (words[rightIndex].equals(target)) {
