@@ -106,21 +106,21 @@ public class CongShangDaoXiaDaYinErChaShuIiLcof {
             List<List<Integer>> rlt = new ArrayList<>();
 
             //使用两个队列来存储当前层和下一层要遍历的元素
-            Queue<TreeNode> currentLayer = new LinkedList<>();
+            Queue<TreeNode> queue = new LinkedList<>();
             if (root != null) {
-                currentLayer.add(root);
+                queue.add(root);
             }
-            while (!currentLayer.isEmpty()) {
+            while (!queue.isEmpty()) {
                 List<Integer> layerNodes = new ArrayList<>();
                 //使用size大小来记录每一层的节点数量，很优秀，比两个queue转来转去优雅
-                for (int i = 0; i < currentLayer.size(); i++) {
-                    TreeNode node = currentLayer.poll();
+                for (int i = queue.size(); i > 0; i--) {
+                    TreeNode node = queue.poll();
                     layerNodes.add(node.val);
                     if (node.left != null) {
-                        currentLayer.add(node.left);
+                        queue.add(node.left);
                     }
                     if (node.right != null) {
-                        currentLayer.add(node.right);
+                        queue.add(node.right);
                     }
                 }
                 rlt.add(layerNodes);
