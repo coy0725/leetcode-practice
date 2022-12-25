@@ -38,6 +38,7 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.ArrayList;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.error.WrongMethod;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BFS;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Palindrome;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
@@ -69,6 +70,7 @@ public class SymmetricTree {
      *     }
      * }
      */
+    @WrongMethod
     class Solution {
         private ArrayList<Integer> left = new ArrayList<>();
         private ArrayList<Integer> right = new ArrayList<>();
@@ -118,6 +120,29 @@ public class SymmetricTree {
 
         }
     }
+
+    /**
+     * 我们可以实现这样一个递归函数，通过「同步移动」两个指针的方法来遍历这棵树，
+     * p 指针和 q 指针一开始都指向这棵树的根，随后 p 右移时，q 左移，p 左移时,q 右移。
+     * 每次检查当前 p 和 q 节点的值是否相等，如果相等再判断左右子树是否对称。
+
+     */
+    class Solution2 {
+        public boolean isSymmetric(TreeNode root) {
+            return check(root, root);
+        }
+
+        public boolean check(TreeNode p, TreeNode q) {
+            if (p == null && q == null) {
+                return true;
+            }
+            if (p == null || q == null) {
+                return false;
+            }
+            return p.val == q.val && check(p.left, q.right) && check(p.right, q.left);
+        }
+    }
+
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
