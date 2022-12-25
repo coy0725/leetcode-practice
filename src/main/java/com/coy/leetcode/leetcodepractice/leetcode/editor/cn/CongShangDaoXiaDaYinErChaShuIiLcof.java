@@ -46,6 +46,7 @@ import java.util.Queue;
 import java.util.stream.Collectors;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Easy;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BFS;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
 
 /**
@@ -53,6 +54,7 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
  */
 @Easy
 @Tree
+@BFS
 public class CongShangDaoXiaDaYinErChaShuIiLcof {
     public static void main(String[] args) {
         Solution solution = new CongShangDaoXiaDaYinErChaShuIiLcof().new Solution();
@@ -93,6 +95,34 @@ public class CongShangDaoXiaDaYinErChaShuIiLcof {
                     currentLayer = nextLayer;
                     nextLayer = tmp;
                 }
+            }
+            return rlt;
+        }
+    }
+
+    class Solution2 {
+        public List<List<Integer>> levelOrder(TreeNode root) {
+            List<List<Integer>> rlt = new ArrayList<>();
+
+            //使用两个队列来存储当前层和下一层要遍历的元素
+            Queue<TreeNode> currentLayer = new LinkedList<>();
+            if (root != null) {
+                currentLayer.add(root);
+            }
+            while (!currentLayer.isEmpty()) {
+                List<Integer> layerNodes = new ArrayList<>();
+                //使用size大小来记录每一层的节点数量，很优秀，比两个queue转来转去优雅
+                for (int i = 0; i < currentLayer.size(); i++) {
+                    TreeNode node = currentLayer.poll();
+                    layerNodes.add(node.val);
+                    if (node.left != null) {
+                        currentLayer.add(node.left);
+                    }
+                    if (node.right != null) {
+                        currentLayer.add(node.right);
+                    }
+                }
+                rlt.add(layerNodes);
             }
             return rlt;
         }
