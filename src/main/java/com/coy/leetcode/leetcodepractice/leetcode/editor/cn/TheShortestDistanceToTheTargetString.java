@@ -11,9 +11,8 @@ public class TheShortestDistanceToTheTargetString {
             new TheShortestDistanceToTheTargetString().new Solution();
         System.out
             .println(solution.closetTarget(new String[] {"i", "eat", "leetcode"}, "ate", 0));
-
         System.out.println(solution.closetTarget(new String[] {"hello","i","am","leetcode","hello"}, "hello", 1));
-
+        System.out.println(solution.closetTarget(new String[] {"a","b","leetcode"}, "leetcode", 0));
     }
     class Solution {
         public int closetTarget(String[] words, String target, int startIndex) {
@@ -27,40 +26,46 @@ public class TheShortestDistanceToTheTargetString {
             //往右移动
             for (int i = 0; i < maxStep+1; i++) {
                 rightStep++;
+                rightIndex++;
+                if (rightIndex>=words.length-1) {
+                    rightIndex = 0;
+                }
                 if (words[rightIndex].equals(target)) {
                     break;
                 }
-                rightIndex++;
                 if (rightStep > maxStep) {
                     break;
                 }
-                if (rightIndex==maxStep) {
-                    rightIndex = 0;
-                }
+
             }
 
             //往左移动
             for (int i = 0; i < maxStep+1; i++) {
                 leftStep++;
-                if (words[rightIndex].equals(target)) {
+                leftIndex--;
+                if (leftIndex < 0) {
+                    leftIndex = words.length-1;
+                }
+                if (words[leftIndex].equals(target)) {
                     break;
                 }
-                leftIndex--;
+
                 if (leftStep > maxStep) {
                     break;
                 }
-                if (leftIndex < 0) {
-                    leftIndex = maxStep - 1;
-                }
-            }
 
-            if (leftStep > maxStep) {
-                return -1;
             }
-            if (rightStep > maxStep) {
-                return -1;
+            if (leftStep <= maxStep && rightStep <= maxStep) {
+                return Math.min(leftStep, rightStep);
             }
-            return Math.min(leftStep, rightStep);
+            if (leftStep <= maxStep) {
+                return leftStep;
+            }
+            if (rightStep <= maxStep) {
+                return rightStep;
+            }
+            return -1;
+
         }
     }
 }
