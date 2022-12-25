@@ -101,6 +101,7 @@ public class CongShangDaoXiaDaYinErChaShuIiLcof {
     }
 
     class Solution2 {
+
         public List<List<Integer>> levelOrder(TreeNode root) {
             List<List<Integer>> rlt = new ArrayList<>();
 
