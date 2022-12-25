@@ -87,9 +87,6 @@ public class SymmetricTree {
         }
 
         private boolean isEquals() {
-            if (left.size() != right.size()) {
-                return false;
-            }
             for (int i = 0; i < left.size(); i++) {
                 if (!left.get(i).equals(right.get(i))) {
                     return false;
