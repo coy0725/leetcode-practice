@@ -17,7 +17,7 @@ public class TheShortestDistanceToTheTargetString {
     }
     class Solution {
         public int closetTarget(String[] words, String target, int startIndex) {
-            if (words[startIndex] == target) {
+            if (words[startIndex].equals(target)) {
                 return 0;
             }
             //从目标位置开始移动 有两种移动方向,向左移动，向右移动，最多移动words.length 步
