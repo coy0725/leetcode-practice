@@ -79,6 +79,7 @@ public class SymmetricTree {
 
             //换一种思路 前序遍历，先root，再left,后right  后者是先root 再right 再left
 
+
             dfsLeft(root);
             dfsRight(root);
 
@@ -99,8 +100,9 @@ public class SymmetricTree {
             if (root == null) {
                 return;
             }
-            right.add(root.val);
+
             dfsRight(root.right);
+            right.add(root.val);
             dfsRight(root.left);
 
         }
@@ -109,8 +111,9 @@ public class SymmetricTree {
             if (root == null) {
                 return;
             }
-            left.add(root.val);
+
             dfsLeft(root.left);
+            left.add(root.val);
             dfsLeft(root.right);
 
         }
