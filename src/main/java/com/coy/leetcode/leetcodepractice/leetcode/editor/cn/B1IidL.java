@@ -83,14 +83,16 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 public class B1IidL {
     public static void main(String[] args) {
         Solution solution = new B1IidL().new Solution();
-        System.out.println(solution.peakIndexInMountainArray(new int[] {3, 5, 3, 2, 0}));
+        System.out.println(solution.peakIndexInMountainArray(new int[] {1,4,3}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         @com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BinarySearch
         public int peakIndexInMountainArray(int[] arr) {
-
+            if (arr.length <= 3) {
+                return arr.length / 2;
+            }
             int left = 1;
             int right = arr.length - 2;
             int mid;
