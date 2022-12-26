@@ -52,6 +52,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Medium;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.error.Timeout;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.solution.BeHelped;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Math;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.StringTag;
 
@@ -61,6 +63,7 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.StringTag;
 @Math
 @Medium
 @StringTag
+@BeHelped
 public class CountNumberOfHomogenousSubstrings {
     public static void main(String[] args) {
         Solution solution = new CountNumberOfHomogenousSubstrings().new Solution();
@@ -69,6 +72,7 @@ public class CountNumberOfHomogenousSubstrings {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+    @Timeout
     class Solution {
 
         public static final int CONSTANT = 1000000007;
@@ -125,5 +129,35 @@ public class CountNumberOfHomogenousSubstrings {
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
+
+    class Solution2 {
+
+
+        public int countHomogenous(String s) {
+            //同构字符串的定义为：如果一个字符串中的所有字符都相同，那么该字符串就是同构字符串。
+            long res = 0;
+            int MOD = 1000000007;
+            char prev = s.charAt(0);
+            int cnt = 0;
+
+            //step1 首先按照连续相同的字符来对字符串进行分组
+            //step2 一个长度为m的字符串子字符串数目为(m*（m+1）)/2
+
+            for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                if (c == prev) {
+                    cnt++;
+                } else {
+                    //与前一个字符串数目不同，计算其子字符串数目为(cnt*（cnt+1）)/2
+                    res = res + (long) (cnt + 1) * cnt / 2;
+                    cnt = 1;
+                    prev = c;
+                }
+            }
+            res = res + (long) (cnt + 1) * cnt / 2;
+            return (int) (res % MOD);
+        }
+
+    }
 
 }
