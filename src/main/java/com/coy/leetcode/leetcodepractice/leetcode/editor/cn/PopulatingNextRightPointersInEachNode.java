@@ -119,7 +119,13 @@ class Node {
                     if (node.right != null) {
                         queue.offer(node.right);
                     }
-                    node.next = queue.peek();
+                    //这个地方有问题
+                    if (i == 1) {
+                        node.next = null;
+                    } else {
+                        node.next = queue.peek();
+                    }
+
                 }
             }
 
