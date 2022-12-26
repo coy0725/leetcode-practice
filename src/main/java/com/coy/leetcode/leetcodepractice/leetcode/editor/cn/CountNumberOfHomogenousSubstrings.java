@@ -65,6 +65,7 @@ public class CountNumberOfHomogenousSubstrings {
     public static void main(String[] args) {
         Solution solution = new CountNumberOfHomogenousSubstrings().new Solution();
         System.out.println(solution.countHomogenous("abbcccaa"));
+        System.out.println(solution.countHomogenous("xy"));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -82,7 +83,7 @@ public class CountNumberOfHomogenousSubstrings {
                 //确定字符串窗口大小
 
                 //step1 确定窗口中的字符串是否是同构字符串
-                for (int i = 0; i < s.length() - windowSize; i++) {
+                for (int i = 0; i < s.length() - windowSize+1; i++) {
                     String substring = s.substring(i, i + windowSize);
                     if (isValid(substring)) {
                         int count =
