@@ -64,6 +64,7 @@ import java.util.Queue;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Medium;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BFS;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.LayerTraversal;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
 
 /**
@@ -73,6 +74,8 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
 @Medium
 @Tree
 @BFS
+@LayerTraversal
+@com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Queue
 public class PopulatingNextRightPointersInEachNode {
     public static void main(String[] args) {
         Solution solution = new PopulatingNextRightPointersInEachNode().new Solution();
