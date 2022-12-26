@@ -101,17 +101,26 @@ public class CountNumberOfHomogenousSubstrings {
 
         /**
          * 是同构字符串
+         * 通过hashMap缓存计算结果？
          */
+        HashMap<String, Boolean> validResult = new HashMap<>();
         private boolean isValid(String substring) {
+            Boolean result = validResult.get(substring);
+            if (result != null) {
+                return result;
+            }
             if (substring.length() == 1) {
+                validResult.put(substring, true);
                 return true;
             } else {
                 for (int i = 1; i < substring.length(); i++) {
                     if (!(substring.charAt(i) == substring.charAt(i - 1))) {
+                        validResult.put(substring, false);
                         return false;
                     }
                 }
             }
+            validResult.put(substring, true);
             return true;
         }
     }
