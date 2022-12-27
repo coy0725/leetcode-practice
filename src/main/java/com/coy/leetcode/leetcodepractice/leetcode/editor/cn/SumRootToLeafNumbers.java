@@ -60,6 +60,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Medium;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BackTracing;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DepthFirstSearch;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
 
@@ -69,6 +70,7 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Tree;
 @Tree
 @Medium
 @DepthFirstSearch
+@BackTracing
 public class SumRootToLeafNumbers {
     public static void main(String[] args) {
         Solution solution = new SumRootToLeafNumbers().new Solution();
@@ -116,6 +118,30 @@ public class SumRootToLeafNumbers {
             dfs(nums, root.right, val);
             val.removeLast();
         }
+    }
+
+    class Solution2 {
+        int res = 0;
+        public int sumNumbers(TreeNode root) {
+            //使用非对象型变量，可以解决状态回溯问题
+            backtrack(root,0);
+            return res;
+
+        }
+
+        private void backtrack(TreeNode root, int sum) {
+            if (root == null) {
+                return;
+            }
+            sum = sum*10+root.val;
+            if (root.left == null && root.right == null) {
+                res = res + sum;
+                return;
+            }
+            backtrack(root.left, sum);
+            backtrack(root.right, sum);
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
