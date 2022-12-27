@@ -41,6 +41,8 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.solution.BeHelped;
 
 /**
  * 28
+ * - 当匹配到j时发生了不匹配的情况，表示模式串[0,j-1]个字符与原字符串前j-1个字符匹配
+ * - 如果[0,j-1] 这个字符串部分前缀与后缀相同的情况，则可以将前缀移动到后缀位置
  */
 @BeHelped
 @Medium
