@@ -46,38 +46,34 @@
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Easy;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.solution.BeHelped;
 
 /**
  * 66
  */
 @Easy
+@BeHelped
 public class PlusOne {
     public static void main(String[] args) {
         Solution solution = new PlusOne().new Solution();
+
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] plusOne(int[] digits) {
-            boolean carry = false;//进位
             for (int i = digits.length - 1; i >= 0; i--) {
+                if (digits[i] == 9) {
+                    digits[i] = 0;
+                } else {
+                    digits[i] += 1;
+                    return digits;
+                }
 
-                int sum = digits[i] + 1;
-                if (carry) {
-                    sum = sum + 1;
-                    carry = false;
-                }
-                digits[i] = sum % 10;
-                if (sum >= 10) {
-                    carry = true;
-                }
             }
-            if (carry) {
-                int[] ints = new int[digits.length + 1];
-                ints[0] = 1;
-                System.arraycopy(digits, 0, ints, 1, ints.length - 1);
-                return ints;
-            }
+            //如果所有位都是进位，则长度+1
+            digits= new int[digits.length + 1];
+            digits[0] = 1;
             return digits;
         }
     }
