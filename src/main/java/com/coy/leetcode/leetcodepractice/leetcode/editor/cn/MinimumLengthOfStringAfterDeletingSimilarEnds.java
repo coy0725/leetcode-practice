@@ -58,6 +58,8 @@
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Medium;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.solution.BeHelped;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Greedy;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.TwoPointers;
 
 /**
@@ -65,6 +67,8 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.TwoPointers;
  */
 @Medium
 @TwoPointers
+@Greedy
+@BeHelped
 public class MinimumLengthOfStringAfterDeletingSimilarEnds {
     public static void main(String[] args) {
         Solution solution = new MinimumLengthOfStringAfterDeletingSimilarEnds().new Solution();
@@ -73,26 +77,22 @@ public class MinimumLengthOfStringAfterDeletingSimilarEnds {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int minimumLength(String s) {
-            if (s.length() <= 1) {
-                return s.length();
-            }
-            //for循环 两个while循环
+
             int left = 0, right = s.length() - 1;
-            while (left < right) {
-                if (s.charAt(left) != s.charAt(right)) {
-                    return right - left;
-                } else {
-                    while (left < s.length() - 2 && s.charAt(left) == s.charAt(left++)) {
-                        left++;
-                    }
-                    while (right > 1 && s.charAt(right) == s.charAt(right--)) {
-                        right--;
-                    }
+
+            while (left < right && s.charAt(left) == s.charAt(right)) {
+                while (left + 1 < right && s.charAt(left + 1) == s.charAt(left)) {
                     left++;
+                }
+                while (right - 1 > left && s.charAt(right - 1) == s.charAt(right)) {
                     right--;
                 }
+                left++;
+                right--;
             }
-            return right - left;
+            int len = right - left + 1;
+
+            return Math.max(len, 0);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
