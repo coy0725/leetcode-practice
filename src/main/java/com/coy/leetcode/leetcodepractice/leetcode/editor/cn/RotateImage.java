@@ -44,6 +44,9 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Matrix;
 
 /**
  * 48
+ * 顺时旋转90度：沿右上角到左下角的对角线翻转，再上下翻转
+ * 逆时针旋转90度：沿右上角到左下角的对角线翻转，再左右翻转
+ * 顺时针旋转180度：先上下翻转，在左右翻转
  */
 @Medium
 @Matrix
