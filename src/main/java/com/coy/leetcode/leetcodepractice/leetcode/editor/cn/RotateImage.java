@@ -38,6 +38,7 @@
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Medium;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.solution.BeHelped;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.solveDate.December2022;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Matrix;
 
@@ -47,6 +48,7 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Matrix;
 @Medium
 @Matrix
 @December2022
+@BeHelped
 public class RotateImage {
     public static void main(String[] args) {
         Solution solution = new RotateImage().new Solution();
@@ -80,4 +82,35 @@ public class RotateImage {
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
+    class Solution2 {
+
+        public void rotate(int[][] matrix) {
+
+            if (matrix.length == 0 || matrix.length != matrix[0].length) {
+                return;
+            }
+            //先沿右上 - 左下的对角线翻转（270° +270°+ 一次镜像），
+            int nums = matrix.length;
+            for (int i = 0; i < nums; i++) {
+                for (int j = 0; j < nums - i; j++) {
+                    int temp = matrix[i][j];//右上方元素
+                    matrix[i][j] = matrix[nums -1 - j][nums - 1 - i];
+                    matrix[nums - 1 - j][nums - 1 - i] = temp;
+                }
+            }
+            // 再沿水平中线上下翻转（-180° + 一次镜像），可以实现顺时针90 度的旋转效果
+            for (int i = 0; i < (nums >> 1); i++) {
+                for (int j = 0; j < nums; j++) {
+                    int temp = matrix[i][j];
+                    matrix[i][j] = matrix[nums - 1 - i][j];
+                    matrix[nums - 1 - i][j] = temp;
+                }
+            }
+
+
+        }
+
+
+
+    }
 }
