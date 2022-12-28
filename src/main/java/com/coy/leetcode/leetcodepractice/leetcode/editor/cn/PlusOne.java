@@ -46,6 +46,7 @@
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Easy;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.frequency.SecondTime;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.solution.BeHelped;
 
 /**
@@ -53,6 +54,7 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.solution.BeHelped;
  */
 @Easy
 @BeHelped
+@SecondTime
 public class PlusOne {
     public static void main(String[] args) {
         Solution solution = new PlusOne().new Solution();
@@ -74,6 +76,24 @@ public class PlusOne {
             //如果所有位都是进位，则长度+1
             digits= new int[digits.length + 1];
             digits[0] = 1;
+            return digits;
+        }
+    }
+
+    class Solution2 {
+        public int[] plusOne(int[] digits) {
+            //step 1 从数组尾部往前进行遍历
+            for (int i = digits.length - 1; i >= 0; i--) {
+                if (digits[i] == 9) {
+                    digits[i] = 0;
+                } else {
+                    digits[i] = digits[i] + 1;
+                    return digits;
+                }
+            }
+            digits = new int[digits.length + 1];
+            digits[0] = 1;
+
             return digits;
         }
     }
