@@ -106,4 +106,34 @@ public class TwoOutOfThree {
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
+    /**
+     * 我们可以用「哈希表」来实现——由于只有三个数组，
+     * 所以我们一个整数的最低三个二进制位来标记某一个数在哪几个数组中，
+     * 11 表示该数在对应的数组中的，反之 00 表示不在。
+     * 最后我们只需要判断每一个数对应的标记数字中二进制位个数是否大于 11 即可。
+     *
+     */
+    class Solution2 {
+        public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
+            Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+            for (int i : nums1) {
+                map.put(i, 1);
+            }
+            for (int i : nums2) {
+                map.put(i, map.getOrDefault(i, 0) | 2);
+            }
+            for (int i : nums3) {
+                map.put(i, map.getOrDefault(i, 0) | 4);
+            }
+            List<Integer> res = new ArrayList<Integer>();
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                int k = entry.getKey(), v = entry.getValue();
+                if ((v & (v - 1)) != 0) {
+                    res.add(k);
+                }
+            }
+            return res;
+        }
+    }
+
 }
