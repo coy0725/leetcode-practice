@@ -56,6 +56,7 @@ import java.util.Set;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Easy;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.solveDate.December2022;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BitOperation;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.HashTable;
 
 /**
@@ -64,6 +65,7 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.HashTable;
 @Easy
 @HashTable
 @December2022
+@BitOperation
 public class TwoOutOfThree {
     public static void main(String[] args) {
         Solution solution = new TwoOutOfThree().new Solution();
