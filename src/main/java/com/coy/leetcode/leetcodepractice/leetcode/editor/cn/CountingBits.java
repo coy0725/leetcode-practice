@@ -56,6 +56,7 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.frequency.SecondTime;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BitOperation;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
 
@@ -64,6 +65,7 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgra
  */
 @DynamicProgramming
 @BitOperation
+@SecondTime
 public class CountingBits {
     public static void main(String[] args) {
         Solution solution = new CountingBits().new Solution();
@@ -82,6 +84,27 @@ public class CountingBits {
                 } else {
                     //如果是偶数
                     rlt[i] = rlt[i / 2];
+                }
+            }
+
+            return rlt;
+        }
+    }
+
+    class Solution2 {
+        public int[] countBits(int n) {
+            int[] rlt = new int[n + 1];
+            rlt[0] = 0;
+
+            for (int i = 1; i <= n ; i++) {
+                //如果是奇数
+                if (i % 2 == 1) {
+                    rlt[i] = rlt[i - 1] + 1;
+                }
+
+                //如果是偶数
+                if (i % 2 == 0) {
+                    rlt[i] = i / 2;
                 }
             }
 
