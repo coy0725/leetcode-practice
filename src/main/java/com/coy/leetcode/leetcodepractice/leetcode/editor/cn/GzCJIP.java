@@ -43,9 +43,14 @@
 
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.frequency.ThirdTime;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
+
 /**
  * 剑指 Offer II 088
  */
+@DynamicProgramming
+@ThirdTime
 public class GzCJIP {
     public static void main(String[] args) {
         Solution2 solution = new GzCJIP().new Solution2();
@@ -148,6 +153,27 @@ public class GzCJIP {
                 dp[i] = Math.min(dp[i - 1], dp[i - 2] + cost[i]);
             }
         }
+
+    }
+
+    class Solution6 {
+        public int minCostClimbingStairs(int[] cost) {
+
+            //step1 找出状态转移方程,用一个等式表示其中某一步最优解，与前面若干步最优解的关系
+            //f(i) 表示爬上低i级楼梯，i>2。所用的最少体力,有两种方式可以爬到第i级楼梯，从i-2级楼梯，爬两步，从i-1级楼梯爬一步
+            //f(i) = min(f(i-1),f(i-2))+cost[i]
+            int len = cost.length;
+            int[] dp = new int[len] ;
+            dp[0] = cost[0];
+            dp[1] = cost[1];
+            for (int i = 2; i < len; i++) {
+                dp[i] = Math.min(dp[i - 1], dp[i - 2]) + cost[i];
+            }
+
+            return dp[len - 1];
+
+        }
+
 
     }
 }
