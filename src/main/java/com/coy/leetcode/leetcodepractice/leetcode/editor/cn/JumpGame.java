@@ -72,7 +72,7 @@ public class JumpGame {
                 return;
             }
             int step = nums[cur];
-            for (int i = 1; i <= step; i++) {
+            for (int i = step; i > 0; i--) {
                 jump(cur + i, nums);
             }
         }
