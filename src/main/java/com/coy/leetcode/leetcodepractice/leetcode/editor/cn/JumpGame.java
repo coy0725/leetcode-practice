@@ -39,6 +39,7 @@
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Medium;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.error.Timeout;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.solveDate.December2022;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Greedy;
@@ -56,6 +57,7 @@ public class JumpGame {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+    @Timeout
     class Solution {
         private boolean reached;
         public boolean canJump(int[] nums) {
@@ -72,6 +74,11 @@ public class JumpGame {
                 return;
             }
             int step = nums[cur];
+            if (step + cur >= nums.length - 1) {
+                reached = true;
+                return;
+            }
+            //都贪心了，怎么还是过不了
             for (int i = step; i > 0; i--) {
                 jump(cur + i, nums);
             }
