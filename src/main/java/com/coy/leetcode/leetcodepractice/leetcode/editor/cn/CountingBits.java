@@ -92,6 +92,8 @@ public class CountingBits {
     }
 
     class Solution2 {
+        //状态转移方程：if i是奇数 rlt[i] = rlt[i-1]+1
+        //             if i是偶数 rlt[i] = i/2
         public int[] countBits(int n) {
             int[] rlt = new int[n + 1];
             rlt[0] = 0;
