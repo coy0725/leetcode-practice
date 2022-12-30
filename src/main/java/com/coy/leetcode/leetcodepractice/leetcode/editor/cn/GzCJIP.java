@@ -176,4 +176,26 @@ public class GzCJIP {
 
 
     }
+
+    class Solution7 {
+        public int minCostClimbingStairs(int[] cost) {
+
+            //step1 找出状态转移方程,用一个等式表示其中某一步最优解，与前面若干步最优解的关系
+            //f(i) 表示爬上低i级楼梯，i>2。所用的最少体力,有两种方式可以爬到第i级楼梯，从i-2级楼梯，爬两步，从i-1级楼梯爬一步
+            //f(i) = min(f(i-1),f(i-2))+cost[i]
+            int len = cost.length;
+            int[] dp = new int[2] ;
+            dp[0] = cost[0];
+            dp[1] = cost[1];
+            for (int i = 2; i < len; i++) {
+                //2 需要替换 dp[0]那次的状态
+                dp[i%2] = Math.min(dp[0], dp[1]) + cost[i];
+            }
+
+            return Math.min(dp[0],dp[1]);
+
+        }
+
+
+    }
 }
