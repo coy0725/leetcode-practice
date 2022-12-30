@@ -44,9 +44,14 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import java.util.Arrays;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.frequency.ThirdTime;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
+
 /**
  * 剑指 Offer II 089
  */
+@DynamicProgramming
+@ThirdTime
 public class Gu0c2T {
     public static void main(String[] args) {
         Solution3 solution = new Gu0c2T().new Solution3();
@@ -195,6 +200,30 @@ public class Gu0c2T {
             }
 
         }
+
+    }
+
+
+    class Solution6 {
+        public int rob(int[] nums) {
+            if (nums.length == 0) {
+                return 0;
+            }
+            int[] dp = new int[2];
+            dp[0] = nums[0];
+            if (nums.length > 1) {
+                dp[1] = Math.max(nums[0], nums[1]);
+            }
+            for (int i = 2; i < nums.length; i++) {
+                //i=2 ,偷第0间+第2间，或者偷第1间房
+
+                dp[i%2] = Math.max(dp[(i-1)%2], dp[(i)%2] + nums[i]);
+
+            }
+            return Math.max(dp[0], dp[1]);
+        }
+
+
 
     }
 
