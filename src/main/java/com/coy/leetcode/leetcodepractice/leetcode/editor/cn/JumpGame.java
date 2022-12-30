@@ -40,6 +40,7 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Medium;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.error.Timeout;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.solution.BeHelped;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.solveDate.December2022;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Greedy;
@@ -51,6 +52,7 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.Greedy;
 @Greedy
 @December2022
 @DynamicProgramming
+@BeHelped
 public class JumpGame {
     public static void main(String[] args) {
         Solution solution = new JumpGame().new Solution();
@@ -66,6 +68,8 @@ public class JumpGame {
             return reached;
         }
 
+        //定义的状态变量不同，我定义的是能否跳到目标位置，存在大量重复计算
+        //对手这个定义的是当前能跳到的最大位置，和当前位置取比较
         private void jump(int cur, int[] nums) {
             if (cur == nums.length - 1) {
                 reached = true;
@@ -79,10 +83,32 @@ public class JumpGame {
                 return;
             }
             //都贪心了，怎么还是过不了
+            //先尝试从最远的跳
             for (int i = step; i > 0; i--) {
                 jump(cur + i, nums);
             }
         }
+    }
+
+    /**
+     * 如果某一个作为 起跳点 的格子可以跳跃的距离是 3，那么表示后面 3 个格子都可以作为 起跳点
+     * 可以对每一个能作为 起跳点 的格子都尝试跳一次，把 能跳到最远的距离 不断更新
+     * 如果可以一直跳到最后，就成功了
+     */
+    class Solution2 {
+        public boolean canJump(int[] nums) {
+
+            int maxPosix = 0;
+            //不断更新能跳到的最远位置
+            for (int curPosix = 0; curPosix < nums.length; curPosix++) {
+                if (curPosix > maxPosix) {
+                    return false;
+                }
+                maxPosix = Math.max(maxPosix, curPosix + nums[curPosix]);
+            }
+            return true;
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
