@@ -74,7 +74,7 @@ public class FourSum {
 
             //step2 :固定两个数字,使用双指针
             for (int i = 0; i < nums.length - 3; i++) {
-                if (nums[i] + nums[i + 1] > 0) {
+                if (nums[i] + nums[i + 1] > target) {
                     break;
                 }
                 if (i > 0 && nums[i] == nums[i - 1]) {
@@ -85,7 +85,7 @@ public class FourSum {
                 int right = len - 1;
                 while (left < right) {
                     int sum = nums[i] + nums[i + 1] + nums[left] + nums[right];
-                    if (sum == 0) {
+                    if (sum == target) {
                         rlt.add(new ArrayList<>(Arrays.asList(nums[i],
                             nums[i + 1], nums[left], nums[right])));
                         while (left < right && nums[left] == nums[left + 1]) {
