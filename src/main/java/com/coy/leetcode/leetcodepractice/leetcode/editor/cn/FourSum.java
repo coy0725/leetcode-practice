@@ -58,7 +58,9 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.TwoPointers;
 @Sorting
 public class FourSum {
     public static void main(String[] args) {
-        Solution solution = new FourSum().new Solution();
+
+        Solution2 solution = new FourSum().new Solution2();
+        solution.fourSum(new int[] {1, 0, -1, 0, -2, 2}, 0);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -102,6 +104,64 @@ public class FourSum {
                         right--;
                     }
                 }
+            }
+            return rlt;
+        }
+
+    }
+
+    class Solution2 {
+        public List<List<Integer>> fourSum(int[] nums, int target) {
+            List<List<Integer>> rlt = new ArrayList<>();
+            int len = nums.length;
+            if (len < 4) {
+                return rlt;
+            }
+            //step1 :将数组排序
+            Arrays.sort(nums);
+
+            //step2 :固定两个数字,使用双指针
+            for (int i = 0; i < len - 3; i++) {
+                if (i > 0 && nums[i] == nums[i - 1]) {
+                    continue;
+                }
+                if ((long) nums[i] + nums[i+1] + nums[i+2] + nums[i+3] > target) {
+                    break;
+                }
+                if ((long) nums[i] + nums[len - 1] + nums[len - 2] + nums[len - 3] < target) {
+                    continue;
+                }
+                for (int j = i + 1; j < len - 2; j++) {
+                    if (j > i + 1 && nums[j] == nums[j - 1]) {
+                        continue;
+                    }
+                    if ((long) nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target) {
+                        break;
+                    }
+                    if ((long) nums[i] + nums[j] + nums[len- 1] + nums[len- 2] < target) {
+                        continue;
+                    }
+                    int left = j + 1, right = len - 1;
+                    while (left < right) {
+                        long sum = (long) nums[i] + nums[j] + nums[left] + nums[right];
+                        if (sum == target) {
+                            rlt.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
+                            while (left < right && nums[left] == nums[left + 1]) {
+                                left++;
+                            }
+                            while (left < right && nums[right] == nums[right - 1]) {
+                                right--;
+                            }
+                            left++;
+                            right--;
+                        } else if (sum < target) {
+                            left++;
+                        } else {
+                            right++;
+                        }
+                    }
+                }
+
             }
             return rlt;
         }
