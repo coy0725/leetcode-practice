@@ -157,7 +157,7 @@ public class FourSum {
                         } else if (sum < target) {
                             left++;
                         } else {
-                            right++;
+                            right--;
                         }
                     }
                 }
