@@ -71,6 +71,7 @@ public class UniqueBinarySearchTrees {
             }
             int res = 0;
 
+            //将区间上的每一个节点作为树的根节点,去计算以该节点作为根节点能有多少种
             for (int mid = begin; mid <= end; mid++) {
                 int leftCount = count(begin, mid - 1);
                 int rightCount = count(mid + 1, end);
