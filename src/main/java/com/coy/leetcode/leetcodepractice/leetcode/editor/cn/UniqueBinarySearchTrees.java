@@ -32,6 +32,7 @@
 package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Medium;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.frequency.SecondTime;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.solution.BeHelped;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BinarySearchTree;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgramming;
@@ -43,6 +44,7 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgra
 @Medium
 @DynamicProgramming
 @BeHelped
+@SecondTime
 public class UniqueBinarySearchTrees {
     public static void main(String[] args) {
         Solution solution = new UniqueBinarySearchTrees().new Solution();
@@ -82,5 +84,36 @@ public class UniqueBinarySearchTrees {
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
+
+    class Solution2 {
+        int [][] memo;
+
+        public int numTrees(int n) {
+            //计算闭区间[1,n]组成的BST的个数
+            memo = new int[n + 1][n + 1];
+            //计算闭区间[1,n]组成的BST的个数
+            return count(1, n);
+        }
+
+        /**
+         * 计算闭区间[begin,end]组成的BST的个数
+         */
+        int count(int begin, int end) {
+            if (begin > end) {
+                return 1;
+            }
+            if (memo[begin][end] != 0) {
+                return memo[begin][end];
+            }
+            int res = 0;
+            for (int i = begin; i <= end ; i++) {
+                int rightCount = count(i + 1, end);
+                int leftCount = count(begin, i - 1);
+                res = res + leftCount * rightCount;
+            }
+            memo[begin][end] = res;
+            return res;
+        }
+    }
 
 }
