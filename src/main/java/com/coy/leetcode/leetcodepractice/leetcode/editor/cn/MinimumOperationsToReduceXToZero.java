@@ -52,6 +52,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Medium;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.error.WrongMethod;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.solution.BeHelped;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.BinarySearch;
 import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.HashTable;
@@ -71,6 +72,7 @@ public class MinimumOperationsToReduceXToZero {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+    @WrongMethod
     class Solution {
         public int minOperations(int[] nums, int x) {
             //
@@ -97,6 +99,7 @@ public class MinimumOperationsToReduceXToZero {
         }
     }
 
+    @WrongMethod
     class Solution2 {
         public int minOperations(int[] nums, int x) {
            //i sum 表示 数组前i个元素之和
