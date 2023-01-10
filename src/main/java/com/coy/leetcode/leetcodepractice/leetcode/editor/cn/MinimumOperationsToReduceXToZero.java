@@ -129,6 +129,9 @@ public class MinimumOperationsToReduceXToZero {
 
     class Solution3 {
         public int minOperations(int[] nums, int x) {
+
+            //question1 需要定义哪些状态？left leftSum,right rightSum
+
             int n = nums.length;
             int sum = Arrays.stream(nums).sum();
 
@@ -136,19 +139,24 @@ public class MinimumOperationsToReduceXToZero {
                 return -1;
             }
 
+            //初始化定义的状态
             int right = 0;
-            int lsum = 0, rsum = sum;
+            int leftSum = 0, rihgtSum = sum;
             int ans = n + 1;
 
+            //循环,推动leftSum增加
             for (int left = -1; left < n; ++left) {
                 if (left != -1) {
-                    lsum += nums[left];
+                    leftSum += nums[left];
                 }
-                while (right < n && lsum + rsum > x) {
-                    rsum -= nums[right];
+                //循环，推动rightSum减少
+                while (right < n && leftSum + rihgtSum > x) {
+                    rihgtSum -= nums[right];
                     ++right;
                 }
-                if (lsum + rsum == x) {
+
+                //leftSum+rightSum==x 说明找到一个目标解，计算减少了多少个数
+                if (leftSum + rihgtSum == x) {
                     ans = Math.min(ans, (left + 1) + (n - right));
                 }
             }
