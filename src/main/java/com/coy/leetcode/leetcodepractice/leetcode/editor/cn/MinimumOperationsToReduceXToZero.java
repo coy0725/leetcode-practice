@@ -141,7 +141,7 @@ public class MinimumOperationsToReduceXToZero {
 
             //初始化定义的状态
             int right = 0;
-            int leftSum = 0, rihgtSum = sum;
+            int leftSum = 0, rightSum = sum;
             int ans = n + 1;
 
             //循环,推动leftSum增加
@@ -150,13 +150,13 @@ public class MinimumOperationsToReduceXToZero {
                     leftSum += nums[left];
                 }
                 //循环，推动rightSum减少
-                while (right < n && leftSum + rihgtSum > x) {
-                    rihgtSum -= nums[right];
+                while (right < n && leftSum + rightSum > x) {
+                    rightSum -= nums[right];
                     ++right;
                 }
 
                 //leftSum+rightSum==x 说明找到一个目标解，计算减少了多少个数
-                if (leftSum + rihgtSum == x) {
+                if (leftSum + rightSum == x) {
                     ans = Math.min(ans, (left + 1) + (n - right));
                 }
             }
