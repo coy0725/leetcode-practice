@@ -84,6 +84,10 @@ public class RearrangeCharactersToMakeTargetString {
             for (final Map.Entry<Character, Integer> entry : targetMap.entrySet()) {
                 Integer value = entry.getValue();
                 Integer value2 = sMap.get(entry.getKey());
+                if (value2 == null) {
+                    count = 0;
+                    break;
+                }
                 count = Math.min(count, value2 / value);
             }
             return count;
