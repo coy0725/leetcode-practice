@@ -54,12 +54,21 @@ package com.coy.leetcode.leetcodepractice.leetcode.editor.cn;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.difficulty.Easy;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.solveDate.January2023;
+import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.HashTable;
+
 /**
  * 2287
  */
+@Easy
+@January2023
+@HashTable
 public class RearrangeCharactersToMakeTargetString {
     public static void main(String[] args) {
         Solution solution = new RearrangeCharactersToMakeTargetString().new Solution();
+        System.out.println(solution.rearrangeCharacters("ilovecodingonleetcode", "code"));
+
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -76,7 +85,7 @@ public class RearrangeCharactersToMakeTargetString {
             //step2 统计字符串s中各字符出现次数
             for (int i = 0; i < s.length(); i++) {
                 char c = s.charAt(i);
-                targetMap.put(c, sMap.getOrDefault(c, 0) + 1);
+                sMap.put(c, sMap.getOrDefault(c, 0) + 1);
             }
 
             //step3 sMap中字符在targetMap中的最小倍数
@@ -89,6 +98,9 @@ public class RearrangeCharactersToMakeTargetString {
                     break;
                 }
                 count = Math.min(count, value2 / value);
+                if (count == 0) {
+                    break;
+                }
             }
             return count;
         }
