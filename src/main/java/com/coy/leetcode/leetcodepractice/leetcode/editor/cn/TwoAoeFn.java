@@ -110,4 +110,31 @@ public class TwoAoeFn {
 
     //leetcode submit region end(Prohibit modification and deletion)
 
+    class Solution2 {
+        int[][] count;
+        public int uniquePaths(int m, int n) {
+            //f(m,n) = f(m-1,n)+f(m,n-1)
+            count = new int[m][n];
+            for (final int[] ints : count) {
+                Arrays.fill(ints, -1);
+            }
+            return dfs(m - 1, n - 1);
+        }
+
+        private int dfs(int i, int j) {
+            if (count[i][j] == 0) {
+                if (i == 0 || j == 0) {
+                    count[i][j] = 1;//为什么这个就直接等于1了？？
+                    //当i等于0时，机器人位于格子最上面的一行，
+                    // 机器人不可能从某个位置向下走一步到达一个行号i等于0的位置。
+                    // 因此，f（0，j）等于1，即机器人只有一种方法可以到达坐标为（0，j）的位置
+                    // ，即从（0，j-1）的位置向右走一步。
+                } else {
+                    count[i][j] = dfs(i - 1, j) + dfs(i, j - 1);
+                }
+            }
+            return count[i][j];
+        }
+
+    }
 }
