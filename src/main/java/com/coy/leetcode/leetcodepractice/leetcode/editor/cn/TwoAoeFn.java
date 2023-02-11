@@ -74,7 +74,9 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgra
 public class TwoAoeFn {
     public static void main(String[] args) {
         Solution2 solution2 = new TwoAoeFn().new Solution2();
+        Solution solution = new TwoAoeFn().new Solution();
         solution2.uniquePaths(3, 7);
+        System.out.println(solution.uniquePaths(3, 7));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -98,11 +100,11 @@ public class TwoAoeFn {
             if (m == 1 && n == 1) {
                 rlt = 0;
             } else if (m == 1 && n > 1) {
-                rlt = 1 + dfs(m, n - 1);
+                rlt = 1 ;//
             } else if (m > 1 && n == 1) {
-                rlt = 1 + dfs(m - 1, n);
+                rlt = 1 ;
             } else {
-                rlt = dfs(m - 1, n) + dfs(m, n - 1) + 2;
+                rlt = dfs(m - 1, n) + dfs(m, n - 1) ;//多加了2
             }
             count[m][n] = rlt;
             return rlt;
