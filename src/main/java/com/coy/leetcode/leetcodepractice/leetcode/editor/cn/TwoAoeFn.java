@@ -73,7 +73,8 @@ import com.coy.leetcode.leetcodepractice.leetcode.annotation.topic.DynamicProgra
 @DynamicProgramming
 public class TwoAoeFn {
     public static void main(String[] args) {
-        Solution solution = new TwoAoeFn().new Solution();
+        Solution2 solution2 = new TwoAoeFn().new Solution2();
+        solution2.uniquePaths(3, 7);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -115,10 +116,12 @@ public class TwoAoeFn {
         public int uniquePaths(int m, int n) {
             //f(m,n) = f(m-1,n)+f(m,n-1)
             count = new int[m][n];
+            int dfs = dfs(m - 1, n - 1);
             for (final int[] ints : count) {
-                Arrays.fill(ints, -1);
+                Integer[] objects = Arrays.stream(ints).boxed().toArray(Integer[]::new);
+                System.out.println(Arrays.toString(objects));
             }
-            return dfs(m - 1, n - 1);
+            return dfs;
         }
 
         private int dfs(int i, int j) {
